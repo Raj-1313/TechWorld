@@ -5,11 +5,11 @@ The TechWorld  is an details oriented website  that allows people to make decisi
 User Friendly UI .... 
 
 ## Member (Assigned To)
- * Raj Rathore..
- * Parag Jain...
- * Subha Mukherje..
- * Rekha Yadav..
- * Ayush Verma..
+ * Raj Rathore..... {Backend, AdminSection}
+ * Parag Jain...... {Backend, AdminSection}
+ * Subha Mukherje...{FrontEnd}
+ * Rekha Yadav......{FrontEnd}
+ * Ayush Verma......{FrontEnd,cart to paymant}
 
 ## Available Scripts
 * Chakra
