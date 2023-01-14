@@ -7,7 +7,9 @@ User Friendly UI ....
 ## Member (Assigned To)
  * Raj Rathore..
  * Parag Jain...
- * Abdus Salam..
+ * Subha Mukherje..
+ * Rekha Yadav..
+ * Ayush Verma..
 
 ## Available Scripts
 * Chakra
@@ -22,15 +24,3 @@ User Friendly UI ....
 ## Link
 * Deployed ...
 * Video    ... 
-
-### Home
-
-
-### PostCards
-
-
-### Product Page
-
-
-### Admin Section
-
