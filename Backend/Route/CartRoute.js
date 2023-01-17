@@ -23,31 +23,6 @@ app.get("/" ,async(req,res)=>{
 
 
 
-
-// app.post("/",async (req,res) =>{
-//     const {productID}= req.body
-//     const {userID}= req.body
-    
-//     try{
-//         const isUserPresent= await CartModel.find({userID}) 
-//         if(isUserPresent.length>0){
-//             let updatedArr =isUserPresent[0].productID.push(productID)
-//             console.log(updatedArr)
-//             await CartModel.findByIdAndUpdate()
-//             res.send(isUserPresent)
-//         }else{
-//             const newUser= await CartModel.create({productID,userID}) 
-//             res.send(newUser)
-//         }
-//     }catch(e){
-//             res.send(e.message)
-//     }
-
-
-// })
-
-
-
 app.post('/',async (req,res) => {
      const {userID,productID}= req.body    
      try{
