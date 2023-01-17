@@ -6,6 +6,7 @@ const connect= require('./config/config');
 const  productRoute = require('./Route/ProductRoute');
 const AuthRoute = require("./Route/Authantication_Route");
 const CartRoute = require("./Route/CartRoute");
+const AdminRoute = require("./Route/AdminRoutes");
 // middleware
 const AuthMiddleware = require('./middleware/Auth_Middleware');
 const app = express();
@@ -19,6 +20,9 @@ app.use(AuthMiddleware)
 
 app.use("/product",productRoute)
 app.use("/cart",CartRoute)
+app.use("/admin",AdminRoute)
+
+
 
 
 
