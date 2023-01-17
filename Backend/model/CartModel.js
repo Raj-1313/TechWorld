@@ -2,13 +2,13 @@ const mongoose = require('mongoose')
 
 
 const CartSchema= mongoose.Schema({        
-    productID:{
-        type:String,
-        required:true
-    },
+    productID:[{
+        type:mongoose.Schema.Types.ObjectId,
+        ref:"true"
+    }],
     userID:{
         type:String,
-        required:true,
+        require:true,
     },
     count:{
         type:Number,
