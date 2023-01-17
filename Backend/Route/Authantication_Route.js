@@ -43,11 +43,9 @@ App.post("/login", async (req, res) => {
     const User = await Auth_Sign.find({ email });  
     if (User.length > 0) {
      bcrypt.compare(password, User[0].password, function(err, result){
-        console.log(result)
-        
+            
         if (err) {
-          console.log("User","err")
-          // console.log(err);
+          console.log(err);
         } else {
           let token =jwt.sign(
             {

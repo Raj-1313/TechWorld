@@ -4,6 +4,7 @@ const productModel = require("../model/ProductsModel");
 
 
 app.get("/",  async (req,res)=>{
+    console.log(req.body)
     try{
         const data= await productModel.find({model: "one"})
         res.send(data)
