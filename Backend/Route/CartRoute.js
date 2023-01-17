@@ -1,0 +1,93 @@
+const express = require('express')
+const  productModel= require('../model/ProductsModel')
+const app = express.Router()
+const CartModel= require('../model/CartModel')
+
+
+
+
+app.get("/" ,async(req,res)=>{
+    const userID = req.body.userID
+    try{
+        const prod= await CartModel.find({userMail},{data:1,count:1})      
+        if(prod.length>0){
+            console.log(prod)
+          return  res.send(prod)           
+        }else{
+            return res.send({data:"null"})
+        }
+       }catch(err){
+           res.send(err.message)
+       }
+})
+
+
+
+
+app.post("/",async (req,res) =>{
+    const {prodID}= req.body
+    const {userID}= req.body
+    
+    try{
+     
+
+    }catch(e){
+
+    }
+
+
+})
+
+
+
+// app.post('/',async (req,res) => {
+//      const {userMail,prodId}= req.body    
+//      try{
+//          const prod= await CartModel.find({prodId,userMail})
+//        const proddetails= await productModel.findById({_id:prodId})
+//          if(prod.length>0){
+//              const updatedProd= await CartModel.updateOne({prodId,userMail},{$inc:{"count":1}},{new:true})
+//              return res.send(updatedProd)
+//             }else{
+//                 const newProd= await CartModel.create({prodId,userMail,data:proddetails})
+//                 return res.send(newProd)
+//             }
+//         }catch(err){
+//             res.send(err.message)
+//         }
+// })
+
+
+// app.post('/dec',async (req,res) => {    
+//     const {userMail,prodId}= req.body   
+//     try{
+//         const prod= await CartModel.find({prodId,userMail})
+      
+//         if(prod.length>0){
+//             const updatedProd= await CartModel.updateOne({prodId,userMail},{$inc:{"count":-1}},{new:true})
+//             return res.send(updatedProd)
+//            }else{
+//                const newProd= await CartModel.create({prodId,userMail})
+//                return res.send(newProd)
+//            }
+//        }catch(err){
+//            res.send(err.message)
+//        }
+// })
+
+
+
+
+// app.delete("/:_id", async (req,res)=>{  
+//     let {_id}= req.params
+//     try{
+//         const rest= await  CartModel.findByIdAndDelete({_id})
+//         return res.send("Product deleted Successfullly")
+//     }catch(err){
+//         return res.send(err.message)
+
+//     }        
+// })
+
+
+module.exports= app

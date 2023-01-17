@@ -23,6 +23,17 @@ app.post("/", async (req,res)=>{
         res.send(e.message)
     }
 })
+app.patch("/:id", async (req,res)=>{
+    const data = req.body
+    const _id = req.params.id
+    try{
+        const obj= await productModel.findByIdAndUpdate({_id})
+        res.send("data posted")
+    }
+    catch(e){
+        res.send(e.message)
+    }
+})
 app.delete("/:id", async (req,res)=>{
     const _id = req.params.id
     try{

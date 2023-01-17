@@ -47,6 +47,7 @@ const productSchema= mongoose.Schema({
     approx_price_EUR:{type:Number},
     img_url:{type:String},
 
+    rating:[{type:Number}]
 })
 
 
