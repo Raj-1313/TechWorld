@@ -14,6 +14,7 @@ app.get("/", async (req, res) => {
       .skip((page - 1) * limit)
       .exec();
 
+<<<<<<< HEAD
     // get total documents in the Posts collection
     const count = await productModel.countDocuments();
     // return response with posts, total pages, and current page
@@ -27,7 +28,7 @@ app.get("/", async (req, res) => {
     console.error(err.message);
   }
 });
-
+=======
 app.post("/", async (req, res) => {
   const data = req.body;
   try {
@@ -60,3 +61,67 @@ app.delete("/:id", async (req, res) => {
 });
 
 module.exports = app;
+
+
+app.get("/", async (req,res)=>{
+    const data = req.body
+    const {limit=10,page=1} = req.query;
+    try{
+        const obj= await productModel.create(data).limit(limit).skip(limit*(page-1));
+        res.send("data posted")
+    }
+    catch(e){
+        res.send(e.message)
+    }
+})
+app.post("/", async (req,res)=>{
+    const data = req.body
+    try{
+        const obj= await productModel.create(data)
+        res.send("data posted")
+    }
+    catch(e){
+        res.send(e.message)
+    }
+})
+>>>>>>> 5caa6991ca8f4488be2dbd612f1c62f7f8e80efc
+
+app.post("/", async (req, res) => {
+  const data = req.body;
+  try {
+    const obj = await productModel.create(data);
+    res.send("data posted");
+  } catch (e) {
+    res.send(e.message);
+  }
+});
+
+app.patch("/:id", async (req, res) => {
+  const data = req.body;
+  const _id = req.params.id;
+  try {
+    const obj = await productModel.findByIdAndUpdate({ _id }, data);
+    res.send("data updated");
+  } catch (e) {
+    res.send(e.message);
+  }
+});
+
+app.delete("/:id", async (req, res) => {
+  const _id = req.params.id;
+  try {
+    const obj = await productModel.findByIdAndDelete({ _id });
+    res.send("data delted");
+  } catch (e) {
+    res.send(e.message);
+  }
+});
+
+<<<<<<< HEAD
+module.exports = app;
+=======
+
+
+module.exports= app
+
+>>>>>>> 5caa6991ca8f4488be2dbd612f1c62f7f8e80efc

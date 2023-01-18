@@ -4,9 +4,12 @@ const productModel = require("../model/ProductsModel");
 const VisitingMiddleware = require("../middleware/RouteChack_Middleware");
 
 
+<<<<<<< HEAD
 
 
 
+=======
+>>>>>>> 5caa6991ca8f4488be2dbd612f1c62f7f8e80efc
 app.get("/", async (req, res) => {
   const find = req.query.find;
   const {limit=10,page=1} = req.query;
@@ -25,8 +28,11 @@ app.get("/", async (req, res) => {
 console.log(products.length)
       res.send(products)
 
+<<<<<<< HEAD
 
 
+=======
+>>>>>>> 5caa6991ca8f4488be2dbd612f1c62f7f8e80efc
     }
   } catch (e) {
     res.send(e.message);
