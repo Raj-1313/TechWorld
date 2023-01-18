@@ -3,22 +3,45 @@ const app = express.Router();
 const productModel = require("../model/ProductsModel");
 const VisitingMiddleware = require("../middleware/RouteChack_Middleware");
 
+
+
+app.get("/",  async (req,res)=>{
+    try{
+        const data= await productModel.find()
+        res.send(data)
+    }
+    catch(e){
+        res.send(e.message)
+
 app.get("/", async (req, res) => {
   const find = req.query.find;
+  const {limit=10,page=1} = req.query;
   try {
     if (find) {
       let products = await productModel.find({
         model: { $regex: find, $options: "i" },
-      });
+      }).limit(limit).skip(limit*(page-1));
+
       res.send(products);
+
+
     } else {
+
+      let products = await productModel.find().limit(limit).skip((page-1)*limit);
+console.log(products.length)
+      res.send(products)
+
       let products = await productModel.find();
       res.send(products);
+
+
     }
   } catch (e) {
     res.send(e.message);
   }
 });
+
+
 
 app.get("/filter", async (req, res) => {
   const { brand, RAM, approx_price_EUR, sort } = req.query;
