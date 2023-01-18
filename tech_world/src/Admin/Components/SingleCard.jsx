@@ -42,12 +42,12 @@ const SingleCard = ({
               <img width="30%" height="fit-content" src={img_url} alt={model} />
               <Box>
                 <p>RAM : {RAM}</p>
-                <p>Color : {colors}</p>
+                {/* <p>Color : {colors}</p> */}
                 <p>Weight : {weight_g} gm</p>
-                <p>camera : {primary_camera}</p>
+                {/* <p>camera : {primary_camera}</p> */}
               </Box>
             </Flex>
-            <Flex py="20px" justifyContent="space-around">
+            <Flex gap={3} py="20px" justifyContent="space-around">
               <Button>Update</Button>
               <Button onClick={() => productDelete(_id)}>delete</Button>
             </Flex>
