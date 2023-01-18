@@ -5,13 +5,7 @@ const VisitingMiddleware = require("../middleware/RouteChack_Middleware");
 
 
 
-app.get("/",  async (req,res)=>{
-    try{
-        const data= await productModel.find()
-        res.send(data)
-    }
-    catch(e){
-        res.send(e.message)
+
 
 app.get("/", async (req, res) => {
   const find = req.query.find;
@@ -27,12 +21,10 @@ app.get("/", async (req, res) => {
 
     } else {
 
-      let products = await productModel.find().limit(limit).skip((page-1)*limit);
+      let  products = await productModel.find().limit(limit).skip((page-1)*limit);
 console.log(products.length)
       res.send(products)
 
-      let products = await productModel.find();
-      res.send(products);
 
 
     }
