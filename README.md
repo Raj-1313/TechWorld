@@ -1,3 +1,23 @@
+# Github Steps
+when cloning:
+   * git clone <Link>
+   * git branch <name>
+   * git checkout <name>
+
+
+daily
+  * git checkout main
+  * git pull
+  * git branch <day_<rolle>>
+  * git checkout <day_<rolle>>
+
+
+## Work in folder Structure and write reusable code
+*
+*
+*
+*
+*
 # The TechWorld (holy-week-7770)
 ### Team Collaborated Project Completed in 6 days
 
