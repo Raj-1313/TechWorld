@@ -4,12 +4,7 @@ const productModel = require("../model/ProductsModel");
 const VisitingMiddleware = require("../middleware/RouteChack_Middleware");
 
 
-<<<<<<< HEAD
 
-
-
-=======
->>>>>>> 5caa6991ca8f4488be2dbd612f1c62f7f8e80efc
 app.get("/", async (req, res) => {
   const find = req.query.find;
   const {limit=10,page=1} = req.query;
@@ -18,23 +13,23 @@ app.get("/", async (req, res) => {
       let products = await productModel.find({
         model: { $regex: find, $options: "i" },
       }).limit(limit).skip(limit*(page-1));
-
       res.send(products);
 
-
     } else {
+
+      let products = await productModel.find().limit(limit).skip((page-1)*limit);
+console.log(products.length)
+      res.send(products)
+
 
       let  products = await productModel.find().limit(limit).skip((page-1)*limit);
 console.log(products.length)
       res.send(products)
 
-<<<<<<< HEAD
 
-
-=======
->>>>>>> 5caa6991ca8f4488be2dbd612f1c62f7f8e80efc
     }
-  } catch (e) {
+  } 
+  catch (e) {
     res.send(e.message);
   }
 });
