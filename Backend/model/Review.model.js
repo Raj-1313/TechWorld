@@ -9,7 +9,7 @@ const ProdReviewSchema= mongoose.Schema({
      reviews: [
     {
       userName:{type: String, require: true},
-      rating: { type: Number, required: true },
+      rating: { type: Number, required: true, },
       comment: { type: String },
       createdAt:{ type: Date, default: Date.now } 
     },

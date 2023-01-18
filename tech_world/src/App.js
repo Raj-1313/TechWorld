@@ -5,7 +5,7 @@ import "./App.css";
 const App = () => {
   return (
     <div>
-      <HomePage/>
+      Welcome To Home Page
     </div>
   )
 }
