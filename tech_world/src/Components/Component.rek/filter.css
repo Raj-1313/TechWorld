@@ -1,0 +1,22 @@
+.sortbox{
+    
+    padding-left: 20px;
+    margin-bottom: 20px;
+
+    
+}
+.sortbox p {
+    font-weight: bold;
+}
+
+.filterbox{
+    padding-left: 20px;
+    border-top: 1px solid lightgray;
+}
+
+.filterbox p {
+    margin-top: 20px;
+    font-weight: bold;
+}
+
+
