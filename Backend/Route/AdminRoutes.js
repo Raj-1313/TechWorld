@@ -3,6 +3,17 @@ const app = express.Router();
 const productModel = require("../model/ProductsModel");
 
 
+app.get("/", async (req,res)=>{
+    const data = req.body
+    const {limit=10,page=1} = req.query;
+    try{
+        const obj= await productModel.create(data).limit(limit).skip(limit*(page-1));
+        res.send("data posted")
+    }
+    catch(e){
+        res.send(e.message)
+    }
+})
 app.post("/", async (req,res)=>{
     const data = req.body
     try{

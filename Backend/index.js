@@ -21,9 +21,9 @@ app.use(AuthMiddleware)
 
 app.use("/product",productRoute)
 app.use("/cart",CartRoute)
+
+
 app.use("/admin",AdminRoute)
-
-
 app.use("/review",ReviewRoute)
 
 
