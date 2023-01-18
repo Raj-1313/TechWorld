@@ -1,4 +1,5 @@
 require("dotenv").config();
+
 const express = require('express');
 const cors= require('cors');
 const connect= require('./config/config');
@@ -36,10 +37,12 @@ res.send("I an onn")
 
 
 
-app.listen(process.env.PORT , async ( ) => {
+
+app.listen(process.env.PORT, async () => {
+    
     try{
-        await connect()
-    console.log("listning on port 8080")
+        await connect
+    console.log(`listning on port ${process.env.PORT}`)
     }catch(e){
         console.log(e.message)
     }
