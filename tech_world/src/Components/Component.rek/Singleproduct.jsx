@@ -1,8 +1,6 @@
 const SingleProduct=()=>{
     return(
-        <div>bhsdghvbs
-
-        </div>
+        <div>bhsdghvbs  </div>
     )
 }
 

@@ -18,5 +18,56 @@
     margin-top: 20px;
     font-weight: bold;
 }
+.sorting{
+    width: 20%;
+}
+
+
+ 
+@media all and (min-width:100px) and (max-width:380px){
+    .sorting{
+        display: flex;
+    
+    
+    }
+    .sorting div{
+        margin-right: 60px;
+    }
+    .filterbox p {
+        font-weight: bold;
+    
+    }
+    .filterbox{
+        padding-left: 20px;
+    
+    }
+
+    .filterbox p {
+        font-weight: bold;
+    }
+    .filterbox div{
+        display: flex;
+    }
+    hr{
+        display: none;
+    }
+    
+} 
+
+ 
+@media all and (min-width:381px) and (max-width:750px){
+.sorting{
+    display: none;
+}
+
+.filterbox p {
+    margin-top: -20px;
+    border: 1px solid red;
+    
+
+}
+}
+
+
 
 

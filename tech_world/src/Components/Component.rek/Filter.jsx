@@ -12,18 +12,17 @@ const Filter = () => {
 
 
     return (
-        <div style={{ width: "20%"}}>
+        <div  className="sorting">
             <div className="sortbox">
                 <p >SORT</p>
-                <div>
-                <input type="checkbox" value="asc" name="sortBy"   style={{ marginRight: "7px", marginTop: "5px" }} />
-                    <label>Low to high</label>
+            <input type="checkbox" value="asc" name="sortBy"   style={{ marginRight: "7px", marginTop: "5px" }} />
+                    <label>ASC</label>
                     <br />
                     <input type="checkbox" value="desc" name="sortBy"   style={{ marginRight: "7px", marginTop: "5px" }} />
-                    <label>High to Low</label>
-                </div>
+                    <label>DESC</label>
             </div>
-            <div className="filterbox"><p>FILTERS</p>
+            <div className="filterbox">
+                <p>FILTERS</p>
                 <div>
                     <input type="checkbox" value="mens"  style={{ marginRight: "7px", marginTop: "5px" }} />
                     <label>mens</label>

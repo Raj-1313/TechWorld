@@ -4,7 +4,7 @@ import Filter from "./Filter"
 
 const AllData = () => {
     return (
-        <div style={{ display: "flex", marginTop: "28px" }}>
+        <div  className="alldata">
      <Filter />
      <Data />
             </div>

@@ -17,12 +17,15 @@ const Data=()=>{
     return(
         <div className="productbox">
              {product.length > 0 && product.map(el => {
-                        return <div key={el.id} >
-                            <img className="pro_img" src={el.image} />
+                        return <Link to={`/products/${el.id}`}><div key={el.id} >
+                            <img className="pro_img" src="https://images.samsung.com/is/image/samsung/p6pim/in/ua43aue65akxxl/gallery/in-uhd-au7002-425303-ua43aue65akxxl-532615671?$2052_1641_PNG$" />
                             <h3 >{el.title}</h3>
-                            <p><span>$169(60% OFF)</span>-${el.price}</p>
-                            <button style={{ marginTop:"5px",padding:"3px 14px 3px 14px", fontSize:"14px", color: "white",background:"green",width:"40%",borderRadius:"10px" }}>Buy Now</button>
-                        </div>
+                            <p>₹{el.price}</p>
+                            <hr></hr>
+                            <p className="fest">Fest offer ₹28945</p>
+                            <p>Incl 2500* off with Bank cash</p>
+                            <button className="btn">Buy Now</button>
+                        </div></Link>
                     })}
         </div>
     )
