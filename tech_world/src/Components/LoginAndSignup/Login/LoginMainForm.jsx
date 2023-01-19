@@ -33,8 +33,8 @@ const LoginMainFrom = () => {
   };
 
   return (
-    <FormControl w={"85%"} h={"35vh"} mb={"1.5rem"}>
-      <Flex justify={"space-between"} flexDirection={"column"} h={"100%"}>
+    <FormControl w={"85%"} mb={"1.5rem"}>
+      <Flex justify={"space-between"} flexDirection={"column"}>
         <Box pt={{ base: "1rem", md: "1rem", lg: "1.3rem" }}>
           <FormLabel>
             <Text fontSize={{ base: "0.8rem", md: "1rem", lg: "1.2rem" }}>

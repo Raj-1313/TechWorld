@@ -12,7 +12,7 @@ const NavbarItemHeadingList = ({ head, sublink, isHover, setIsHover }) => {
       <Heading
         fontSize={"1.2rem"}
         m={"0.7rem"}
-        _hover={{ color: "#EC008C"}}
+        _hover={{ color: "#FF6900"}}
         onMouseOver={() => setIsHover(true)}
         onMouseOut={() => setIsHover(false)}
       >
@@ -29,7 +29,7 @@ const NavbarItemHeadingList = ({ head, sublink, isHover, setIsHover }) => {
             <ListItem
               onMouseOver={() => setIsHover(true)}
               onMouseOut={() => setIsHover(false)}
-              _hover={{ color: "#EC008C" }}
+              _hover={{ color: "#FF6900" }}
               color={"#868686"}
             >
               {item.name}

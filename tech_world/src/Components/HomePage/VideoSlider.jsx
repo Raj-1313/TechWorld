@@ -4,7 +4,7 @@ import { IoIosArrowForward } from "react-icons/io";
 
 const VideoSlider = () => {
   return (
-    <Flex bg={"white"} w={"95%"} m={"3rem auto"} h={"60vh"} p={"2rem"}>
+    <Flex bg={"white"} w={"95%"} m={"3rem auto"} p={"2rem"}>
         <Box w={"50%"}>
         <video autoPlay muted loop>
             <source

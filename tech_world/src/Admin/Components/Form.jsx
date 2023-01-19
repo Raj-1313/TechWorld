@@ -1,5 +1,13 @@
 import React, { useState } from "react";
-import { Box, Grid, Heading, Input, Stack } from "@chakra-ui/react";
+import {
+  Box,
+  Flex,
+  FormLabel,
+  Grid,
+  Heading,
+  Input,
+  Stack,
+} from "@chakra-ui/react";
 import "../../styles/Admin.css";
 
 const initState = {
@@ -118,7 +126,6 @@ const AddForm = () => {
   return (
     <Box className="admin" id="form">
       <Box m="auto" border="2px solid red" className="admin_out_box">
-        <Heading>Add New Product</Heading>
         <form onSubmit={handleSubmit}>
           <Grid
             gridTemplateColumns={{

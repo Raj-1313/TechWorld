@@ -1,27 +1,24 @@
 import React, { useState } from "react";
-import { Box, Text, UnorderedList } from "@chakra-ui/react";
+import { Box, Flex, Heading, Text, UnorderedList } from "@chakra-ui/react";
 import NavbarItemHeadingList from "./NavbarItemHeadingList";
 
 const NavbarMinList = ({ name, id, submenu, sublinks }) => {
   const [isHover, setIsHover] = useState(false);
 
   return (
-    <Box
+    <Flex
+      justify={"center"}
+      align={"center"}
       maxW={"13%"}
       overflow={"hidden"}
-      // _hover={submenu && { boxShadow: "rgba(0, 0, 0, 0.24) 0px 3px 8px" }}
+      // boxShadow={"rgba(0, 0, 0, 0.24) 0px 3px 8px"}
       p={"0.5rem"}
-      textAlign="center"
-      verticalAlign={"center"}
       boxSizing={"border-box"}
+      onMouseOver={() => setIsHover(true)}
+      onMouseOut={() => setIsHover(false)}
+      minH={"3.5rem"}
     >
-      <Text
-        fontWeight={"600"}
-        fontSize={"1rem"}
-        onMouseOver={() => setIsHover(true)}
-        onMouseOut={() => setIsHover(false)}
-        _hover={{ color: "#EC008C" }}
-      >
+      <Text fontWeight={"600"} fontSize={"1rem"} _hover={{ color: "#FF6900" }}>
         {name}
       </Text>
 
@@ -41,6 +38,7 @@ const NavbarMinList = ({ name, id, submenu, sublinks }) => {
           pb={"2rem"}
           pl={"2rem"}
           fontSize={"1.2rem"}
+          top={"4.3rem"}
           left={"0"}
           templateColumns={"repeat(5, 1fr)"}
           gap={"6"}
@@ -58,7 +56,7 @@ const NavbarMinList = ({ name, id, submenu, sublinks }) => {
             })}
         </UnorderedList>
       )}
-    </Box>
+    </Flex>
   );
 };
 

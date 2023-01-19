@@ -14,13 +14,13 @@ export const navbarList = [
         head: "iPhone",
       },
       {
-        head: "OnePlus",
+        head: "Acer",
       },
       {
-        head: "Xiaomi"
+        head: "HUAWEI"
       },
       {
-        head: "Redmi",
+        head: "HTC",
       },
       {
         head: "Realme",

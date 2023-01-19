@@ -1,10 +1,9 @@
 import React, { useState } from "react";
-import { Box, Button, Flex, Image, Input, Text } from "@chakra-ui/react";
+import { Box, Flex, Image, Text } from "@chakra-ui/react";
 import { navbarList } from "../../Data/NavbarListData";
 import NavbarMinList from "./NavbarMinList";
 import Logo from "../../Assets/tech_world_logo.png";
 import { BsFillCartCheckFill, BsFillPersonFill } from "react-icons/bs";
-import { AiOutlineSearch } from "react-icons/ai";
 import Search from "./Search";
 import { Link } from "react-router-dom";
 
@@ -19,14 +18,6 @@ const Navbar = () => {
       width={"100%"}
       p={"0.6rem 1.5rem"}
       cursor={"pointer"}
-      display={{
-        base: "none",
-        sm: "none",
-        md: "none",
-        lg: "flex",
-        xl: "flex",
-        "2xl": "flex",
-      }}
       position={"sticky"}
       top={"0"}
       zIndex={"100"}
@@ -85,7 +76,7 @@ const Navbar = () => {
               textAlign={"center"}
               mt={"1rem"}
               color={"#FF6F61"}
-              _hover={{ color: "#EC008C" }}
+              _hover={{ color: "#FF6900" }}
             >
               PROCEED TO CART
             </Box>
@@ -122,11 +113,13 @@ const Navbar = () => {
             <Box
               pb={"0.5rem"}
               borderBottom={"0.5px solid gray"}
-              _hover={{ color: "#EC008C" }}
+              _hover={{ color: "#FF6900" }}
             >
-              Sign Up
+              <Link to={"/signup"}>Sign Up</Link>
             </Box>
-            <Box _hover={{ color: "#EC008C" }}>Log In</Box>
+            <Box _hover={{ color: "#FF6900" }}>
+              <Link to={"/login"}>Log In</Link>
+            </Box>
           </Box>
         )}
       </Flex>
