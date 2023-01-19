@@ -1,0 +1,12 @@
+.alldata{
+    display: flex;
+    margin-top:28px;
+}
+@media all and (min-width:100px) and (max-width:380px){
+    .alldata{
+        display: grid;
+    }
+    
+    
+    
+}
