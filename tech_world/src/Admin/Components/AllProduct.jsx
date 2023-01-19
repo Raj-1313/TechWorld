@@ -6,7 +6,7 @@ import { useDispatch, useSelector } from "react-redux";
 
 const AllProduct = () => {
   const [currentPage, setCurrentPage] = useState(1);
-  const [totaldocuments, setTotaldocuments] = useState(null);
+  // const [totaldocuments, setTotaldocuments] = useState(null);
   const dispatch = useDispatch();
 
   const { AdminData, totalPages } = useSelector((state) => state.Admin_reducer);
