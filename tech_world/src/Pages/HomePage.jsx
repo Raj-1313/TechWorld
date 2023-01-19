@@ -10,7 +10,7 @@ const HomePage = () => {
   return (
     <Box bg={"#F7F7F7"}>
       <Navbar />
-      <Slider />
+      {/* <Slider /> */}
       <VideoSlider/>
       <HomeProducts/>
       <StayConnected />

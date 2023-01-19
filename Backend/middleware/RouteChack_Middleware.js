@@ -1,9 +1,6 @@
 
-
 const RouteCheckMiddleWare= (req,res,next)=>{
-//    const route= req._parsedUrl
 const id= req.params.id
-//    console.log(req._parsedUrl.href)
 try{
    
     next()
