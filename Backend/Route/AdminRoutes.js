@@ -20,12 +20,10 @@ app.use(Admin_check_MiddleWare);
 app.get("/", async (req, res) => {
   // destructure page and limit and set default values
   const { page = 1, limit = 20 } = req.query;
-  // console.log(page, limit);
-
+  const find=req.query.find
+  
   try {
-
 if(find){  
-
   const products = await productModel.find({model:{ $regex: find, $options: "i" } })
   .limit(limit)
   .skip((page - 1) * limit)
