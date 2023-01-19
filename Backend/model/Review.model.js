@@ -8,6 +8,8 @@ const ProdReviewSchema= mongoose.Schema({
     },
      reviews: [
     {
+      userID:{type:mongoose.Schema.Types.ObjectId,
+        ref:"authanticate" },
       userName:{type: String, require: true},
       rating: { type: Number, required: true, },
       comment: { type: String },
