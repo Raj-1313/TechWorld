@@ -4,6 +4,7 @@ import Slider from "../Components/HomePage/Slider";
 import StayConnected from "../Components/HomePage/StayConnected";
 import { Box } from "@chakra-ui/react";
 import VideoSlider from "../Components/HomePage/VideoSlider";
+import HomeProducts from "../Components/HomePage/HomeProducts";
 
 const HomePage = () => {
   return (
@@ -11,6 +12,7 @@ const HomePage = () => {
       <Navbar />
       {/* <Slider /> */}
       <VideoSlider/>
+      <HomeProducts/>
       <StayConnected />
     </Box>
   );
