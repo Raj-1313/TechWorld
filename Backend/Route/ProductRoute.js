@@ -22,10 +22,6 @@ app.get("/", async (req, res) => {
         .skip((page - 1) * limit);
       console.log(products.length);
       res.send(products);
-
-      //       let  products = await productModel.find().limit(limit).skip((page-1)*limit);
-      // console.log(products.length)
-      //       res.send(products)
     }
   } catch (e) {
     res.send(e.message);
