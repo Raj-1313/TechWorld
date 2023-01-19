@@ -19,24 +19,30 @@ app.use(Admin_check_MiddleWare);
 
 app.get("/", async (req, res) => {
   const { page = 1, limit = 10 } = req.query;
+  const find = req.query.find;
   try {
-    const products = await productModel
-      .find()
-      .limit(limit * 1)
-      .skip((page - 1) * limit)
-      .exec();
 
-    const count = await productModel.countDocuments();
-    res.json({
-      products,
-      count,
-      totalPages: Math.ceil(count / limit),
-      currentPage: page,
-    });
+if(find){  
+
+  const products = await productModel.find({model:{ $regex: find, $options: "i" } })
+  .limit(limit)
+  .skip((page - 1) * limit)
+  .exec();
+  const count = await productModel.countDocuments();
+  res.json({products,count,totalPages: Math.ceil(count / limit), currentPage: page});
+
+}else{
+
+  const products = await productModel.find().limit(limit).skip((page - 1) * limit).exec();  
+  const count = await productModel.countDocuments();
+  res.json({products,count,totalPages: Math.ceil(count / limit),currentPage: page});
+
+}
   } catch (err) {
     console.error(err.message);
   }
 });
+
 app.post("/", async (req, res) => {
   const data = req.body;
   try {
@@ -74,17 +80,24 @@ app.delete("/:id", async (req, res) => {
 
 app.get("/user", async (req, res) => {
   const {userID} = req.body;
+  const find = req.query.find;
   const { limit = 14, page = 1 } = req.query;
   
   try {
-    const users = await userModel.find({ _id:{$nin:userID} },{password:0}).limit(limit).skip(limit * (page - 1));
-    res.send(users);
-  } catch (e) {
+    if(find){
+      const users = await userModel.find({name: { $regex: find, $options: "i" } },{password:0},{_id:{$nin:userID}}
+      ).limit(limit).skip(limit * (page - 1));
+      console.log(users)
+      res.send(users);
+    }else{
+
+      const users = await userModel.find({ _id:{$nin:userID} },{password:0}).limit(limit).skip(limit * (page - 1));
+      res.send(users);
+    }
+    } catch (e) {
     res.send(e.message);
   }
 });
-
-
 
 app.patch("/user/:id", async (req, res) => {
   const data = req.body;
@@ -106,5 +119,7 @@ app.delete("/user/:id", async (req, res) => {
     res.send(e.message);
   }
 });
+
+
 
 module.exports = app;
