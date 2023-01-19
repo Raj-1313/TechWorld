@@ -4,6 +4,7 @@ import SimpleSidebar from "./Admin/Pages/Admin";
 import Dashboard from "./Admin/Components/Dashboard";
 import AddForm from "./Admin/Components/Form";
 import Admin from "./Admin/Pages/Admin.jsx";
+import Cart from "./Components/Cart/Cart";
 function App() {
   return (
     <div>
@@ -13,6 +14,7 @@ function App() {
         {/* <Route path="/admin/dashboard" element={<Dashboard />} /> */}
         {/* <Route path="/admin/addproduct" element={<AddForm />} /> */}
         {/* <Route path="/" element={< />} /> */}
+        <Route path="/cart" element={<Cart/>} ></Route>
       </Routes>
     </div>
   );
