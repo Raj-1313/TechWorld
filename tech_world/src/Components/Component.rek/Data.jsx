@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from "react-redux"
 import "./Data.css"
 import { getdata } from "../../Redux/AppReducer/action";
 
+
 const Data=()=>{
     const product = useSelector((store) => store.AppReducer.data)
     const dispatch=useDispatch()
