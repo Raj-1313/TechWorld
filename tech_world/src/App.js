@@ -1,9 +1,11 @@
+import React from 'react';
+import "./App.css";
 import AllRoute from './AllRoutes/AllRoute';
-import "./App.css"
+
 const App = () => {
   return (
     <div>
-     <AllRoute />
+      <AllRoute/>
     </div>
   )
 }
