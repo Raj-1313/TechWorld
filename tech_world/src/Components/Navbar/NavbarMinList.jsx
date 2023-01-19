@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Box, Heading, Text, UnorderedList } from "@chakra-ui/react";
+import { Box, Text, UnorderedList } from "@chakra-ui/react";
 import NavbarItemHeadingList from "./NavbarItemHeadingList";
 
 const NavbarMinList = ({ name, id, submenu, sublinks }) => {

@@ -1,10 +1,7 @@
 import React, { useState } from "react";
 import {
   Box,
-  Flex,
-  FormLabel,
   Grid,
-  Heading,
   Input,
   Stack,
 } from "@chakra-ui/react";

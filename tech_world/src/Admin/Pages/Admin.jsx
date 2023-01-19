@@ -1,4 +1,4 @@
-import React, { ReactNode } from "react";
+import React, { useState } from "react";
 import {
   IconButton,
   Box,
@@ -11,9 +11,7 @@ import {
   DrawerContent,
   Text,
   useDisclosure,
-  BoxProps,
-  FlexProps,
-  Grid,
+  
   Heading,
 } from "@chakra-ui/react";
 import {
@@ -24,11 +22,10 @@ import {
   FiSettings,
   FiMenu,
 } from "react-icons/fi";
-import { IconType } from "react-icons";
-import { ReactText } from "react";
 import Dashboard from "../Components/Dashboard";
 import AllProduct from "../Components/AllProduct";
 import AddForm from "../Components/Form";
+import Charts from "../Components/Charts";
 
 const LinkItems = [
   { name: "Dashboard", icon: FiHome, path: "dashboard" },
@@ -36,14 +33,17 @@ const LinkItems = [
   { name: "Add Product", icon: FiCompass, path: "addproduct" },
   { name: "Favourites", icon: FiStar },
   { name: "Settings", icon: FiSettings },
+  { name: "Charts", icon: FiSettings, path:"charts" },
 ];
 
 // pura section
 export default function SimpleSidebar({ children }) {
+  const [path,setPath]= useState("dashboard")
   const { isOpen, onOpen, onClose } = useDisclosure();
   return (
     <Box
       border=" 5px solid green"
+      minW="100vw"
       minH="100vh"
       bg={useColorModeValue("gray.100", "gray.900")}
     >
@@ -51,6 +51,7 @@ export default function SimpleSidebar({ children }) {
         <SidebarContent
           onClose={() => onClose}
           display={{ base: "none", md: "block" }}
+          setPath={setPath}
         />
         <Drawer
           autoFocus={false}
@@ -62,37 +63,38 @@ export default function SimpleSidebar({ children }) {
           size="full"
         >
           <DrawerContent>
-            <SidebarContent onClose={onClose} />
+            <SidebarContent onClose={onClose}  setPath={setPath}/>
           </DrawerContent>
         </Drawer>
         {/* mobilenav */}
         <MobileNav display={{ base: "flex", md: "none" }} onOpen={onOpen} />
       </Box>
-      <Box ml={{ base: 0, md: 60 }} border="3px solid blue" p="4">
-        {children}
-        <Box id="dashboard">
-          <Dashboard />
-        </Box>
-        <Box id="allproduct">
-          <AllProduct />
-        </Box>
 
-        <Box id="addproduct">
-          <AddForm />
-        </Box>
-
-        <Heading>
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Commodi
-          laborum doloremque neque vel nisi, est asperiores voluptatum accusamus
-          non? Temporibus.
-        </Heading>
-        <Box></Box>
+      
+      <Box ml={{ base: 0, md: 60 }} minW='80vw' p="4">
+        { children}
+        {
+        path=="dashboard" && <Dashboard /> 
+        }{
+        path=="allproduct" && <AllProduct />
+        }{
+        path=="addproduct" && <AddForm />}
+          {
+        path=="charts" &&  <Charts aspect={2} title="the Boss" />
+        }
+  
+  
+       
       </Box>
     </Box>
   );
 }
 
+
+
+
 const SidebarContent = ({ onClose, ...rest }) => {
+    const {setPath}= rest
   return (
     <Box
       bg={useColorModeValue("white", "gray.900")}
@@ -114,8 +116,11 @@ const SidebarContent = ({ onClose, ...rest }) => {
           />
         </Flex>
         {LinkItems.map((link) => (
-          <NavItem path={link.path} key={link.name} icon={link.icon}>
-            <Box onClick={onClose}>{link.name}</Box>
+          <NavItem  key={link.name} icon={link.icon}>
+            <Box onClick={()=>(setPath(link.path),
+              onClose
+            ) 
+            }>{link.name}</Box>
           </NavItem>
         ))}
       </Box>
@@ -126,11 +131,7 @@ const SidebarContent = ({ onClose, ...rest }) => {
 const NavItem = ({ path, icon, children, ...rest }) => {
   // console.log(children);
   return (
-    <Link
-      href={`#${path}`}
-      style={{ textDecoration: "none" }}
-      _focus={{ boxShadow: "none" }}
-    >
+   
       <Flex
         align="center"
         p="4"
@@ -156,7 +157,7 @@ const NavItem = ({ path, icon, children, ...rest }) => {
         )}
         {children}
       </Flex>
-    </Link>
+ 
   );
 };
 
