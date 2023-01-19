@@ -1,16 +1,12 @@
 import React, { useState } from "react";
-import {
-  Box,
-  Flex,
-  Image,
-  Input,
-  Text
-} from "@chakra-ui/react";
+import { Box, Button, Flex, Image, Input, Text } from "@chakra-ui/react";
 import { navbarList } from "../../Data/NavbarListData";
 import NavbarMinList from "./NavbarMinList";
 import Logo from "../../Assets/tech_world_logo.png";
 import { BsFillCartCheckFill, BsFillPersonFill } from "react-icons/bs";
 import { AiOutlineSearch } from "react-icons/ai";
+import Search from "./Search";
+import { Link } from "react-router-dom";
 
 const Navbar = () => {
   const [cartHover, setCartHover] = useState(false);
@@ -27,7 +23,7 @@ const Navbar = () => {
         base: "none",
         sm: "none",
         md: "none",
-        lg: "none",
+        lg: "flex",
         xl: "flex",
         "2xl": "flex",
       }}
@@ -42,31 +38,17 @@ const Navbar = () => {
         border={"0.5px solid #5C5C5C"}
         _hover={{ boxShadow: "rgba(0, 0, 0, 0.24) 0px 3px 8px" }}
       >
-        <Image src={Logo} alt={"logo"} w={"100%"} h={"auto"} />
+        <Link to={"/"}>
+          <Image src={Logo} alt={"logo"} w={"100%"} h={"auto"} />
+        </Link>
       </Box>
 
       {navbarList.map((item) => (
         <NavbarMinList key={item.id} {...item} />
       ))}
 
-      <Flex
-        justify={"space-between"}
-        align={"center"}
-        w={"20%"}
-        backgroundColor={"#F1F4F6"}
-        p={"0.2rem"}
-        borderRadius={"0.4rem"}
-        _hover={{ boxShadow: "rgba(0, 0, 0, 0.24) 0px 3px 8px" }}
-      >
-        <Input
-          size="sm"
-          placeholder="Search products"
-          type={"text"}
-          border={"none"}
-          outline={"none"}
-        />
-        <AiOutlineSearch style={{ fontSize: "1.8rem", color:"#718096" }} />
-      </Flex>
+      {/* Search Input */}
+      <Search />
 
       <Flex
         w={"5.5%"}
@@ -137,7 +119,11 @@ const Navbar = () => {
             onMouseOver={() => setAccountHover(true)}
             onMouseOut={() => setAccountHover(false)}
           >
-            <Box pb={"0.5rem"} _hover={{ color: "#EC008C" }}>
+            <Box
+              pb={"0.5rem"}
+              borderBottom={"0.5px solid gray"}
+              _hover={{ color: "#EC008C" }}
+            >
               Sign Up
             </Box>
             <Box _hover={{ color: "#EC008C" }}>Log In</Box>

@@ -9,7 +9,7 @@ const NavbarMinList = ({ name, id, submenu, sublinks }) => {
     <Box
       maxW={"13%"}
       overflow={"hidden"}
-      _hover={submenu && { boxShadow: "rgba(0, 0, 0, 0.24) 0px 3px 8px" }}
+      // _hover={submenu && { boxShadow: "rgba(0, 0, 0, 0.24) 0px 3px 8px" }}
       p={"0.5rem"}
       textAlign="center"
       verticalAlign={"center"}
