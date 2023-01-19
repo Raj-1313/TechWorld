@@ -6,17 +6,10 @@ import { Box } from "@chakra-ui/react";
 import Signup from "./Pages/Signup";
 import Login from "./Pages/Login";
 
-import AllRoute from './AllRoutes/AllRoute';
-import "./App.css"
-
 const App = () => {
   return (
     <Box>
-      {/* <Login/> */}
       <AllRoute/>
-      {/* <Signup /> */}
-      {/* <Login/> */}
-      {/* <HomePage/> */}
     </Box>
   );
 };

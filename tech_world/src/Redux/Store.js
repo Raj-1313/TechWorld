@@ -3,13 +3,11 @@ import thunk from "redux-thunk";
 import { Auth_reducer } from "./AuthRedux/Auth_Reduce";
 import { Admin_reducer } from "./AdminRedux/Admin_Reducer";
 import searhReducer from "./SearchRedux/Search.Reducer";
-import {reducer as AppReducer} from"./AppReducer/reducer"
 
 const rootReducer = combineReducers({
   Auth_reducer,
   Admin_reducer,
-  search: searhReducer,
-  AppReducer
+  search: searhReducer
 });
 
 const store = legacy_createStore(rootReducer, applyMiddleware(thunk));

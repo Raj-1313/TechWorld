@@ -5,15 +5,17 @@ import StayConnected from "../Components/HomePage/StayConnected";
 import { Box } from "@chakra-ui/react";
 import VideoSlider from "../Components/HomePage/VideoSlider";
 import HomeProducts from "../Components/HomePage/HomeProducts";
+import Footer from "../Components/Footer/Footer";
 
 const HomePage = () => {
   return (
     <Box bg={"#F7F7F7"}>
       <Navbar />
-      {/* <Slider /> */}
+      <Slider />
       <VideoSlider/>
       <HomeProducts/>
       <StayConnected />
+      <Footer />
     </Box>
   );
 };
