@@ -39,18 +39,18 @@
     font-weight: bold;
 }
 
-/* .card {
+.card {
     width: 11.875em;
     height: 16.5em;
     box-shadow: 0px 1px 13px rgba(0,0,0,0.1);
     cursor: pointer;
     transition: all 120ms;
+    display: flex;
     align-items: center;
     justify-content: center;
     background: #fff;
     padding: 0.5em;
     padding-bottom: 3.4em;
-    
    }
    
    .card::after {
@@ -76,7 +76,6 @@
     left: 0.625em;
     bottom: 1.875em;
     font-weight: 400;
-    border: 1px solid pink;
    }
    
    .card .price {
@@ -85,7 +84,6 @@
     position: absolute;
     left: 0.625em;
     bottom: 0.625em;
-    border: 1px solid green;
    }
    
    .card:hover::after {
@@ -111,5 +109,4 @@
     height: 100%;
     display: grid;
     place-items: center;
-    border: 1px solid red;
-   } */
+   }

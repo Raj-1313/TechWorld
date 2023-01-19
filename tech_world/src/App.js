@@ -9,11 +9,11 @@ import Singleproduct from "./Components/Component.rek/Singleproduct";
 function App() {
   return (
     <div>
-      {/* <AllData/> */}
+      <AllData/>
       {/* <h1>Hello World</h1> */}
       <Routes>
         <Route path="/admin" element={<Admin />} />
-        {/* <Route path="/products/:id" element={<Singleproduct/>} /> */}
+        <Route path="/products/:id" element={<Singleproduct/>} />
         {/* <Route path="/admin/dashboard" element={<Dashboard />} /> */}
         {/* <Route path="/admin/addproduct" element={<AddForm />} /> */}
         {/* <Route path="/" element={< />} /> */}

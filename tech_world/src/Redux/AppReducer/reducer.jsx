@@ -22,7 +22,7 @@ export const reducer = (state = initialState, { type, payload }) => {
 
         case types.GET_DATA_FAILURE: {
             return {
-                ...state, isLoading: false, isError: true, books: []
+                ...state, isLoading: false, isError: true, data: []
             }
         }
         default: return state
