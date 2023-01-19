@@ -10,9 +10,10 @@ const AllProduct = () => {
   const dispatch = useDispatch();
 
   const { AdminData, totalPages } = useSelector((state) => state.Admin_reducer);
-  console.log(currentPage);
+  // console.log(currentPage);
+
   useEffect(() => {
-    dispatch(adminData({ page: currentPage, limit: 10 }));
+    dispatch(adminData({ page: currentPage, limit: 20 }));
   }, [dispatch, currentPage]);
 
   // const Alldata = (page = 1, limit = 10) => {
@@ -31,19 +32,23 @@ const AllProduct = () => {
   return (
     <Box>
       <Grid
-        gap={5}
         gridTemplateColumns={{
-          base: "1fr",
-          md: "1fr ",
-          lg: "1fr 1fr 1fr",
+          base: "1fr ",
+          sm: "1fr 1fr",
+          md: "1fr 1fr",
+          lg: "1fr 1fr 1fr ",
+          xl: "1fr 1fr  1fr 1fr",
+          "2xl": "1fr 1fr 1fr 1fr ",
         }}
+        rowGap={10}
+        columnGap={20}
       >
         {AdminData?.map((product) => (
           <SingleCard {...product} key={product._id} />
         ))}
       </Grid>
-      <Center>
-        <Button>Prev</Button>
+      <Center my={50} gap={10}>
+        <Button onClick={() => setCurrentPage((pr) => pr - 1)}>Prev</Button>
 
         <Button>
           {currentPage} of {totalPages}

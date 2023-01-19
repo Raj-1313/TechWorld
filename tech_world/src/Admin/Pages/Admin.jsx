@@ -11,8 +11,8 @@ import {
   DrawerContent,
   Text,
   useDisclosure,
-  
   Heading,
+  Grid,
 } from "@chakra-ui/react";
 import {
   FiHome,
@@ -33,20 +33,15 @@ const LinkItems = [
   { name: "Add Product", icon: FiCompass, path: "addproduct" },
   { name: "Favourites", icon: FiStar },
   { name: "Settings", icon: FiSettings },
-  { name: "Charts", icon: FiSettings, path:"charts" },
+  { name: "Charts", icon: FiSettings, path: "charts" },
 ];
 
 // pura section
 export default function SimpleSidebar({ children }) {
-  const [path,setPath]= useState("dashboard")
+  const [path, setPath] = useState("allproduct");
   const { isOpen, onOpen, onClose } = useDisclosure();
   return (
-    <Box
-      border=" 5px solid green"
-      minW="100vw"
-      minH="100vh"
-      bg={useColorModeValue("gray.100", "gray.900")}
-    >
+    <Box>
       <Box>
         <SidebarContent
           onClose={() => onClose}
@@ -63,38 +58,26 @@ export default function SimpleSidebar({ children }) {
           size="full"
         >
           <DrawerContent>
-            <SidebarContent onClose={onClose}  setPath={setPath}/>
+            <SidebarContent onClose={onClose} setPath={setPath} />
           </DrawerContent>
         </Drawer>
         {/* mobilenav */}
         <MobileNav display={{ base: "flex", md: "none" }} onOpen={onOpen} />
       </Box>
 
-      
-      <Box ml={{ base: 0, md: 60 }} minW='80vw' p="4">
-        { children}
-        {
-        path=="dashboard" && <Dashboard /> 
-        }{
-        path=="allproduct" && <AllProduct />
-        }{
-        path=="addproduct" && <AddForm />}
-          {
-        path=="charts" &&  <Charts aspect={2} title="the Boss" />
-        }
-  
-  
-       
+      <Box p="4" ml={{ base: 0, md: 60 }}>
+        {children}
+        {path === "dashboard" && <Dashboard />}
+        {path === "allproduct" && <AllProduct />}
+        {path === "addproduct" && <AddForm />}
+        {path === "charts" && <Charts aspect={2} title="the Boss" />}
       </Box>
     </Box>
   );
 }
 
-
-
-
 const SidebarContent = ({ onClose, ...rest }) => {
-    const {setPath}= rest
+  const { setPath } = rest;
   return (
     <Box
       bg={useColorModeValue("white", "gray.900")}
@@ -116,11 +99,8 @@ const SidebarContent = ({ onClose, ...rest }) => {
           />
         </Flex>
         {LinkItems.map((link) => (
-          <NavItem  key={link.name} icon={link.icon}>
-            <Box onClick={()=>(setPath(link.path),
-              onClose
-            ) 
-            }>{link.name}</Box>
+          <NavItem key={link.name} icon={link.icon}>
+            <Box onClick={() => (setPath(link.path), onClose)}>{link.name}</Box>
           </NavItem>
         ))}
       </Box>
@@ -131,33 +111,31 @@ const SidebarContent = ({ onClose, ...rest }) => {
 const NavItem = ({ path, icon, children, ...rest }) => {
   // console.log(children);
   return (
-   
-      <Flex
-        align="center"
-        p="4"
-        mx="4"
-        borderRadius="lg"
-        role="group"
-        cursor="pointer"
-        _hover={{
-          bg: "cyan.400",
-          color: "white",
-        }}
-        {...rest}
-      >
-        {icon && (
-          <Icon
-            mr="4"
-            fontSize="16"
-            _groupHover={{
-              color: "white",
-            }}
-            as={icon}
-          />
-        )}
-        {children}
-      </Flex>
- 
+    <Flex
+      align="center"
+      p="4"
+      mx="4"
+      borderRadius="lg"
+      role="group"
+      cursor="pointer"
+      _hover={{
+        bg: "cyan.400",
+        color: "white",
+      }}
+      {...rest}
+    >
+      {icon && (
+        <Icon
+          mr="4"
+          fontSize="16"
+          _groupHover={{
+            color: "white",
+          }}
+          as={icon}
+        />
+      )}
+      {children}
+    </Flex>
   );
 };
 

@@ -3,38 +3,34 @@ const app = express.Router();
 const productModel = require("../model/ProductsModel");
 const VisitingMiddleware = require("../middleware/RouteChack_Middleware");
 
-
-
 app.get("/", async (req, res) => {
   const find = req.query.find;
-  const {limit=10,page=1} = req.query;
+  const { limit = 10, page = 1 } = req.query;
   try {
     if (find) {
-      let products = await productModel.find({
-        model: { $regex: find, $options: "i" },
-      }).limit(limit).skip(limit*(page-1));
+      let products = await productModel
+        .find({
+          model: { $regex: find, $options: "i" },
+        })
+        .limit(limit)
+        .skip(limit * (page - 1));
+      res.send(products);
+    } else {
+      let products = await productModel
+        .find()
+        .limit(limit)
+        .skip((page - 1) * limit);
+      console.log(products.length);
       res.send(products);
 
-    } else {
-
-      let products = await productModel.find().limit(limit).skip((page-1)*limit);
-console.log(products.length)
-      res.send(products)
-
-
-      let  products = await productModel.find().limit(limit).skip((page-1)*limit);
-console.log(products.length)
-      res.send(products)
-
-
+      //       let  products = await productModel.find().limit(limit).skip((page-1)*limit);
+      // console.log(products.length)
+      //       res.send(products)
     }
-  } 
-  catch (e) {
+  } catch (e) {
     res.send(e.message);
   }
 });
-
-
 
 app.get("/filter", async (req, res) => {
   const { brand, RAM, approx_price_EUR, sort } = req.query;
@@ -55,44 +51,42 @@ app.get("/filter", async (req, res) => {
           case "inc": {
             let products = await productModel
               .find({
-            brand: { $regex: brand, $options: "i" },
-            RAM: { $regex: RAM, $options: "i" },
-            approx_price_EUR: { $regex: approx_price_EUR, $options: "i" },
-          })
+                brand: { $regex: brand, $options: "i" },
+                RAM: { $regex: RAM, $options: "i" },
+                approx_price_EUR: { $regex: approx_price_EUR, $options: "i" },
+              })
               .sort({ approx_price_EUR: 1 });
             return res.send(products);
           }
           case "asc": {
             let products = await productModel
               .find({
-            brand: { $regex: brand, $options: "i" },
-            RAM: { $regex: RAM, $options: "i" },
-            approx_price_EUR: { $regex: approx_price_EUR, $options: "i" },
-          })
+                brand: { $regex: brand, $options: "i" },
+                RAM: { $regex: RAM, $options: "i" },
+                approx_price_EUR: { $regex: approx_price_EUR, $options: "i" },
+              })
               .sort({ model: 1 });
             return res.send(products);
           }
           case "desc": {
             let products = await productModel
               .find({
-            brand: { $regex: brand, $options: "i" },
-            RAM: { $regex: RAM, $options: "i" },
-            approx_price_EUR: { $regex: approx_price_EUR, $options: "i" },
-          })
+                brand: { $regex: brand, $options: "i" },
+                RAM: { $regex: RAM, $options: "i" },
+                approx_price_EUR: { $regex: approx_price_EUR, $options: "i" },
+              })
               .sort({ model: -1 });
             return res.send(products);
           }
         }
       } else {
         let products = await productModel.find({
-            brand: { $regex: brand, $options: "i" },
-            RAM: { $regex: RAM, $options: "i" },
-            approx_price_EUR: { $regex: approx_price_EUR, $options: "i" },
-          });
+          brand: { $regex: brand, $options: "i" },
+          RAM: { $regex: RAM, $options: "i" },
+          approx_price_EUR: { $regex: approx_price_EUR, $options: "i" },
+        });
         return res.send(products);
       }
-
-
     } else if (brand && approx_price_EUR) {
       if (sort) {
         switch (sort) {
@@ -135,18 +129,12 @@ app.get("/filter", async (req, res) => {
         }
       } else {
         let products = await productModel.find({
-            brand: { $regex: brand, $options: "i" },
-            approx_price_EUR: { $regex: approx_price_EUR, $options: "i" },
-          });
+          brand: { $regex: brand, $options: "i" },
+          approx_price_EUR: { $regex: approx_price_EUR, $options: "i" },
+        });
         return res.send(products);
       }
-
-
-
-    } 
-    
-
-    else if (RAM && approx_price_EUR) {
+    } else if (RAM && approx_price_EUR) {
       let products = await productModel.find({ RAM, approx_price_EUR });
 
       if (sort) {
@@ -190,15 +178,12 @@ app.get("/filter", async (req, res) => {
         }
       } else {
         let products = await productModel.find({
-            RAM: { $regex: RAM, $options: "i" },
-            approx_price_EUR: { $regex: approx_price_EUR, $options: "i" },
-          });
+          RAM: { $regex: RAM, $options: "i" },
+          approx_price_EUR: { $regex: approx_price_EUR, $options: "i" },
+        });
         return res.send(products);
       }
-    } 
-    
-    
-    else if (brand && RAM) {
+    } else if (brand && RAM) {
       if (sort) {
         switch (sort) {
           case "dec": {
@@ -245,10 +230,7 @@ app.get("/filter", async (req, res) => {
         });
         return res.send(products);
       }
-    } 
-    
-    
-    else {
+    } else {
       if (RAM) {
         if (sort) {
           switch (sort) {
@@ -361,14 +343,10 @@ app.get("/filter", async (req, res) => {
         }
       }
     }
-
   } catch (e) {
     res.send(e.message);
   }
 });
-
-
-
 
 // app.use(VisitingMiddleware)
 app.get("/:id", VisitingMiddleware, async (req, res) => {

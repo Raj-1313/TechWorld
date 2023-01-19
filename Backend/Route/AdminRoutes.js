@@ -4,8 +4,8 @@ const productModel = require("../model/ProductsModel");
 
 app.get("/", async (req, res) => {
   // destructure page and limit and set default values
-  const { page = 1, limit = 10 } = req.query;
-  console.log(page, limit);
+  const { page = 1, limit = 12 } = req.query;
+  // console.log(page, limit);
   try {
     // execute query with page and limit values
     const products = await productModel
@@ -50,6 +50,7 @@ app.patch("/:id", async (req, res) => {
 
 app.delete("/:id", async (req, res) => {
   const _id = req.params.id;
+  console.log(_id);
   try {
     const obj = await productModel.findByIdAndDelete({ _id });
     res.send("data delted");

@@ -1,7 +1,8 @@
 import { Box, Button, Flex } from "@chakra-ui/react";
-import React from "react";
+import React, { useState } from "react";
 import "./SingleCard.css";
-import axios from "axios";
+import { useDispatch } from "react-redux";
+import { adminDelete } from "../../Redux/AdminRedux/Admin_Action";
 import { useEffect } from "react";
 
 const SingleCard = ({
@@ -10,27 +11,26 @@ const SingleCard = ({
   img_url,
   _id,
   RAM,
-  // SIM,
-  // colors,
+  approx_price_EUR,
   weight_g,
-  // primary_camera,
 }) => {
-  useEffect(() => {
-    productDelete();
-  }, [_id]);
+  const [count, setCount] = useState(1);
+  const dispatch = useDispatch();
 
-  const productDelete = (id) => {
-    axios
-      .delete(`http://localhost:8080/product/${id}`)
-      .then((res) => console.log(res));
+  useEffect(() => {}, [count, dispatch]);
+
+  const productDelete = (_id) => {
+    setCount((prev) => prev + 1);
+    dispatch(adminDelete(_id));
   };
+  console.log(count);
 
   return (
     <Box className="container">
-      <Box className="card">
+      <Box className="card" my={5}>
         <Box className="box">
           <Box className="content">
-            <h6>ID:{_id}</h6>
+            {/* <h6>ID:{_id}</h6> */}
 
             <h4>
               Brand:<strong> {brand}</strong>
@@ -44,12 +44,14 @@ const SingleCard = ({
                 <p>RAM : {RAM}</p>
                 {/* <p>Color : {colors}</p> */}
                 <p>Weight : {weight_g} gm</p>
-                {/* <p>camera : {primary_camera}</p> */}
+                <p>Price : Rs {approx_price_EUR * 70} </p>
               </Box>
             </Flex>
-            <Flex gap={3} py="20px" justifyContent="space-around">
-              <Button>Update</Button>
-              <Button onClick={() => productDelete(_id)}>delete</Button>
+            <Flex py="20px" justifyContent="space-around">
+              <Button className="btn">Update</Button>
+              <Button className="btn" onClick={() => productDelete(_id)}>
+                delete
+              </Button>
             </Flex>
             {/* <a href="#">Read More</a> */}
           </Box>
