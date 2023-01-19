@@ -1,6 +1,5 @@
 
 import { Box, Card, CardBody, CardFooter, CardHeader,Container,Table, Tbody, Td, Th, Thead, Tr } from "@chakra-ui/react";
-
 const tableData = [
   {
     img_url
