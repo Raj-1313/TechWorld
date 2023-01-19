@@ -61,9 +61,10 @@ const Navbar = () => {
         <Input
           size="sm"
           placeholder="Search products"
-          type={"text"}
-          border={"none"}
-          outline={"none"}
+          type="text"
+          border="none"
+          focusBorderColor="transparent"
+
         />
         <AiOutlineSearch style={{ fontSize: "1.8rem", color:"#718096" }} />
       </Flex>

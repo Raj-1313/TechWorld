@@ -1,11 +1,12 @@
 import React from 'react';
 import HomePage from "./Pages/HomePage";
 import "./App.css";
+import AllRoute from './AllRoutes/AllRoute';
 
 const App = () => {
   return (
     <div>
-      Welcome To Home Page
+     <AllRoute />
     </div>
   )
 }
