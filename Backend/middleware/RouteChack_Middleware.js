@@ -4,8 +4,12 @@ const id= req.params.id
 try{
    
     next()
-    console.log(id,"inside middleware")
-    //  console.log(route)
+
+    // searching of product
+    if(id){
+        console.log(id,"inside middleware")
+       
+    }
     
 }catch(e){    
     res.send({message:"Login first"})
