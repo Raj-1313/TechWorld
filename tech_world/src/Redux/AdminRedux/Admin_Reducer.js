@@ -1,4 +1,4 @@
-import { Admin_FAILURE, Admin_REQUEST, Admin_SUCCESS } from "./Admin_Types.js";
+import { Admin_FAILURE, Admin_REQUEST, Admin_SUCCESS,AdminDelete_REQUEST,AdminDelete_SUCCESS,AdminDelete_FAILURE } from "./Admin_Types.js";
 
 const initialState = {
   AdminData: [],
