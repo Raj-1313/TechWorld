@@ -4,8 +4,7 @@ const app = express.Router();
 const RatingModel = require("../model/Review.model");
 
 app.get("/:id", async (req, res) => {
-  const productID = req.params.id;
- 
+  const productID = req.params.id; 
 try{
     const createdReview = await RatingModel.find({productID},{userID:0});
     res.send(createdReview);
@@ -14,7 +13,6 @@ catch(e){
     res.send(e.message)
 }
 });
-
 
 
 app.post("/", async (req, res) => {

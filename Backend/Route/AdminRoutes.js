@@ -18,6 +18,7 @@ app.use(Admin_check_MiddleWare);
 
 app.get("/", async (req, res) => {
   // destructure page and limit and set default values
+
   const { page = 1, limit = 20, find } = req.query;
 
   // console.log(page, limit);
@@ -50,6 +51,8 @@ app.get("/", async (req, res) => {
         currentPage: page,
       });
     }
+
+ 
   } catch (err) {
     console.error(err.message);
   }

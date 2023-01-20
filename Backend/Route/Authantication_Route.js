@@ -57,7 +57,9 @@ App.post("/login", async (req, res) => {
             }
           );
           req.body.userID = User[0]._id;
+
           return res.send({ token });
+
         }
       });
     } else {

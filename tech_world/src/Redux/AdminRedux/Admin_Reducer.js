@@ -1,18 +1,10 @@
-import {
-  Admin_FAILURE,
-  Admin_REQUEST,
-  Admin_SUCCESS,
-  AdminDelete_REQUEST,
-  AdminDelete_FAILURE,
-  AdminDelete_SUCCESS,
-} from "./Admin_Types.js";
+import { Admin_FAILURE, Admin_REQUEST, Admin_SUCCESS } from "./Admin_Types.js";
 
 const initialState = {
   AdminData: [],
   totalPages: null,
   isLoading: false,
   isError: false,
-  deletedID: null,
 };
 
 const Admin_reducer = (state = initialState, { type, payload }) => {
@@ -35,6 +27,7 @@ const Admin_reducer = (state = initialState, { type, payload }) => {
     case Admin_REQUEST: {
       return { ...state, isLoading: true, isError: false };
     }
+
 
     case AdminDelete_FAILURE: {
       return {
@@ -59,6 +52,7 @@ const Admin_reducer = (state = initialState, { type, payload }) => {
         isError: false,
       };
     }
+
     default: {
       return state;
     }
