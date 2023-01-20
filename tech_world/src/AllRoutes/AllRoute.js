@@ -4,6 +4,8 @@ import Admin from "../Admin/Pages/Admin";
 import Login from "../Pages/Login";
 import Signup from "../Pages/Signup";
 import ProjectTables from "../Admin/Components/dataStatas/ProjectTable";
+import Payment from "../Components/Payment/Payment";
+import RazorPay from "../Components/Payment/RazorPay";
 
 const AllRoute = () => {
   return (
@@ -14,6 +16,8 @@ const AllRoute = () => {
         <Route path="/signup" element={<Signup />} />
         <Route path="/admin" element={<Admin/>} />        
         <Route path="/ordering" element={<ProjectTables/>} />
+        <Route path="/payment" element={<Payment/>} />
+        <Route path="/razor" element={<RazorPay/>} />
       </Routes>
     </div>
   );
