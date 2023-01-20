@@ -1,11 +1,18 @@
+const visitedProduct= require("../model/VisitedProduct_model")
 
-const RouteCheckMiddleWare= (req,res,next)=>{
-const id= req.params.id
-try{
-   
+
+const RouteCheckMiddleWare=async (req,res,next)=>{
+const _id= req.params.id
+try{   
+    // searching of product
+    const productExist= await visitedProduct.find({productID:_id})      
+    if(productExist?.length>0){           
+        await visitedProduct.updateOne({productID:_id},{$inc:{"productCount":1}})        
+    }else{
+         await visitedProduct.create({productID:_id})           
+    }
+    
     next()
-    console.log(id,"inside middleware")
-    //  console.log(route)
     
 }catch(e){    
     res.send({message:"Login first"})

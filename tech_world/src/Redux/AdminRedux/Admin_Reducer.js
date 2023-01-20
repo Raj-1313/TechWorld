@@ -1,4 +1,6 @@
-import { Admin_FAILURE, Admin_REQUEST, Admin_SUCCESS } from "./Admin_Types.js";
+import { Admin_FAILURE, Admin_REQUEST, Admin_SUCCESS,
+  // AdminDelete_REQUEST,AdminDelete_SUCCESS,AdminDelete_FAILURE 
+} from "./Admin_Types.js";
 
 const initialState = {
   AdminData: [],
@@ -26,6 +28,31 @@ const Admin_reducer = (state = initialState, { type, payload }) => {
     }
     case Admin_REQUEST: {
       return { ...state, isLoading: true, isError: false };
+    }
+
+
+    case "AdminDelete_FAILURE": {
+      return {
+        ...state,
+        isError: true,
+        isLoading: false,
+      };
+    }
+    case "AdminDelete_REQUEST": {
+      return { ...state, isLoading: true, isError: false };
+    }
+
+    case "AdminDelete_SUCCESS": {
+      // const deleted_product = state.AdminData.filter(
+      //   (item) => item.id !== payload
+      // );
+      return {
+        ...state,
+        // AdminData: deleted_product,
+        // deletedID: payload,
+        isLoading: false,
+        isError: false,
+      };
     }
 
     default: {
