@@ -6,6 +6,7 @@ import Signup from "../Pages/Signup";
 import ProjectTables from "../Admin/Components/dataStatas/ProjectTable";
 import Payment from "../Components/Payment/Payment";
 import RazorPay from "../Components/Payment/RazorPay";
+import Cart from "../Components/Cart/Cart"
 
 const AllRoute = () => {
   return (
@@ -19,6 +20,7 @@ const AllRoute = () => {
         <Route path="/ordering" element={<ProjectTables/>} />
         <Route path="/payment" element={<Payment/>} />
         <Route path="/razor" element={<RazorPay/>} />
+        <Route path="/cart" element={<Cart/>}/>
       </Routes>
     </div>
   );
