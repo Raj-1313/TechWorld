@@ -6,11 +6,18 @@ const VisitedSchema= mongoose.Schema({
         type:mongoose.Schema.Types.ObjectId,
         ref:"product"
     }],
-    userID:{
-        type:String,
-        require:true,
-    }
+    // userID:{
+    //     type:mongoose.Schema.Types.ObjectId,
+    //     ref:"authanticate",
+    //     require:true,
+    // },
+    productCount:{type:Number,default:1}
+
+},{
+    versionKey:false,
 })
+
+
 
 
 const VisitedModel  = mongoose.model('visitedProduct',VisitedSchema)
