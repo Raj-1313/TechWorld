@@ -8,6 +8,7 @@ import ProjectTables from "../Admin/Components/dataStatas/ProjectTable";
 import SalesChart from "../Admin/Components/dataStatas/SalesChart";
 import Payment from "../Components/Payment/Payment";
 import RazorPay from "../Components/Payment/RazorPay";
+import AllData from "../Components/Component.rek/Alldata";
 
 
 const AllRoute = () => {
@@ -26,6 +27,8 @@ const AllRoute = () => {
         <Route path="/sales" element={<SalesChart/>} />
         <Route path="/payment" element={<Payment/>} />
         <Route path="/razor" element={<RazorPay/>} />
+        <Route path="/product" element={<AllData/>} />
+
 
       </Routes>
     </div>

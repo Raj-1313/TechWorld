@@ -1,37 +1,22 @@
 
-  import * as types from './actionTypes'
+  import {GET_DATA_FAILURE,GET_DATA_REQUEST,GET_DATA_SUCCESS} from './actionTypes'
   import axios from 'axios'
 
   
-  export const getRequest = () => {
-      return {
-          type: types.GET_DATA_REQUEST
-      }
-  }
   
-  export const getSuccess = (payload) => {
-      return {
-          type: types.GET_DATA_SUCCESS,
-          payload
-      }
-  }
-  
-  export const getFailure = () => {
-      return {
-          type: types.GET_DATA_FAILURE
-      }
-  }
-  
-   const getdata = (queryParams) => (dispatch) => {
-      dispatch(getRequest());
-      return axios.get("https://modesens-mocker-api.onrender.com/modesensdata",queryParams)
-          .then((res) => {
-              // console.log(res.data)
-              dispatch(getSuccess(res.data))
-          })
-          .catch((err) => {
-              dispatch(getFailure())
-          })
+   const getdata = () => async(dispatch) => {
+      dispatch({type: GET_DATA_REQUEST });
+try{
+
+    let res= await axios.get("https://fine-cyan-millipede-boot.cyclic.app/product")
+    
+    console.log(res.data)
+    dispatch({ type:GET_DATA_SUCCESS,payload:res.data })
+
+}
+ catch(err){
+              dispatch({ type:GET_DATA_FAILURE })
+               }
   }
 
     export {getdata}
