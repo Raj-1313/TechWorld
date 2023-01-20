@@ -4,10 +4,9 @@ const app = express.Router();
 const RatingModel = require("../model/Review.model");
 
 app.get("/:id", async (req, res) => {
-  const productID = req.params.id;
- 
+  const productID = req.params.id; 
 try{
-    const createdReview = await RatingModel.find({productID});
+    const createdReview = await RatingModel.find({productID},{userID:0});
     res.send(createdReview);
 }
 catch(e){
@@ -16,13 +15,13 @@ catch(e){
 });
 
 
-
 app.post("/", async (req, res) => {
-  const { productID, userName, rating, comment } = req.body;
+  const { productID, userName, rating, comment,userID } = req.body;
   const review = {
     userName,
     rating,
     comment,
+    userID
   };
 
   const ifReviewIDexist = await RatingModel.find({ productID });

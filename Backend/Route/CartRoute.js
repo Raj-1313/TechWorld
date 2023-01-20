@@ -1,5 +1,4 @@
 const express = require('express')
-const  productModel= require('../model/ProductsModel')
 const app = express.Router()
 const CartModel= require('../model/CartModel')
 
@@ -26,20 +25,20 @@ app.get("/" ,async(req,res)=>{
 app.post('/',async (req,res) => {
      const {userID,productID}= req.body    
      try{
-         const prod= await CartModel.find({userID,productID})
-       
+         const prod= await CartModel.find({userID,productID})       
          if(prod.length>0){
              const updatedProd= await CartModel.updateOne({userID,productID},{$inc:{"count":1}},{new:true})
              return res.send(updatedProd)
             }else{
                 const newProd= await CartModel.create({userID,productID})
+                console.log(newProd)
                 return res.send(newProd)
             }
         }catch(err){
             res.send(err.message)
         }
 })
-
+       
 
 app.post('/dec',async (req,res) => {    
     const {userID,productID}= req.body   
@@ -47,11 +46,16 @@ app.post('/dec',async (req,res) => {
         const prod= await CartModel.find({userID,productID})
       
         if(prod.length>0){
-            const updatedProd= await CartModel.updateOne({userID,productID},{$inc:{"count":-1}},{new:true})
-            return res.send(updatedProd)
-           }else{
-               
-               return res.send(prod)
+            if(prod[0]?.count==1){
+                const rest= await  CartModel.findByIdAndDelete({_id:prod[0]._id})
+                return res.send("Product removed from cart")
+            }else{
+
+                const updatedProd= await CartModel.updateOne({userID,productID},{$inc:{"count":-1}},{new:true})
+                return res.send(updatedProd)
+            }
+           }else{               
+               return res.send({message:"No product found"})
            }
        }catch(err){
            res.send(err.message)

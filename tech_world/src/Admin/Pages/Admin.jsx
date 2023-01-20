@@ -26,46 +26,67 @@ import {
 } from "react-icons/fi";
 import { IconType } from "react-icons";
 import { ReactText } from "react";
+import Dashboard from "../Components/Dashboard";
+import AllProduct from "../Components/AllProduct";
+import AddForm from "../Components/Form";
 
 const LinkItems = [
   { name: "Dashboard", icon: FiHome, path: "dashboard" },
-  { name: "Trending", icon: FiTrendingUp },
-  { name: "Explore", icon: FiCompass },
+  { name: "All Product", icon: FiTrendingUp, path: "allproduct" },
+  { name: "Add Product", icon: FiCompass, path: "addproduct" },
   { name: "Favourites", icon: FiStar },
   { name: "Settings", icon: FiSettings },
 ];
 
+// pura section
 export default function SimpleSidebar({ children }) {
   const { isOpen, onOpen, onClose } = useDisclosure();
   return (
-    <Box minH="100vh" bg={useColorModeValue("gray.100", "gray.900")}>
-      <SidebarContent
-        onClose={() => onClose}
-        display={{ base: "none", md: "block" }}
-      />
-      <Drawer
-        autoFocus={false}
-        isOpen={isOpen}
-        placement="left"
-        onClose={onClose}
-        returnFocusOnClose={false}
-        onOverlayClick={onClose}
-        size="full"
-      >
-        <DrawerContent>
-          <SidebarContent onClose={onClose} />
-        </DrawerContent>
-      </Drawer>
-      {/* mobilenav */}
-      <MobileNav display={{ base: "flex", md: "none" }} onOpen={onOpen} />
-      <Box ml={{ base: 0, md: 60 }} p="4">
-        {/* {children} */}
+    <Box
+      border=" 5px solid green"
+      minH="100vh"
+      bg={useColorModeValue("gray.100", "gray.900")}
+    >
+      <Box>
+        <SidebarContent
+          onClose={() => onClose}
+          display={{ base: "none", md: "block" }}
+        />
+        <Drawer
+          autoFocus={false}
+          isOpen={isOpen}
+          placement="left"
+          onClose={onClose}
+          returnFocusOnClose={false}
+          onOverlayClick={onClose}
+          size="full"
+        >
+          <DrawerContent>
+            <SidebarContent onClose={onClose} />
+          </DrawerContent>
+        </Drawer>
+        {/* mobilenav */}
+        <MobileNav display={{ base: "flex", md: "none" }} onOpen={onOpen} />
+      </Box>
+      <Box ml={{ base: 0, md: 60 }} border="3px solid blue" p="4">
+        {children}
+        <Box id="dashboard">
+          <Dashboard />
+        </Box>
+        <Box id="allproduct">
+          <AllProduct />
+        </Box>
+
+        <Box id="addproduct">
+          <AddForm />
+        </Box>
 
         <Heading>
           Lorem ipsum dolor sit amet consectetur adipisicing elit. Commodi
           laborum doloremque neque vel nisi, est asperiores voluptatum accusamus
           non? Temporibus.
         </Heading>
+        <Box></Box>
       </Box>
     </Box>
   );
@@ -77,7 +98,7 @@ const SidebarContent = ({ onClose, ...rest }) => {
       bg={useColorModeValue("white", "gray.900")}
       borderRight="1px"
       borderRightColor={useColorModeValue("gray.200", "gray.700")}
-      w={{ base: "full", md: 60 }}
+      w={{ base: "full", md: "60" }}
       pos="fixed"
       h="full"
       {...rest}
@@ -94,7 +115,7 @@ const SidebarContent = ({ onClose, ...rest }) => {
         </Flex>
         {LinkItems.map((link) => (
           <NavItem path={link.path} key={link.name} icon={link.icon}>
-            {link.name}
+            <Box onClick={onClose}>{link.name}</Box>
           </NavItem>
         ))}
       </Box>
@@ -103,6 +124,7 @@ const SidebarContent = ({ onClose, ...rest }) => {
 };
 
 const NavItem = ({ path, icon, children, ...rest }) => {
+  // console.log(children);
   return (
     <Link
       href={`#${path}`}
@@ -139,11 +161,16 @@ const NavItem = ({ path, icon, children, ...rest }) => {
 };
 
 const MobileNav = ({ onOpen, ...rest }) => {
+  // console.log(rest);
   return (
     <Flex
       ml={{ base: 0, md: 60 }}
       px={{ base: 4, md: 24 }}
       height="20"
+      position="fixed"
+      top={0}
+      w="100%"
+      zIndex={999}
       alignItems="center"
       bg={useColorModeValue("white", "gray.900")}
       borderBottomWidth="1px"
