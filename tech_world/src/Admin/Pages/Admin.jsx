@@ -76,7 +76,6 @@ export default function SimpleSidebar({ children }) {
         <Box id="allproduct">
           <AllProduct />
         </Box>
-
         <Box id="addproduct">
           <AddForm />
         </Box>
