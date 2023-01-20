@@ -40,6 +40,9 @@ const LinkItems = [
 
 // pura section
 export default function SimpleSidebar({ children }) {
+
+  const [path, setPath] = useState("dashboard");
+
   const { isOpen, onOpen, onClose } = useDisclosure();
   return (
     <Box
