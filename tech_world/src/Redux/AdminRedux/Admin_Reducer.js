@@ -31,18 +31,18 @@ const Admin_reducer = (state = initialState, { type, payload }) => {
     }
 
 
-    case AdminDelete_FAILURE: {
+    case "AdminDelete_FAILURE": {
       return {
         ...state,
         isError: true,
         isLoading: false,
       };
     }
-    case AdminDelete_REQUEST: {
+    case "AdminDelete_REQUEST": {
       return { ...state, isLoading: true, isError: false };
     }
 
-    case AdminDelete_SUCCESS: {
+    case "AdminDelete_SUCCESS": {
       // const deleted_product = state.AdminData.filter(
       //   (item) => item.id !== payload
       // );
