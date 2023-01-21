@@ -131,29 +131,38 @@ app.delete("/user/:id", async (req, res) => {
   }
 });
 
+
+
 // afterpayment
-app.post("/payment",async(req,res)=>{
-  const { userID,name,lastname,emailcountry,address,city,state,pinCode} = req.body;
-  console.log(userID)
+
+
+app.get("/orders",async(req,res)=>{ 
 try{
-     const finduserInCart= await CartModel.find({userID})
-          
-     if(finduserInCart.length>0){
-      console.log("inside cart",finduserInCart)
-      const PaymentDoneProduct= await CartModel.find({userID},{productID:1,count:1,_id:0})     
-      const sendToOrders= await OrderModel.create({productDetails:PaymentDoneProduct,userID}) 
-
-      const cartData= await CartModel.deleteMany({userID})
-
-      res.send(cartData)
-
-     }else{
-      res.send({message:"We dont have your track login then try"})
-     }
-
-
+     const finduserInOrders= await OrderModel.find().populate("userID").populate({path:"productDetails.productID",model: 'product' }).exec()
+     res.send(finduserInOrders)   
 }catch(e){
+  res.send({message:e.message})
+}
+})
 
+app.patch("/orders/:id",async(req,res)=>{ 
+  const _id=req.params.id
+  const orderStatus=req.body.orderStatus
+try{
+     const OrdersStatusUpdate= await OrderModel.findByIdAndUpdate({_id},{orderStatus})
+     res.send({message:"status updated successfully"})   
+}catch(e){
+  res.send({message:e.message})
+}
+})
+
+app.delete("/orders/:id",async(req,res)=>{ 
+  const _id=req.params.id
+try{
+     const OrdersStatusUpdate= await OrderModel.findByIdAndDelete({_id})
+     res.send({message:"status deleted successfully"})   
+}catch(e){
+  res.send({message:e.message})
 }
 })
 

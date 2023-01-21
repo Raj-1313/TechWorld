@@ -2,7 +2,8 @@ const mongoose = require("mongoose");
 
 const OrderSchema = mongoose.Schema({
   productDetails: [
-    {productID:{
+    {
+      productID:{
         type: mongoose.Schema.Types.ObjectId,
         ref: "product",
     },
@@ -10,8 +11,14 @@ const OrderSchema = mongoose.Schema({
     },
   ],
   userID: {
-    type: String,
+    type: mongoose.Schema.Types.ObjectId,
+    ref:"authanticate",
     require: true,
+  },
+  orderStatus:{
+    type:String,
+    default:"pending",
+    enum:["completed","delivered","pending","out of delivery"]
   }
 });
 
