@@ -2,7 +2,7 @@ import axios from "axios";
 import { Button, useToast } from "@chakra-ui/react";
 import { useNavigate } from "react-router-dom";
 
-function RazorPay({ details, totalprice }) {
+function RazorPay({ handleSubmit, totalprice }) {
     const toast = useToast();
     const navigate = useNavigate();
 
@@ -92,7 +92,9 @@ function RazorPay({ details, totalprice }) {
             _hover={{ bgColor: "#ff385a" }}
             color={"white"}
             bgColor={"#ff385a"} 
-            onClick={displayRazorpay}
+            onClick={() => {
+                return handleSubmit();
+            }}
         //   disabled={totalprice==0 || details.address==="" || details.pin==="" ||details.state==="" || details.city===""}
         >
             Checkout
