@@ -125,13 +125,8 @@ const AddForm = () => {
 
   return (
     <Box className="admin" id="form">
-      <Box m="auto" className="admin_out_box">
+      <Box m="auto" border="2px solid red" className="admin_out_box">
         <form onSubmit={handleSubmit}>
-          <Heading
-            size={{ base: "sm", sm: "sm", md: "md" }}
-          >
-            Add New Product
-          </Heading>
           <Grid
             gridTemplateColumns={{
               base: "1fr",

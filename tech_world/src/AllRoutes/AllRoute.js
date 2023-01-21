@@ -10,11 +10,10 @@ import Payment from "../Components/Payment/Payment";
 import RazorPay from "../Components/Payment/RazorPay";
 
 import Cart from "../Components/Cart/Cart"
+import AllData from "../Components/Component.rek/Alldata";
 import PageNotFound from "../HOF/notFoundPage";
 import Loading from "../HOF/Loading";
 import SingleProductPage from "../Pages/SingleProductPage";
-import Products from "../Components/Products/Products";
-import AllProducts from "../Components/Products/AllProducts";
 
 const AllRoute = () => {
   return (
@@ -33,7 +32,7 @@ const AllRoute = () => {
         <Route path="/payment" element={<Payment/>} />
         <Route path="/razor" element={<RazorPay/>} />
         <Route path="/cart" element={<Cart/>}/>
-        <Route path="/products" element={<AllProducts/>} />
+        <Route path="/product" element={<AllData/>} />
         <Route path="*" element={<PageNotFound/>} />
         <Route path="/product/:id" element={<SingleProductPage/>} />
         <Route path="/loading" element={<Loading/>} />

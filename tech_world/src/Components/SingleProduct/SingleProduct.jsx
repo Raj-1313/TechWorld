@@ -68,7 +68,7 @@ export default function SingleProduct() {
               fontWeight={300}
               fontSize={"2xl"}
             >
-              {resData && +resData.approx_price_EUR * 88}
+              ₹{resData && +resData.approx_price_EUR * 88}
             </Text>
           </Box>
 
@@ -81,22 +81,6 @@ export default function SingleProduct() {
               />
             }
           >
-            <VStack spacing={{ base: 4, sm: 6 }}>
-              <Text
-                color={useColorModeValue("gray.500", "gray.400")}
-                fontSize={"2xl"}
-                fontWeight={"300"}
-              >
-                Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed
-                diam nonumy eirmod tempor invidunt ut labore
-              </Text>
-              <Text fontSize={"lg"}>
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ad
-                aliquid amet at delectus doloribus dolorum expedita hic, ipsum
-                maxime modi nam officiis porro, quae, quisquam quos
-                reprehenderit velit? Natus, totam.
-              </Text>
-            </VStack>
             <Box>
               <Text
                 fontSize={{ base: "16px", lg: "18px" }}
@@ -110,14 +94,14 @@ export default function SingleProduct() {
 
               <SimpleGrid columns={{ base: 1, md: 2 }} spacing={10}>
                 <List spacing={2}>
-                  <ListItem>Chronograph</ListItem>
-                  <ListItem>Master Chronometer Certified</ListItem>{" "}
-                  <ListItem>Tachymeter</ListItem>
+                  <ListItem>{resData && resData.OS}</ListItem>
+                  <ListItem>{resData && resData.RAM}</ListItem>{" "}
+                  <ListItem>{resData && resData.Chipset}</ListItem>
                 </List>
                 <List spacing={2}>
-                  <ListItem>Anti‑magnetic</ListItem>
-                  <ListItem>Chronometer</ListItem>
-                  <ListItem>Small seconds</ListItem>
+                  <ListItem>{resData && resData.primary_camera}</ListItem>
+                  <ListItem>{resData && resData.battery}</ListItem>
+                  <ListItem>{resData && resData.internal_memory}</ListItem>
                 </List>
               </SimpleGrid>
             </Box>
@@ -135,46 +119,81 @@ export default function SingleProduct() {
               <List spacing={2}>
                 <ListItem>
                   <Text as={"span"} fontWeight={"bold"}>
-                    Between lugs:
+                    Processor:
                   </Text>{" "}
-                  20 mm
+                  {resData && resData.CPU}
                 </ListItem>
                 <ListItem>
                   <Text as={"span"} fontWeight={"bold"}>
-                    Bracelet:
+                  4G Bands:
                   </Text>{" "}
-                  leather strap
+                  {resData && resData["4G_bands"]}
                 </ListItem>
                 <ListItem>
                   <Text as={"span"} fontWeight={"bold"}>
-                    Case:
+                  Chipset:
                   </Text>{" "}
-                  Steel
+                  {resData && resData.Chipset}
                 </ListItem>
                 <ListItem>
                   <Text as={"span"} fontWeight={"bold"}>
-                    Case diameter:
+                  Internal Memory:
                   </Text>{" "}
-                  42 mm
+                  {resData && resData.internal_memory}
                 </ListItem>
                 <ListItem>
                   <Text as={"span"} fontWeight={"bold"}>
-                    Dial color:
+                    Colors:
                   </Text>{" "}
-                  Black
+                  {resData && resData.colors}
                 </ListItem>
                 <ListItem>
                   <Text as={"span"} fontWeight={"bold"}>
-                    Crystal:
+                  Display Resolution:
                   </Text>{" "}
-                  Domed, scratch‑resistant sapphire crystal with anti‑reflective
-                  treatment inside
+                  {resData && resData.display_resolution}
                 </ListItem>
                 <ListItem>
                   <Text as={"span"} fontWeight={"bold"}>
-                    Water resistance:
+                  Display Size:
                   </Text>{" "}
-                  5 bar (50 metres / 167 feet){" "}
+                  {resData && resData.display_size}
+                </ListItem>
+                <ListItem>
+                  <Text as={"span"} fontWeight={"bold"}>
+                  Display Type:
+                  </Text>{" "}
+                  {resData && resData.display_type}
+                </ListItem>
+                <ListItem>
+                  <Text as={"span"} fontWeight={"bold"}>
+                  Primary Camera:
+                  </Text>{" "}
+                  {resData && resData.primary_camera}{" "}
+                </ListItem>
+                <ListItem>
+                  <Text as={"span"} fontWeight={"bold"}>
+                  Secondary Camera:
+                  </Text>{" "}
+                  {resData && resData.secondary_camera}{" "}
+                </ListItem>
+                <ListItem>
+                  <Text as={"span"} fontWeight={"bold"}>
+                  Memory Card:
+                  </Text>{" "}
+                  {resData && resData.memory_card}{" "}
+                </ListItem>
+                <ListItem>
+                  <Text as={"span"} fontWeight={"bold"}>
+                  Sensors:
+                  </Text>{" "}
+                  {resData && resData.sensors}{" "}
+                </ListItem>
+                <ListItem>
+                  <Text as={"span"} fontWeight={"bold"}>
+                  Network:
+                  </Text>{" "}
+                  {resData && resData.network_technology}{" "}
                 </ListItem>
               </List>
             </Box>
