@@ -7,7 +7,7 @@ import slider2 from "../../Assets/slider2.png";
 
 export default function Slider() {
   return (
-    <div style={{ maxWidth: "100%", margin: "auto" }}>
+    <div style={{ maxWidth: "100%", margin: "auto"}}>
       <Swiper
         spaceBetween={30}
         centeredSlides={true}

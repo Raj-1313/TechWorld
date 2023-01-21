@@ -12,7 +12,8 @@ const Navbar = () => {
   // const {Auth}= useSelector((store)=>store.p)
   const [cartHover, setCartHover] = useState(false);
   const [accountHover, setAccountHover] = useState(false);
-
+  const data = useSelector(store=> store.login.data);
+  console.log('data: ', data);
   return (
     <Flex
       justify={"space-between"}

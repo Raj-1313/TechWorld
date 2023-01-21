@@ -12,6 +12,7 @@ import RazorPay from "../Components/Payment/RazorPay";
 import Cart from "../Components/Cart/Cart"
 import PageNotFound from "../HOF/notFoundPage";
 import Loading from "../HOF/Loading";
+import SingleProductPage from "../Pages/SingleProductPage";
 import Products from "../Components/Products/Products";
 import AllProducts from "../Components/Products/AllProducts";
 
@@ -34,6 +35,7 @@ const AllRoute = () => {
         <Route path="/cart" element={<Cart/>}/>
         <Route path="/products" element={<AllProducts/>} />
         <Route path="*" element={<PageNotFound/>} />
+        <Route path="/product/:id" element={<SingleProductPage/>} />
         <Route path="/loading" element={<Loading/>} />
       </Routes>
     </div>
