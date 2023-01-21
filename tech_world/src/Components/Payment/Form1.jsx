@@ -1,32 +1,26 @@
 import React, { useState } from 'react';
 import {
-    Progress,
-    Box,
-    ButtonGroup,
-    Button,
     Heading,
     Flex,
     FormControl,
-    GridItem,
     FormLabel,
     Input,
-    Select,
-    SimpleGrid,
-    InputLeftAddon,
-    InputGroup,
-    Textarea,
     FormHelperText,
-    InputRightElement,
 } from '@chakra-ui/react';
 
 const form1Data = {
-    FName: "",
-    LName: "",
+    name: "",
+    lastname: "",
     email: "",
 }
 
-const Form1 = () => {
+const Form1 = (prop) => {
     const [data, setData] = useState(form1Data);
+
+const  datapost=(e)=>{
+
+}
+    
     return (
         <>
             <Heading w="100%" textAlign={'center'} fontWeight="normal" mb="2%">
@@ -34,7 +28,7 @@ const Form1 = () => {
             </Heading>
             <Flex>
                 <FormControl mr="5%">
-                    <FormLabel htmlFor="first-name" fontWeight={'normal'}>
+                    <FormLabel htmlFor="first-name" value='name' fontWeight={'normal'}>
                         First name
                     </FormLabel>
                     <Input id="first-name" placeholder="First name" />

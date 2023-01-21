@@ -4,19 +4,7 @@ import {
   Box,
   ButtonGroup,
   Button,
-  Heading,
-  Flex,
-  FormControl,
-  GridItem,
-  FormLabel,
-  Input,
-  Select,
-  SimpleGrid,
-  InputLeftAddon,
-  InputGroup,
-  Textarea,
-  FormHelperText,
-  InputRightElement,
+  Flex
 } from '@chakra-ui/react';
 
 import { useToast } from '@chakra-ui/react';
@@ -28,8 +16,10 @@ export default function Payment() {
   const toast = useToast();
   const [step, setStep] = useState(1);
   const [progress, setProgress] = useState(50);
-  const [data,setData] = useState();
   
+  const [data,setData] = useState({name:"",lastname:"",email:"",country:"",address:"",city:"",state:"",pinCode:""});
+
+  console.log(data)
   return (
     <>
       <Box
@@ -49,7 +39,9 @@ export default function Payment() {
           isAnimated
         >
         </Progress>
-        {step === 1 ? <Form1 /> : <Form2 />}
+        {step === 1 ? <Form1 prop={setData} /> : <Form2 />}
+
+
         <ButtonGroup mt="5%" w="100%">
           <Flex w="100%" justifyContent="space-between">
             <Flex>
@@ -81,23 +73,7 @@ export default function Payment() {
                 Next
               </Button>
             </Flex>
-            {/* {step === 3 ? (
-              <Button
-                w="7rem"
-                colorScheme="red"
-                variant="solid"
-                onClick={() => {
-                  toast({
-                    title: 'Account created.',
-                    description: "We've created your account for you.",
-                    status: 'success',
-                    duration: 3000,
-                    isClosable: true,
-                  });
-                }}>
-                Submit
-              </Button>
-            ) : null} */}
+           
             <RazorPay totalprice={5000} />
           </Flex>
         </ButtonGroup>

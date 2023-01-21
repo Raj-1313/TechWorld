@@ -1,22 +1,12 @@
-import React, { useState } from 'react';
+import React from 'react';
 import {
-    Progress,
-    Box,
-    ButtonGroup,
-    Button,
     Heading,
     Flex,
     FormControl,
     GridItem,
     FormLabel,
     Input,
-    Select,
-    SimpleGrid,
-    InputLeftAddon,
-    InputGroup,
-    Textarea,
-    FormHelperText,
-    InputRightElement,
+    Select
 } from '@chakra-ui/react';
 
 const Form2 = () => {

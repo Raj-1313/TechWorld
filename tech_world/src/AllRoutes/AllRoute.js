@@ -33,7 +33,7 @@ const AllRoute = () => {
         <Route path="/cart" element={<Cart/>}/>
         <Route path="/product" element={<AllData/>} />
         <Route path="*" element={<PageNotFound/>} />
-
+'
         <Route path="/loading" element={<Loading/>} />
       </Routes>
     </div>
