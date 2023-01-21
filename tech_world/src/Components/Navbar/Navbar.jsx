@@ -6,11 +6,13 @@ import Logo from "../../Assets/tech_world_logo.png";
 import { BsFillCartCheckFill, BsFillPersonFill } from "react-icons/bs";
 import Search from "./Search";
 import { Link } from "react-router-dom";
+import { useSelector } from "react-redux";
 
 const Navbar = () => {
   const [cartHover, setCartHover] = useState(false);
   const [accountHover, setAccountHover] = useState(false);
-
+  const data = useSelector(store=> store.login.data);
+  console.log('data: ', data);
   return (
     <Flex
       justify={"space-between"}

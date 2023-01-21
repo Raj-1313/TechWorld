@@ -13,6 +13,7 @@ import Cart from "../Components/Cart/Cart"
 import AllData from "../Components/Component.rek/Alldata";
 import PageNotFound from "../HOF/notFoundPage";
 import Loading from "../HOF/Loading";
+import SingleProductPage from "../Pages/SingleProductPage";
 
 const AllRoute = () => {
   return (
@@ -33,7 +34,7 @@ const AllRoute = () => {
         <Route path="/cart" element={<Cart/>}/>
         <Route path="/product" element={<AllData/>} />
         <Route path="*" element={<PageNotFound/>} />
-
+        <Route path="/product/:id" element={<SingleProductPage/>} />
         <Route path="/loading" element={<Loading/>} />
       </Routes>
     </div>
