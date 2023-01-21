@@ -15,7 +15,7 @@ const LoginFrom = () => {
       align={"center"}
       pt="2rem"
       pb={{ base: "4rem", md: "6rem", lg: "8rem" }}
-      backgroundImage="url('https://wallpapercave.com/wp/wp11122753.jpg')"
+      backgroundImage="url('https://image01.realme.net/general/20230117/1673950480823.jpg.webp')"
       backgroundPosition={{ base: "center", md: "center", lg: "contain" }}
       backgroundRepeat="no-repeat"
     >

@@ -49,7 +49,7 @@ const SignupForm = () => {
 
         <Box w={"70%"} mt={"1rem"} align={"center"} fontSize={"0.9rem"}>
           <Text color={"#8A8377"}>
-            By signing up, you agree to the JEFIT{" "}
+            By signing up, you agree to the Tech World{" "}
             <Link href="/" color={"#50B6FF"}>
               Terms of Use
             </Link>{" "}

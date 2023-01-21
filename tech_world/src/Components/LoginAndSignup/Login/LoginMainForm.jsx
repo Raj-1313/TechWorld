@@ -14,6 +14,8 @@ import {
   useToast,
 } from "@chakra-ui/react";
 import { useNavigate } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { login } from "../../../Redux/LoginRedux/Login.Actions";
 
 const LoginMainFrom = () => {
   const [loginData, setLogindata] = useState({
@@ -22,7 +24,9 @@ const LoginMainFrom = () => {
   });
 
   const [show, setShow] = React.useState(false);
-
+  const dispatch = useDispatch();
+  const data = useSelector(store => store.login);
+  console.log('data: ', data);
   const navigate = useNavigate();
   const handleClick = () => setShow(!show);
   const toast = useToast();
@@ -30,6 +34,10 @@ const LoginMainFrom = () => {
   const handleChange = (e) => {
     let { type, value } = e.target;
     setLogindata({ ...loginData, [type]: value });
+  };
+
+  const handleLogin = () => {
+    dispatch(login(loginData));
   };
 
   return (
@@ -102,6 +110,7 @@ const LoginMainFrom = () => {
             w={"100%"}
             borderRadius={"1rem"}
             colorScheme="blue"
+            onClick={handleLogin}
           >
             LOGIN
           </Button>

@@ -2,25 +2,15 @@ const express = require("express");
 const app = express.Router();
 const productModel = require("../model/ProductsModel");
 const userModel = require("../model/Authantication_Model");
-
-const Admin_check_MiddleWare = async (req, res, next) => {
-  const userID = req.body.userID;
-  const userIsAdmin = await userModel.findOne({ _id: userID });
-
-  if (userIsAdmin.category == "Admin") {
-    next();
-  } else {
-    res.send({ message: "You are not Authanticated" });
-  }
-};
+const Admin_check_MiddleWare =require("../middleware/Admin_CheckMiddleware");
+const CartModel= require('../model/CartModel');
+const OrderModel = require("../model/Orders_Model");
 
 app.use(Admin_check_MiddleWare);
 
 app.get("/", async (req, res) => {
   // destructure page and limit and set default values
-
   const { page = 1, limit = 20, find } = req.query;
-
   // console.log(page, limit);
 
   try {
@@ -51,6 +41,8 @@ app.get("/", async (req, res) => {
         currentPage: page,
       });
     }
+
+ 
   } catch (err) {
     console.error(err.message);
   }
@@ -92,7 +84,6 @@ app.delete("/:id", async (req, res) => {
 app.get("/user", async (req, res) => {
   const { userID } = req.body;
   const find = req.query.find;
-  console.log(find);
   const { limit = 14, page = 1 } = req.query;
 
   try {
@@ -106,13 +97,13 @@ app.get("/user", async (req, res) => {
         .limit(limit)
         .skip(limit * (page - 1));
       console.log(users);
-      res.send({ users });
+      res.send({users});
     } else {
       const users = await userModel
         .find({ _id: { $nin: userID } }, { password: 0 })
         .limit(limit)
         .skip(limit * (page - 1));
-      res.send({ users });
+      res.send({users});
     }
   } catch (e) {
     res.send(e.message);
@@ -139,5 +130,42 @@ app.delete("/user/:id", async (req, res) => {
     res.send(e.message);
   }
 });
+
+
+
+// afterpayment
+
+
+app.get("/orders",async(req,res)=>{ 
+try{
+     const finduserInOrders= await OrderModel.find().populate("userID").populate({path:"productDetails.productID",model: 'product' }).exec()
+     res.send(finduserInOrders)   
+}catch(e){
+  res.send({message:e.message})
+}
+})
+
+app.patch("/orders/:id",async(req,res)=>{ 
+  const _id=req.params.id
+  const orderStatus=req.body.orderStatus
+try{
+     const OrdersStatusUpdate= await OrderModel.findByIdAndUpdate({_id},{orderStatus})
+     res.send({message:"status updated successfully"})   
+}catch(e){
+  res.send({message:e.message})
+}
+})
+
+app.delete("/orders/:id",async(req,res)=>{ 
+  const _id=req.params.id
+try{
+     const OrdersStatusUpdate= await OrderModel.findByIdAndDelete({_id})
+     res.send({message:"status deleted successfully"})   
+}catch(e){
+  res.send({message:e.message})
+}
+})
+
+
 
 module.exports = app;

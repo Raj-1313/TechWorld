@@ -6,6 +6,7 @@ import { Box } from "@chakra-ui/react";
 import VideoSlider from "../Components/HomePage/VideoSlider";
 import HomeProducts from "../Components/HomePage/HomeProducts";
 import Footer from "../Components/Footer/Footer";
+import OnePlusBannerVideo from "../Components/HomePage/OnePlusBannerVideo";
 
 const HomePage = () => {
   return (
@@ -14,6 +15,7 @@ const HomePage = () => {
       <Slider />
       <VideoSlider/>
       <HomeProducts/>
+      <OnePlusBannerVideo/>
       <StayConnected />
       <Footer />
     </Box>

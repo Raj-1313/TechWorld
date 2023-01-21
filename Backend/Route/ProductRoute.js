@@ -364,7 +364,7 @@ app.get("/filter", async (req, res) => {
 
 
 // app.use(VisitingMiddleware)
-app.get("/:id", VisitingMiddleware, async (req, res) => {
+app.get("/:id",VisitingMiddleware, async (req, res) => {
   const _id = req.params.id;
   try {
     let products = await productModel.find({ _id });

@@ -1,31 +1,24 @@
-.body{
+body{
     background-color: #F1F3F6;
+}
+
+.body{
+    /* background-color: #F1F3F6; */
     width: 100%;
 }
 
 .counter{
-    border: 1px solid #C2C2C2;
+    /* border: 1px solid #C2C2C2;
     font-size: 20px;
     height: 30px;
     width: 50px;
     display: flex;
     justify-content: center;
-    align-items: center;
-    padding-bottom: 3px;
+    align-items: center; */
+    /* padding-bottom: 3px; */
 }
 
-.minusItem{
-    border: 1px solid #C2C2C2;
-    font-size: 30px;
-    height: 30px;
-    width: 30px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    border-radius: 50%;
-    padding-bottom: 5px;
-    cursor: pointer;
-}
+
 
 .coupon{
     border: 0px solid black;
