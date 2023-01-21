@@ -1,11 +1,13 @@
 import React, { useState } from 'react'
 import { Box, Grid, Flex, Image, Spacer, Text, Button } from "@chakra-ui/react"
-import {json, Link} from "react-router-dom"
+import { useNavigate } from 'react-router-dom'
+import Payment from '../Payment/Payment'
+
 
 const couponDis = localStorage.getItem("couponDiscount")
 
 const PriceDetails = ({ totalprice, count }) => {
-
+const navigate= useNavigate()
     const [coupon,setCoupon] = useState(false);
     const [couponCode, setCouponCode] = useState("");
     const [discount, setDiscount] = useState(0 || couponDis);
@@ -23,6 +25,7 @@ const PriceDetails = ({ totalprice, count }) => {
 
         }
     }
+ 
     // console.log(couponCode)
     console.log("total price is" ,totalprice,Math.floor(totalprice/100*10),typeof(+discount))
 
@@ -70,9 +73,9 @@ const PriceDetails = ({ totalprice, count }) => {
                     <Text>₹ {Intl.NumberFormat().format(totalprice + count * 40 - 1 - discount)}</Text>
                 </Flex>
                 <Text color="#388E3C" >You will save ₹{Intl.NumberFormat().format(discount && discount - count * 40 - 1)} on this order </Text>
-                <Link to="/payment" >
-                    <Button width="200px" display="block" m="auto" bgColor="blue.500" color="white" fontSize="20px" _hover={{ bgColor: "blue.300" }} >Place Order</Button>
-                </Link>
+                
+         <Button width="200px" display="block" m="auto" bgColor="blue.500" color="white" fontSize="20px" _hover={{ bgColor: "blue.300" }} >Place Order</Button>
+                
             </Grid>
         </Box>
     )
