@@ -31,7 +31,7 @@ const deleteItem = (id)=>(dispatch)=>{
         })
         .then((res)=>{
             console.log("response from deleteItem :-",res.data);
-            dispatch(deleteSuccess());
+            dispatch(deleteSuccess(res.data));
         })
         .catch((err)=>{
             console.log(err);

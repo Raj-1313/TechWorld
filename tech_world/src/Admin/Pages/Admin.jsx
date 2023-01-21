@@ -5,19 +5,15 @@ import {
   CloseButton,
   Flex,
   Icon,
-  useColorModeValue,
-  Link,
+  useColorModeValue, 
   Drawer,
   DrawerContent,
   Text,
-  useDisclosure,
-  Heading,
-  Grid,
+  useDisclosure, 
 } from "@chakra-ui/react";
-import {
-  FiHome,
-  FiTrendingUp,
-  FiCompass,
+import {MdDashboard,MdLibraryAdd} from "react-icons/md"
+import {FaStore,FaChartPie} from "react-icons/fa"
+import {  
   FiStar,
   FiSettings,
   FiMenu,
@@ -28,12 +24,12 @@ import AddForm from "../Components/Form";
 import Charts from "../Components/Charts";
 
 const LinkItems = [
-  { name: "Dashboard", icon: FiHome, path: "dashboard" },
-  { name: "All Product", icon: FiTrendingUp, path: "allproduct" },
-  { name: "Add Product", icon: FiCompass, path: "addproduct" },
+  { name: "Dashboard", icon: MdDashboard, path: "dashboard" },
+  { name: "All Product", icon: FaStore, path: "allproduct" },
+  { name: "Add Product", icon: MdLibraryAdd, path: "addproduct" },
   { name: "Favourites", icon: FiStar },
   { name: "Settings", icon: FiSettings },
-  { name: "Charts", icon: FiSettings, path: "charts" },
+  { name: "Charts", icon: FaChartPie, path: "charts" },
 ];
 
 // pura section

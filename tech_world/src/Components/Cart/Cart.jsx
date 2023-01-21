@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react'
 import { useSelector, useDispatch } from "react-redux";
 import getData from '../../Redux/CartRedux/action';
-import { Box, Grid, Flex, Image, Spacer, Text, Button } from "@chakra-ui/react"
+import { Box,Flex} from "@chakra-ui/react"
 import "../../styles/Cart.css"
 import CartProduct from './CartProduct';
 import PriceDetails from './PriceDetails';

@@ -2,6 +2,7 @@ import { Box, Grid, Flex, Image, Spacer, Text, But, Button } from "@chakra-ui/re
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux"
 import AddItem from "../../Redux/AddItemCart/action";
+import getData from "../../Redux/CartRedux/action";
 import deleteItem from "../../Redux/DeleteItemCart/action";
 import reduceItem from "../../Redux/ReduceItemCart/action";
 import "../../styles/Cart.css"
@@ -35,7 +36,8 @@ const CartProduct = ({ elem }) => {
     }
 
     const handleDelete = (id) => {
-        dispatch(deleteItem(id));
+        dispatch(deleteItem(id))
+        
         let price = Math.round(elem.productID[0]?.approx_price_EUR * 87.82 * elem.count / 100 * 10)
         console.log(price)
         localStorage.setItem("couponDiscount", +couponDis - Math.floor(Number(price)))
