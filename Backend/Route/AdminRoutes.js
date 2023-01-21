@@ -51,8 +51,6 @@ app.get("/", async (req, res) => {
         currentPage: page,
       });
     }
-
- 
   } catch (err) {
     console.error(err.message);
   }
@@ -94,6 +92,7 @@ app.delete("/:id", async (req, res) => {
 app.get("/user", async (req, res) => {
   const { userID } = req.body;
   const find = req.query.find;
+  console.log(find);
   const { limit = 14, page = 1 } = req.query;
 
   try {
@@ -107,13 +106,13 @@ app.get("/user", async (req, res) => {
         .limit(limit)
         .skip(limit * (page - 1));
       console.log(users);
-      res.send(users);
+      res.send({ users });
     } else {
       const users = await userModel
         .find({ _id: { $nin: userID } }, { password: 0 })
         .limit(limit)
         .skip(limit * (page - 1));
-      res.send(users);
+      res.send({ users });
     }
   } catch (e) {
     res.send(e.message);

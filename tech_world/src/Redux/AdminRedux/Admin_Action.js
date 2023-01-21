@@ -1,20 +1,25 @@
 import axios from "axios";
-import { Admin_FAILURE, Admin_REQUEST, Admin_SUCCESS,
-  // AdminDelete_REQUEST,AdminDelete_SUCCESS,AdminDelete_FAILURE 
+import {
+  Admin_FAILURE,
+  Admin_REQUEST,
+  Admin_SUCCESS,
+  AdminDelete_REQUEST,
+  AdminDelete_SUCCESS,
+  AdminDelete_FAILURE,
 } from "./Admin_Types.js";
 
 export const adminData =
-  ({ page, limit }) =>
+  ({ page, limit, query }) =>
   async (dispatch) => {
     console.log(page);
     dispatch({ type: Admin_REQUEST });
     try {
       let res = await axios.get(
-        `http://localhost:8080/admin?page=${page}&limit=${limit}`,
+        `http://localhost:8080/admin?page=${page}&limit=${limit}&find=${query}`,
         {
           headers: {
             authorization:
-              "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Imllc0BnbWFpbC5jb20iLCJ1c2VySUQiOiI2M2M4MWY4MzA0M2IwNmFiNjQ5OWJkMDAiLCJpYXQiOjE2NzQwNjE1MTMsImV4cCI6MTY3NDkyNTUxM30.tJD0PHLvDyZxOJ25to-Rm-VXq84qZCywyHaXgjw03XA",
+              "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InBhcmFnQGdtYWlsLmNvbSIsInVzZXJJRCI6IjYzYzk5NTY1MTcyNmUxYWQ2MzNkY2ZkYyIsImlhdCI6MTY3NDIwMzEyMywiZXhwIjoxNjc1MDY3MTIzfQ.Jxpf47Gq36cbwceCxNBddH9w0FaMRH6y2d_d1NfnRzs",
           },
         }
       );
@@ -24,3 +29,22 @@ export const adminData =
       dispatch({ type: Admin_FAILURE });
     }
   };
+
+export const adminProductDelete = (id) => async (dispatch) => {
+  dispatch({ type: AdminDelete_REQUEST });
+  try {
+    await axios
+      .delete(`http://localhost:8080/admin/${id}`, {
+        headers: {
+          authorization:
+            "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InBhcmFnQGdtYWlsLmNvbSIsInVzZXJJRCI6IjYzYzk5NTY1MTcyNmUxYWQ2MzNkY2ZkYyIsImlhdCI6MTY3NDIwMzEyMywiZXhwIjoxNjc1MDY3MTIzfQ.Jxpf47Gq36cbwceCxNBddH9w0FaMRH6y2d_d1NfnRzs",
+        },
+      })
+      .then((res) => {
+        console.log("response from deleteItem :-", id);
+        dispatch({ type: AdminDelete_SUCCESS, payload: id });
+      });
+  } catch (e) {
+    dispatch({ type: AdminDelete_FAILURE });
+  }
+};
