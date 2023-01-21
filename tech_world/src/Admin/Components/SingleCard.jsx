@@ -1,9 +1,10 @@
 import { Box, Button, Flex, Text } from "@chakra-ui/react";
 import React from "react";
-import "./SingleCard.css";
+import cardStyle from "./SingleCard.module.css";
 import axios from "axios";
 import { useEffect } from "react";
-
+import { adminProductDelete } from "../../Redux/AdminRedux/Admin_Action";
+import { useDispatch, useSelector } from "react-redux";
 const SingleCard = ({
   brand,
   model,
@@ -14,23 +15,27 @@ const SingleCard = ({
   colors,
   weight_g,
   primary_camera,
+  approx_price_EUR,
 }) => {
-  useEffect(() => {
-    productDelete();
-  }, [_id]);
+  const dispatch = useDispatch();
+
+  // useEffect(() => {
+  //   productDelete();
+  // }, []);
 
   const productDelete = (id) => {
-    axios
-      .delete(`http://localhost:8080/product/${id}`)
-      .then((res) => console.log(res));
+    // axios
+    //   .delete(`http://localhost:8080/product/${id}`)
+    //   .then((res) => console.log(res));
+    dispatch(adminProductDelete(id));
   };
 
   return (
-    <Box className="container">
-      <Box className="card">
-        <Box className="box">
-          <Box className="content">
-            <h6>ID:{_id}</h6>
+    <Box className={cardStyle.container}>
+      <Box className={cardStyle.card}>
+        <Box className={cardStyle.box}>
+          <Box className={cardStyle.content}>
+            {/* <h6>ID:{_id}</h6> */}
 
             <h4>
               Brand:<strong> {brand}</strong>
@@ -41,10 +46,14 @@ const SingleCard = ({
             <Flex py="10px" gap={5}>
               <img width="30%" height="fit-content" src={img_url} alt={model} />
               <Box>
-                <p>RAM : {RAM}</p>
+                {/* <p>RAM : {RAM}</p> */}
                 {/* <p>Color : {colors}</p> */}
                 <p>Weight : {weight_g} gm</p>
-                {/* <p>camera : {primary_camera}</p> */}
+
+                <p>
+                  {" "}
+                  <strong>Price : {approx_price_EUR * 70}</strong>
+                </p>
               </Box>
             </Flex>
             <Flex gap={3} py="20px" justifyContent="space-around">

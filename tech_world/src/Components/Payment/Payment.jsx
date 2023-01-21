@@ -1,35 +1,33 @@
-import React, { useState } from 'react';
-import {
-  Progress,
-  Box,
-  ButtonGroup,
-  Button,
-  Heading,
-  Flex,
-  FormControl,
-  GridItem,
-  FormLabel,
-  Input,
-  Select,
-  SimpleGrid,
-  InputLeftAddon,
-  InputGroup,
-  Textarea,
-  FormHelperText,
-  InputRightElement,
-} from '@chakra-ui/react';
 
-import { useToast } from '@chakra-ui/react';
-import RazorPay from './RazorPay';
-import Form1 from './Form1';
-import Form2 from './Form2';
+import React, { useState } from "react";
+import { Progress, Box, ButtonGroup, Button, Flex } from "@chakra-ui/react";
 
-export default function Payment() {
+
+import { useToast } from "@chakra-ui/react";
+import RazorPay from "./RazorPay";
+import Form1 from "./Form1";
+import Form2 from "./Form2";
+
+export default function Payment({totalprice=10}) {
   const toast = useToast();
   const [step, setStep] = useState(1);
   const [progress, setProgress] = useState(50);
-  const [data,setData] = useState();
   
+  const [data, setData] = useState({name:"",lastname:"",email:"",country:"",address:"",city:"",state:"",postal_code:""});
+
+
+  const getFrom1Data = (form1Data) => {
+    // console.log("form1Data: ", form1Data);
+    setData({ ...data, ...form1Data });
+  };
+
+  const getFrom2Data = (form2Data) => {
+    // console.log("form2Data: ", form2Data);
+    setData({ ...data, ...form2Data });
+  };
+
+  
+
   return (
     <>
       <Box
@@ -47,9 +45,14 @@ export default function Payment() {
           mb="5%"
           mx="5%"
           isAnimated
-        >
-        </Progress>
-        {step === 1 ? <Form1 /> : <Form2 />}
+        ></Progress>
+        {step === 1 ? (
+          <Form1 getFrom1Data={getFrom1Data} />
+        ) : (
+          <Form2 getFrom2Data={getFrom2Data} />
+        )}
+
+
         <ButtonGroup mt="5%" w="100%">
           <Flex w="100%" justifyContent="space-between">
             <Flex>
@@ -62,7 +65,8 @@ export default function Payment() {
                 colorScheme="teal"
                 variant="solid"
                 w="7rem"
-                mr="5%">
+                mr="5%"
+              >
                 Back
               </Button>
               <Button
@@ -77,31 +81,18 @@ export default function Payment() {
                   }
                 }}
                 colorScheme="teal"
-                variant="outline">
+                variant="outline"
+              >
                 Next
               </Button>
             </Flex>
-            {/* {step === 3 ? (
-              <Button
-                w="7rem"
-                colorScheme="red"
-                variant="solid"
-                onClick={() => {
-                  toast({
-                    title: 'Account created.',
-                    description: "We've created your account for you.",
-                    status: 'success',
-                    duration: 3000,
-                    isClosable: true,
-                  });
-                }}>
-                Submit
-              </Button>
-            ) : null} */}
-            <RazorPay totalprice={5000} />
+
           </Flex>
         </ButtonGroup>
-      </Box>
+      </Box>{
+
+        <RazorPay details={data} totalprice={totalprice} />
+      }
     </>
   );
 }
