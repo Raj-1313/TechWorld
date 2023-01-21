@@ -10,10 +10,12 @@ const AllProduct = () => {
   const dispatch = useDispatch();
 
   const { AdminData, totalPages } = useSelector((state) => state.Admin_reducer);
+
   console.log(currentPage);
   useEffect(() => {
     dispatch(adminData({ page: currentPage, limit: 10 }));
   }, [dispatch, currentPage]);
+
 
   // const Alldata = (page = 1, limit = 10) => {
   // .then((res) => res.json())

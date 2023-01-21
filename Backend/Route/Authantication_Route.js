@@ -39,15 +39,14 @@ App.post("/signup", async (req, res) => {
 
 App.post("/login", async (req, res) => {
   const { email, password } = req.body;
-      try {
-    const User = await Auth_Sign.find({ email });  
+  try {
+    const User = await Auth_Sign.find({ email });
     if (User.length > 0) {
-     bcrypt.compare(password, User[0].password, function(err, result){
-            
+      bcrypt.compare(password, User[0].password, function (err, result) {
         if (err) {
           console.log(err);
         } else {
-          let token =jwt.sign(
+          let token = jwt.sign(
             {
               email,
               userID: User[0]._id,
@@ -58,14 +57,14 @@ App.post("/login", async (req, res) => {
             }
           );
           req.body.userID = User[0]._id;
-          return  res.send({token});
+
+          return res.send({ token,category:User[0].category });
+
         }
       });
-    }else{
-      return  res.send("Signup Please");
+    } else {
+      return res.send("Signup Please");
     }
-
-
   } catch (e) {
     return res.status(400).send("404 error");
   }

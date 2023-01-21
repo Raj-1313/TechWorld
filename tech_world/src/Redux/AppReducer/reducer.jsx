@@ -7,6 +7,7 @@ const initialState = {
 }
 
 export const reducer = (state = initialState, { type, payload }) => {
+    console.log(payload)
     switch (type) {
         case types.GET_DATA_REQUEST: {
             return {
@@ -16,7 +17,7 @@ export const reducer = (state = initialState, { type, payload }) => {
 
         case types.GET_DATA_SUCCESS: {
             return {
-                ...state, isLoading: false, data: payload
+                ...state, isLoading: false, data:payload
             }
         }
 
