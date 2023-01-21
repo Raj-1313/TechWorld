@@ -9,10 +9,7 @@ import {
   Drawer,
   DrawerContent,
   Text,
-
   useDisclosure,
-  Heading,
-  Grid,
   Image,
 } from "@chakra-ui/react";
 import {MdDashboard,MdLibraryAdd} from "react-icons/md"
@@ -25,20 +22,19 @@ import {
 import Dashboard from "../Components/Dashboard";
 import AllProduct from "../Components/AllProduct";
 import AddForm from "../Components/Form";
-import Charts from "../Components/Charts";
+import ChartsStates from "../Components/ChartsStates";
 import AllUsers from "../Components/AllUsers";
 import Logo from "../../Assets/tech_world_logo.png";
 
 const LinkItems = [
 
-  { name: "Dashboard", icon: FiHome, path: "dashboard" },
-  { name: "All Product", icon: FiTrendingUp, path: "allproduct" },
-  { name: "All Users", icon: FiTrendingUp, path: "alluser" },
-  { name: "Add Product", icon: FiCompass, path: "addproduct" },
-
+  { name: "Dashboard", icon: MdDashboard, path: "dashboard" },
+  { name: "All Product", icon: FaStore, path: "allproduct" },
+  { name: "All Users", icon: MdLibraryAdd, path: "alluser" },
+  { name: "Add Product", icon: MdLibraryAdd, path: "addproduct" },
   { name: "Favourites", icon: FiStar },
   { name: "Settings", icon: FiSettings },
-  { name: "Charts", icon: FaChartPie, path: "charts" },
+  { name: "ChartsStates", icon: FaChartPie, path: "charts" },
 ];
 
 // pura section
@@ -76,7 +72,7 @@ export default function SimpleSidebar({ children }) {
         {path === "allproduct" && <AllProduct />}
         {path === "addproduct" && <AddForm />}
         {path === "alluser" && <AllUsers />}
-        {path === "charts" && <Charts aspect={2} title="the Boss" />}
+        {path === "charts" && <ChartsStates aspect={2} title="the Boss" />}
       </Box>
     </Box>
   );

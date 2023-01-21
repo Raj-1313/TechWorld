@@ -1,4 +1,4 @@
-// import { Auth_reducer } from "./AuthRedux/Auth_Reduce";
+
 import { AllUser_reducer } from "./AllUsers/AllUsers.reducer";
 
 import {
@@ -27,7 +27,7 @@ const rootReducer = combineReducers({
   CartReducer,
   ReduceItemReducer,
   AddItemReducer,
-  DeleteItemReducer
+  DeleteItemReducer,
   AllUser_reducer,
 });
 

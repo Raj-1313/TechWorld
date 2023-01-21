@@ -9,7 +9,7 @@ import {
 } from "@chakra-ui/react";
 import React from "react";
 import Userstyle from "./SingleUser.module.css";
-import { PhoneIcon } from "@chakra-ui/icons";
+import { BsFillTelephoneFill } from "react-icons/bs";
 import { useDispatch } from "react-redux";
 import {
   AllUserDelete,
@@ -69,7 +69,7 @@ const SingleUser = ({
                     variant="ghost"
                     size="lg"
                     fontSize="3xl"
-                    icon={<PhoneIcon />}
+                    icon={<BsFillTelephoneFill />}
                     _hover={{
                       color: useColorModeValue("white", "gray.700"),
                     }}
