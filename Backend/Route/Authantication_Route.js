@@ -58,7 +58,7 @@ App.post("/login", async (req, res) => {
           );
           req.body.userID = User[0]._id;
 
-          return res.send({ token,category:User[0].category });
+          return res.send({ token,category:User[0].category,name:User[0].name,email:User[0].email });
 
         }
       });
