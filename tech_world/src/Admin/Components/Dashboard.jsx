@@ -1,22 +1,23 @@
-import { Flex, Grid } from "@chakra-ui/react";
+import { Box, Heading } from "@chakra-ui/react";
 import React from "react";
-import SalesChart from "./dataStatas/SalesChart";
-import Widget from "./dataStatas/Widget";
 
 const Dashboard = () => {
   return (
-    <>
-    <Grid gridTemplateColumns={{base:"repeat(1fr)",sm:"repeat(2,1fr)",lg:"repeat(4,1fr)"}} gap='5'mb='10'>
-      <Widget type="user" />
-      <Widget type="order" />
-      <Widget type="earning" />
-      <Widget type="balance" />
-    </Grid>
-
-    <Flex w='full'>
-    <SalesChart/>
-    </Flex>
-    </>
+    <Box>
+      <Heading>
+        Lorem ipsum, dolor sit amet consectetur adipisicing elit. Ratione ea,
+        earum soluta tenetur neque obcaecati, magnam consequatur assumenda a
+        incidunt beatae et dolorem tempore voluptatibus voluptates sequi, facere
+        quis iure cumque eligendi eaque blanditiis perferendis! Laborum quam
+        quisquam neque sed ipsa, repellat nesciunt! Culpa quasi consectetur,
+        aspernatur perspiciatis quos alias repellendus adipisci voluptas atque
+        enim itaque ex, qui laudantium obcaecati distinctio totam pariatur velit
+        molestias iusto quia dolor quae architecto eveniet magni? Dolorem a id
+        doloribus, iste atque laudantium culpa ducimus dignissimos distinctio
+        veritatis fuga ipsa reiciendis quod blanditiis maiores amet corrupti?
+        Accusamus animi, minus eius consequuntur incidunt cupiditate ipsum.
+      </Heading>
+    </Box>
   );
 };
 
