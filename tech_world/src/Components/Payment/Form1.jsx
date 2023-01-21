@@ -9,9 +9,9 @@ import {
 } from "@chakra-ui/react";
 
 const initState = {
-  FName: "",
-  LName: "",
-  Email: "",
+  name: "",
+  lastname: "",
+  email: "",
 };
 
 const Form1 = ({getFrom1Data}) => {
@@ -37,10 +37,11 @@ const Form1 = ({getFrom1Data}) => {
             id="first-name"
             placeholder="First name"
             onChange={handleChange}
-            name={"FName"}
-            value={data.FName}
+            name={"name"}
+            value={data.name}
           />
         </FormControl>
+
 
         <FormControl>
           <FormLabel htmlFor="last-name" fontWeight={"normal"}>
@@ -50,8 +51,8 @@ const Form1 = ({getFrom1Data}) => {
             id="last-name"
             placeholder="First name"
             onChange={handleChange}
-            name={"LName"}
-            value={data.LName}
+            name={"lastname"}
+            value={data.lastname}
           />
         </FormControl>
       </Flex>
@@ -63,8 +64,8 @@ const Form1 = ({getFrom1Data}) => {
           id="email"
           type="email"
           onChange={handleChange}
-          name={"Email"}
-          value={data.Email}
+          name={"email"}
+          value={data.email}
         />
         <FormHelperText>We'll never share your email.</FormHelperText>
       </FormControl>

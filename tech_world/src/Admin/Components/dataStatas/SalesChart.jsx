@@ -9,7 +9,7 @@ const SalesChart = () => {
   let [nameProd,setName] = useState([])
 
   const  getChartData=async()=>{
-   let {data}=await  axios.get("http://localhost:8080/admin/mostvisted",{
+   let {data}=await  axios.get("https://fine-cyan-millipede-boot.cyclic.app/admin/mostvisted",{
       headers:{
         authorization:"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6IjEyMzEyM0BnbWFpbC5jb20iLCJ1c2VySUQiOiI2M2M4ZTNmNTYwNDhmNTJmOTY2NmFjZWYiLCJpYXQiOjE2NzQxMDk5NTAsImV4cCI6MTY3NDk3Mzk1MH0.XpoBl-EDh0ZIcd87ZRMQ2SLGziko4wo2aO1mlyXxuf0"
       }
@@ -26,10 +26,13 @@ const SalesChart = () => {
     setCountArr(bagCount)
   }
 
+
+
+
 useEffect(()=>{
 getChartData()
 },[])
-console.log(countArr,nameProd)
+// console.log(countArr,nameProd)
 
   const chartoptions = {
     series: [
@@ -62,7 +65,7 @@ console.log(countArr,nameProd)
     },
   };
   return (
-    <Card>
+    <Card w='full'>
       <CardBody>
         <Text>Sales Summary</Text>
         <CardFooter  className="text-muted" tag="h6">
@@ -72,8 +75,8 @@ console.log(countArr,nameProd)
           type="area"
           width="100%"
           height="390"
-          options={chartoptions.options}
-          series={chartoptions.series}
+          options={chartoptions?.options}
+          series={chartoptions?.series}
         ></Chart>
       </CardBody>
     </Card>

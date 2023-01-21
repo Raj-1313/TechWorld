@@ -1,17 +1,20 @@
+
 import React, { useState } from "react";
 import { Progress, Box, ButtonGroup, Button, Flex } from "@chakra-ui/react";
+
 
 import { useToast } from "@chakra-ui/react";
 import RazorPay from "./RazorPay";
 import Form1 from "./Form1";
 import Form2 from "./Form2";
 
-export default function Payment() {
+export default function Payment({totalprice=10}) {
   const toast = useToast();
   const [step, setStep] = useState(1);
   const [progress, setProgress] = useState(50);
+  
+  const [data, setData] = useState({name:"",lastname:"",email:"",country:"",address:"",city:"",state:"",postal_code:""});
 
-  const [data, setData] = useState({});
 
   const getFrom1Data = (form1Data) => {
     // console.log("form1Data: ", form1Data);
@@ -23,9 +26,7 @@ export default function Payment() {
     setData({ ...data, ...form2Data });
   };
 
-  const handleSubmit = () => {
-    console.log(data);
-  };
+  
 
   return (
     <>
@@ -50,6 +51,7 @@ export default function Payment() {
         ) : (
           <Form2 getFrom2Data={getFrom2Data} />
         )}
+
 
         <ButtonGroup mt="5%" w="100%">
           <Flex w="100%" justifyContent="space-between">
@@ -85,10 +87,12 @@ export default function Payment() {
               </Button>
             </Flex>
 
-            <RazorPay handleSubmit={handleSubmit} totalprice={5000} />
           </Flex>
         </ButtonGroup>
-      </Box>
+      </Box>{
+
+        <RazorPay details={data} totalprice={totalprice} />
+      }
     </>
   );
 }

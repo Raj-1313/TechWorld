@@ -1,5 +1,10 @@
-import { Admin_FAILURE, Admin_REQUEST, Admin_SUCCESS,
-  // AdminDelete_REQUEST,AdminDelete_SUCCESS,AdminDelete_FAILURE 
+import {
+  Admin_FAILURE,
+  Admin_REQUEST,
+  Admin_SUCCESS,
+  AdminDelete_REQUEST,
+  AdminDelete_SUCCESS,
+  AdminDelete_FAILURE,
 } from "./Admin_Types.js";
 
 const initialState = {
@@ -7,9 +12,11 @@ const initialState = {
   totalPages: null,
   isLoading: false,
   isError: false,
+  totalProducts:0,
 };
 
 const Admin_reducer = (state = initialState, { type, payload }) => {
+  
   switch (type) {
     case Admin_SUCCESS: {
       return {
@@ -17,6 +24,7 @@ const Admin_reducer = (state = initialState, { type, payload }) => {
         isLoading: false,
         AdminData: payload.products,
         totalPages: payload.totalPages,
+        totalProducts: payload.count,
       };
     }
     case Admin_FAILURE: {
@@ -30,26 +38,27 @@ const Admin_reducer = (state = initialState, { type, payload }) => {
       return { ...state, isLoading: true, isError: false };
     }
 
-
-    case "AdminDelete_FAILURE": {
+    case AdminDelete_FAILURE: {
       return {
         ...state,
         isError: true,
         isLoading: false,
       };
     }
-    case "AdminDelete_REQUEST": {
+    case AdminDelete_REQUEST: {
       return { ...state, isLoading: true, isError: false };
     }
 
-    case "AdminDelete_SUCCESS": {
-      // const deleted_product = state.AdminData.filter(
-      //   (item) => item.id !== payload
-      // );
+    case AdminDelete_SUCCESS: {
+      console.log(payload);
+      const deleted_product = state.AdminData.filter(
+        (item) => item._id !== payload
+      );
+      console.log("deleted product", deleted_product);
       return {
         ...state,
-        // AdminData: deleted_product,
-        // deletedID: payload,
+        AdminData: deleted_product,
+        deletedID: payload,
         isLoading: false,
         isError: false,
       };
