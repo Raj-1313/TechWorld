@@ -10,7 +10,7 @@ app.get("/" ,async(req,res)=>{
     try{
         const prod= await CartModel.find({userID}).populate("productID")  
         if(prod.length>0){
-            console.log(prod)
+            // console.log(prod)
           return  res.send(prod)           
         }else{
             return res.send({data:"null"})

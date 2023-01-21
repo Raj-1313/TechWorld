@@ -3,6 +3,8 @@ const app = express.Router();
 const productModel = require("../model/ProductsModel");
 const userModel = require("../model/Authantication_Model");
 const Admin_check_MiddleWare =require("../middleware/Admin_CheckMiddleware");
+const CartModel= require('../model/CartModel');
+const OrderModel = require("../model/Orders_Model");
 
 app.use(Admin_check_MiddleWare);
 
@@ -128,5 +130,33 @@ app.delete("/user/:id", async (req, res) => {
     res.send(e.message);
   }
 });
+
+// afterpayment
+app.post("/payment",async(req,res)=>{
+  const { userID,name,lastname,emailcountry,address,city,state,pinCode} = req.body;
+  console.log(userID)
+try{
+     const finduserInCart= await CartModel.find({userID})
+          
+     if(finduserInCart.length>0){
+      console.log("inside cart",finduserInCart)
+      const PaymentDoneProduct= await CartModel.find({userID},{productID:1,count:1,_id:0})     
+      const sendToOrders= await OrderModel.create({productDetails:PaymentDoneProduct,userID}) 
+
+      const cartData= await CartModel.deleteMany({userID})
+
+      res.send(cartData)
+
+     }else{
+      res.send({message:"We dont have your track login then try"})
+     }
+
+
+}catch(e){
+
+}
+})
+
+
 
 module.exports = app;
