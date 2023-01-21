@@ -18,11 +18,11 @@ export const AllUserData =
     dispatch({ type: AllUsers_Request });
     try {
       let res = await axios.get(
-        `http://localhost:8080/admin/user?page=${page}&limit=${limit}&find=${query}`,
+        `https://fine-cyan-millipede-boot.cyclic.app/admin/user?page=${page}&limit=${limit}&find=${query}`,
         {
           headers: {
             authorization:
-              "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InBhcmFnQGdtYWlsLmNvbSIsInVzZXJJRCI6IjYzYzk5NTY1MTcyNmUxYWQ2MzNkY2ZkYyIsImlhdCI6MTY3NDIwMzEyMywiZXhwIjoxNjc1MDY3MTIzfQ.Jxpf47Gq36cbwceCxNBddH9w0FaMRH6y2d_d1NfnRzs",
+              "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6IjEyMzEyM0BnbWFpbC5jb20iLCJ1c2VySUQiOiI2M2M4ZTNmNTYwNDhmNTJmOTY2NmFjZWYiLCJpYXQiOjE2NzQxMDk5NTAsImV4cCI6MTY3NDk3Mzk1MH0.XpoBl-EDh0ZIcd87ZRMQ2SLGziko4wo2aO1mlyXxuf0",
           },
         }
       );
@@ -37,10 +37,10 @@ export const AllUserDelete = (id) => async (dispatch) => {
   dispatch({ type: AllUsers_Delete_REQUEST });
   try {
     await axios
-      .delete(`http://localhost:8080/admin/user/${id}`, {
+      .delete(`https://fine-cyan-millipede-boot.cyclic.app/admin/user/${id}`, {
         headers: {
           authorization:
-            "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InBhcmFnQGdtYWlsLmNvbSIsInVzZXJJRCI6IjYzYzk5NTY1MTcyNmUxYWQ2MzNkY2ZkYyIsImlhdCI6MTY3NDIwMzEyMywiZXhwIjoxNjc1MDY3MTIzfQ.Jxpf47Gq36cbwceCxNBddH9w0FaMRH6y2d_d1NfnRzs",
+            "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6IjEyMzEyM0BnbWFpbC5jb20iLCJ1c2VySUQiOiI2M2M4ZTNmNTYwNDhmNTJmOTY2NmFjZWYiLCJpYXQiOjE2NzQxMDk5NTAsImV4cCI6MTY3NDk3Mzk1MH0.XpoBl-EDh0ZIcd87ZRMQ2SLGziko4wo2aO1mlyXxuf0",
         },
       })
       .then((res) => {
@@ -57,12 +57,16 @@ export const AllUserPatch = (id, payload) => async (dispatch) => {
   dispatch({ type: AllUsers_Patch_REQUEST });
   try {
     await axios
-      .patch(`http://localhost:8080/admin/user/${id}`, payload, {
-        headers: {
-          authorization:
-            "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InBhcmFnQGdtYWlsLmNvbSIsInVzZXJJRCI6IjYzYzk5NTY1MTcyNmUxYWQ2MzNkY2ZkYyIsImlhdCI6MTY3NDIwMzEyMywiZXhwIjoxNjc1MDY3MTIzfQ.Jxpf47Gq36cbwceCxNBddH9w0FaMRH6y2d_d1NfnRzs",
-        },
-      })
+      .patch(
+        `https://fine-cyan-millipede-boot.cyclic.app/admin/user/${id}`,
+        payload,
+        {
+          headers: {
+            authorization:
+              "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6IjEyMzEyM0BnbWFpbC5jb20iLCJ1c2VySUQiOiI2M2M4ZTNmNTYwNDhmNTJmOTY2NmFjZWYiLCJpYXQiOjE2NzQxMDk5NTAsImV4cCI6MTY3NDk3Mzk1MH0.XpoBl-EDh0ZIcd87ZRMQ2SLGziko4wo2aO1mlyXxuf0",
+          },
+        }
+      )
       .then((res) => {
         console.log("response from deleteItem :-", res.data);
         dispatch({ type: AllUsers_Patch_SUCCESS, payload: { id, payload } });

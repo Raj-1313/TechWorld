@@ -15,11 +15,11 @@ export const adminData =
     dispatch({ type: Admin_REQUEST });
     try {
       let res = await axios.get(
-        `http://localhost:8080/admin?page=${page}&limit=${limit}&find=${query}`,
+        `https://fine-cyan-millipede-boot.cyclic.app/admin?page=${page}&limit=${limit}&find=${query}`,
         {
           headers: {
             authorization:
-              "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InBhcmFnQGdtYWlsLmNvbSIsInVzZXJJRCI6IjYzYzk5NTY1MTcyNmUxYWQ2MzNkY2ZkYyIsImlhdCI6MTY3NDIwMzEyMywiZXhwIjoxNjc1MDY3MTIzfQ.Jxpf47Gq36cbwceCxNBddH9w0FaMRH6y2d_d1NfnRzs",
+              "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6IjEyMzEyM0BnbWFpbC5jb20iLCJ1c2VySUQiOiI2M2M4ZTNmNTYwNDhmNTJmOTY2NmFjZWYiLCJpYXQiOjE2NzQxMDk5NTAsImV4cCI6MTY3NDk3Mzk1MH0.XpoBl-EDh0ZIcd87ZRMQ2SLGziko4wo2aO1mlyXxuf0",
           },
         }
       );
@@ -34,10 +34,10 @@ export const adminProductDelete = (id) => async (dispatch) => {
   dispatch({ type: AdminDelete_REQUEST });
   try {
     await axios
-      .delete(`http://localhost:8080/admin/${id}`, {
+      .delete(`https://fine-cyan-millipede-boot.cyclic.app/admin/${id}`, {
         headers: {
           authorization:
-            "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InBhcmFnQGdtYWlsLmNvbSIsInVzZXJJRCI6IjYzYzk5NTY1MTcyNmUxYWQ2MzNkY2ZkYyIsImlhdCI6MTY3NDIwMzEyMywiZXhwIjoxNjc1MDY3MTIzfQ.Jxpf47Gq36cbwceCxNBddH9w0FaMRH6y2d_d1NfnRzs",
+            "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6IjEyMzEyM0BnbWFpbC5jb20iLCJ1c2VySUQiOiI2M2M4ZTNmNTYwNDhmNTJmOTY2NmFjZWYiLCJpYXQiOjE2NzQxMDk5NTAsImV4cCI6MTY3NDk3Mzk1MH0.XpoBl-EDh0ZIcd87ZRMQ2SLGziko4wo2aO1mlyXxuf0",
         },
       })
       .then((res) => {
