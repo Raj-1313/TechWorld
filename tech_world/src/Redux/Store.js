@@ -1,3 +1,6 @@
+// import { Auth_reducer } from "./AuthRedux/Auth_Reduce";
+import { AllUser_reducer } from "./AllUsers/AllUsers.reducer";
+
 import {
   combineReducers,
   legacy_createStore,
@@ -25,6 +28,7 @@ const rootReducer = combineReducers({
   ReduceItemReducer,
   AddItemReducer,
   DeleteItemReducer
+  AllUser_reducer,
 });
 
 const composerEnhancer = window._REDUX_DEVTOOLS_EXTENSION_COMPOSE_ || compose;

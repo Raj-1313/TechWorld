@@ -9,7 +9,11 @@ import {
   Drawer,
   DrawerContent,
   Text,
-  useDisclosure, 
+
+  useDisclosure,
+  Heading,
+  Grid,
+  Image,
 } from "@chakra-ui/react";
 import {MdDashboard,MdLibraryAdd} from "react-icons/md"
 import {FaStore,FaChartPie} from "react-icons/fa"
@@ -22,11 +26,16 @@ import Dashboard from "../Components/Dashboard";
 import AllProduct from "../Components/AllProduct";
 import AddForm from "../Components/Form";
 import Charts from "../Components/Charts";
+import AllUsers from "../Components/AllUsers";
+import Logo from "../../Assets/tech_world_logo.png";
 
 const LinkItems = [
-  { name: "Dashboard", icon: MdDashboard, path: "dashboard" },
-  { name: "All Product", icon: FaStore, path: "allproduct" },
-  { name: "Add Product", icon: MdLibraryAdd, path: "addproduct" },
+
+  { name: "Dashboard", icon: FiHome, path: "dashboard" },
+  { name: "All Product", icon: FiTrendingUp, path: "allproduct" },
+  { name: "All Users", icon: FiTrendingUp, path: "alluser" },
+  { name: "Add Product", icon: FiCompass, path: "addproduct" },
+
   { name: "Favourites", icon: FiStar },
   { name: "Settings", icon: FiSettings },
   { name: "Charts", icon: FaChartPie, path: "charts" },
@@ -66,6 +75,7 @@ export default function SimpleSidebar({ children }) {
         {path === "dashboard" && <Dashboard />}
         {path === "allproduct" && <AllProduct />}
         {path === "addproduct" && <AddForm />}
+        {path === "alluser" && <AllUsers />}
         {path === "charts" && <Charts aspect={2} title="the Boss" />}
       </Box>
     </Box>
@@ -87,7 +97,7 @@ const SidebarContent = ({ onClose, ...rest }) => {
       <Box>
         <Flex h="20" alignItems="center" mx="8" justifyContent="space-between">
           <Text fontSize="2xl" fontFamily="monospace" fontWeight="bold">
-            Logo
+            <Image src={Logo} alt={"logo"} w={"100%"} h={"auto"} />
           </Text>
           <CloseButton
             display={{ base: "flex", md: "none" }}
@@ -96,7 +106,9 @@ const SidebarContent = ({ onClose, ...rest }) => {
         </Flex>
         {LinkItems.map((link) => (
           <NavItem key={link.name} icon={link.icon}>
-            <Box onClick={() => (setPath(link.path), onClose)}>{link.name}</Box>
+            <Box onClick={() => setPath(link.path)}>
+              <p onClick={onClose}>{link.name}</p>
+            </Box>
           </NavItem>
         ))}
       </Box>
@@ -111,21 +123,25 @@ const NavItem = ({ path, icon, children, ...rest }) => {
       align="center"
       p="4"
       mx="4"
+      fontSize="20px"
       borderRadius="lg"
       role="group"
       cursor="pointer"
       _hover={{
-        bg: "cyan.400",
-        color: "white",
+        bg: "#222831",
+        color: "gold",
+        fontWeight: 600,
       }}
       {...rest}
     >
       {icon && (
         <Icon
           mr="4"
-          fontSize="16"
+          fontSize="20"
           _groupHover={{
-            color: "white",
+            bg: "#222831",
+            color: "gold",
+            fontWeight: 600,
           }}
           as={icon}
         />
@@ -161,7 +177,12 @@ const MobileNav = ({ onOpen, ...rest }) => {
       />
 
       <Text fontSize="2xl" ml="8" fontFamily="monospace" fontWeight="bold">
-        Logo
+        <Image
+          src={Logo}
+          alt={"logo"}
+          w={{ base: "40vw", md: "20vw" }}
+          h={"auto"}
+        />
       </Text>
     </Flex>
   );
