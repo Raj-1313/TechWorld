@@ -42,6 +42,7 @@ const Form1 = ({getFrom1Data}) => {
           />
         </FormControl>
 
+
         <FormControl>
           <FormLabel htmlFor="last-name" fontWeight={"normal"}>
             Last name
