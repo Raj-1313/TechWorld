@@ -28,7 +28,7 @@ const Cart = () => {
         total += +elem.productID[0]?.approx_price_EUR*+elem.count*87.82
         console.log("count inside loop", elem.count,"price is", +elem.productID[0]?.approx_price_EUR)
       })
-      console.log("total price is" ,Math.round(total))
+      // console.log("total price is" ,Math.round(total))
       setTotalPrice(Math.round(total))
     }
   }
