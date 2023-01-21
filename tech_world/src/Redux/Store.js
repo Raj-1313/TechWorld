@@ -12,11 +12,11 @@ import { Admin_reducer } from "./AdminRedux/Admin_Reducer";
 import LoginReducer from "./LoginRedux/Login.Reducer";
 import searhReducer from "./SearchRedux/Search.Reducer";
 import signupReducer from "./SignupRedux/Signup.Reducer";
-import { reducer as AppReducer } from "./AppReducer/reducer";
-import { reducer as CartReducer } from "./CartRedux/reducer";
-import { reducer as ReduceItemReducer } from "./ReduceItemCart/reducer";
-import { reducer as AddItemReducer } from "./AddItemCart/reducer";
-import { reducer as DeleteItemReducer } from "./DeleteItemCart/reducer";
+import {reducer as AppReducer} from "./AppReducer/reducer";
+import {reducer as CartReducer} from "./CartRedux/reducer"
+import {reducer as ReduceItemReducer} from "./ReduceItemCart/reducer"
+import {reducer as AddItemReducer} from "./AddItemCart/reducer"
+import {reducer as DeleteItemReducer} from "./DeleteItemCart/reducer"
 
 const rootReducer = combineReducers({
   signup: signupReducer,
@@ -27,7 +27,7 @@ const rootReducer = combineReducers({
   CartReducer,
   ReduceItemReducer,
   AddItemReducer,
-  DeleteItemReducer,
+  DeleteItemReducer
   AllUser_reducer,
 });
 
