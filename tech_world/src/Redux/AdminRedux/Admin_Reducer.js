@@ -12,9 +12,11 @@ const initialState = {
   totalPages: null,
   isLoading: false,
   isError: false,
+  totalProducts:0,
 };
 
 const Admin_reducer = (state = initialState, { type, payload }) => {
+  
   switch (type) {
     case Admin_SUCCESS: {
       return {
@@ -22,6 +24,7 @@ const Admin_reducer = (state = initialState, { type, payload }) => {
         isLoading: false,
         AdminData: payload.products,
         totalPages: payload.totalPages,
+        totalProducts: payload.count,
       };
     }
     case Admin_FAILURE: {

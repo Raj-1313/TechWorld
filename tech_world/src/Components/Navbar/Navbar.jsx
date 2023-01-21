@@ -6,8 +6,10 @@ import Logo from "../../Assets/tech_world_logo.png";
 import { BsFillCartCheckFill, BsFillPersonFill } from "react-icons/bs";
 import Search from "./Search";
 import { Link } from "react-router-dom";
+import { useSelector } from "react-redux";
 
 const Navbar = () => {
+  // const {Auth}= useSelector((store)=>store.p)
   const [cartHover, setCartHover] = useState(false);
   const [accountHover, setAccountHover] = useState(false);
 
@@ -110,7 +112,9 @@ const Navbar = () => {
             onMouseOver={() => setAccountHover(true)}
             onMouseOut={() => setAccountHover(false)}
           >
-            <Box
+            {/* { */}
+           
+              <Box
               pb={"0.5rem"}
               borderBottom={"0.5px solid gray"}
               _hover={{ color: "#FF6900" }}
@@ -120,6 +124,7 @@ const Navbar = () => {
             <Box _hover={{ color: "#FF6900" }}>
               <Link to={"/login"}>Log In</Link>
             </Box>
+            {/* // } */}
           </Box>
         )}
       </Flex>
