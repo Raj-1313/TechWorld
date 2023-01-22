@@ -4,7 +4,8 @@ import axios from 'axios'
 
 
 
-const getdata = (params) => async (dispatch) => {
+const getdata = ({params}) => async (dispatch) => {
+  console.log(params)
   dispatch({ type: GET_DATA_REQUEST });
   try {
 
