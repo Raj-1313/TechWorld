@@ -4,13 +4,13 @@ import axios from 'axios'
 
 
 
-const getdata = ({params}) => async (dispatch) => {
+
+const getdata = ({ params }) => async (dispatch) => {
   console.log(params)
   dispatch({ type: GET_DATA_REQUEST });
   try {
 
-    let res = await axios.get(`https://fine-cyan-millipede-boot.cyclic.app/product`,params)
-
+    let res = await axios.get(`https://fine-cyan-millipede-boot.cyclic.app/product`, params)
     console.log(res.data)
     dispatch({ type: GET_DATA_SUCCESS, payload: res.data })
 
@@ -21,7 +21,3 @@ const getdata = ({params}) => async (dispatch) => {
 }
 
 export { getdata }
-
-
-
-

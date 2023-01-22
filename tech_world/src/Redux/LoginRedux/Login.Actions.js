@@ -1,5 +1,10 @@
 import axios from "axios";
-import { LOGIN_ERROR, LOGIN_SUCCESS, LOGOUT } from "./Login.ActionTypes";
+import {
+  LOGIN_ERROR,
+  LOGIN_RESET,
+  LOGIN_SUCCESS,
+  LOGOUT,
+} from "./Login.ActionTypes";
 
 export const login = (creds) => async (dispatch) => {
   try {
@@ -8,9 +13,17 @@ export const login = (creds) => async (dispatch) => {
       creds
     );
     dispatch({ type: LOGIN_SUCCESS, payload: res.data });
-  } catch (err) {
-    dispatch({ type: LOGIN_ERROR });
+  } catch (error) {
+    const message =
+      (error.response && error.response.data && error.response.data.message) ||
+      error.message ||
+      error.toString();
+    dispatch({ type: LOGIN_ERROR, payload: message });
   }
+};
+
+export const resetLogin = () => async (dispatch) => {
+  dispatch({ type: LOGIN_RESET });
 };
 
 export const logout = () => async (dispatch) => {

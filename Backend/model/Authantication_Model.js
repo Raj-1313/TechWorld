@@ -14,6 +14,18 @@ const AuthSchema= mongoose.Schema({
         type:String,
         required:true,
     },
+    lastname:{
+        type:String
+    },
+    address:{
+        type:String
+    },
+    state:{
+        type:String
+    },
+    postal_code:{
+        type:Number
+    },
     country:{
         type:String,
         required:true,

@@ -32,8 +32,12 @@ const AllProduct = () => {
 
   return (
     <Box>
+
+      <AdminSearch query={query} setQuery={setQuery} />
       <Grid
-        gap={5}
+        rowGap={5}
+        columnGap={5}
+
         gridTemplateColumns={{
           base: "1fr",
           md: "1fr ",
