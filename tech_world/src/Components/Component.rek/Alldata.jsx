@@ -6,7 +6,7 @@ const AllData = () => {
     return (
         <div  className="alldata">
      <Filter />
-     <Data />
+     <Data /> 
             </div>
         
     )

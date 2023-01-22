@@ -24,7 +24,7 @@
   
    const getdata = (queryParams) => (dispatch) => {
       dispatch(getRequest());
-      return axios.get("https://modesens-mocker-api.onrender.com/modesensdata",queryParams)
+      return axios.get("https://fine-cyan-millipede-boot.cyclic.app/product",queryParams)
           .then((res) => {
               // console.log(res.data)
               dispatch(getSuccess(res.data))

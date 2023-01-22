@@ -1,12 +1,11 @@
 import React from 'react';
 import HomePage from "./Pages/HomePage";
-import "./App.css";
 import AllRoute from './AllRoutes/AllRoute';
-
+import AllData from './Components/Component.rek/Alldata'
 const App = () => {
   return (
-    <div>
-     <AllRoute />
+    <div >
+      <AllRoute/>
     </div>
   )
 }

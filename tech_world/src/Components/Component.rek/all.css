@@ -1,6 +1,6 @@
 .alldata{
     display: flex;
-    margin-top:28px;
+    border: 1px solid black;
 }
 @media all and (min-width:100px) and (max-width:380px){
     .alldata{

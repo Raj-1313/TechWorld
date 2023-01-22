@@ -20,6 +20,7 @@
 }
 .sorting{
     width: 20%;
+    border: 1px solid gold;
 }
 
 
@@ -32,6 +33,7 @@
     }
     .sorting div{
         margin-right: 60px;
+
     }
     .filterbox p {
         font-weight: bold;
