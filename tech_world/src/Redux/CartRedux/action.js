@@ -29,7 +29,7 @@ const getData = ()=> (dispatch)=>{
             }
         })
         .then((res)=>{
-            console.log(res.data)
+            console.log("response from action",res.data)
             dispatch(cartSuccess(res.data));
         })
         .catch((err)=>{

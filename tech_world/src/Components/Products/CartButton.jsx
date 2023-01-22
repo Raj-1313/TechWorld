@@ -1,16 +1,21 @@
 import "./cartButton.css";
 import { Box, Flex, Img, Text, useToast } from "@chakra-ui/react";
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import AddItem from "../../Redux/AddItemCart/action";
 import { Pagination } from 'antd';
 import { useDispatch } from "react-redux";
 
-const CartButton = ({id}) => {
+const couponCode = localStorage.getItem("couponCode")
+const couponDis = localStorage.getItem("couponDiscount")
+
+const CartButton = ({id,discount}) => {
+    const [coupon, setCoupon] = useState("" || couponCode);
+    const [dis, setDis] = useState(0||+couponDis);
     const dispatch = useDispatch();
     const toast = useToast();
 
     const handleClick = ()=>{
-        dispatch(AddItem(id))
+        dispatch(AddItem({productID:id}))
         toast({
             title: 'Item added in the cart',
             description: "Now you can book your order from cart",
@@ -19,11 +24,21 @@ const CartButton = ({id}) => {
             isClosable: true,
             position:"top"
         })
-
+        if(coupon==="ayush13"){
+            setDis(dis+discount)
+            setCoupon(prev=>prev+"Hello")
+            // localStorage.setItem("couponDiscount", dis)
+            console.log("discount in localStorage",dis, typeof(dis))
+            console.log(dis,typeof(coupon),coupon,"sdhcbb")
+            console.log(discount)
+        }
+        
     }
+    
+
 
     return (
-        <Box className="actions">
+        <Box className="actions" mt="40px">
             <div className="backbutton ">
             </div>
             <Box className="cartbutton neurobutton" onClick={handleClick}>

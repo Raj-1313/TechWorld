@@ -18,6 +18,7 @@ const PriceDetails = ({ totalprice, count }) => {
         if(couponCode === "ayush13"){
             let dis = Math.floor(totalprice/100*10)
             localStorage.setItem("couponDiscount", dis)
+            localStorage.setItem("couponCode", couponCode)
             setCoupon(false)
         }else{
 
@@ -28,7 +29,16 @@ const PriceDetails = ({ totalprice, count }) => {
 
 
     return (
-        <Box position="sticky" bgColor="white" ml={["20px", "35px", "50px"]} width="400px" height="450px" border="1px solid #DBDDE0" p="20px" pt="10px" mt="50px" >
+        <Box 
+            bgColor="white" 
+            ml={["0px", "35px", "50px"]} 
+            w={["97%","400px","400px"]} 
+            h="450px" 
+            border="1px solid #DBDDE0" 
+            p="20px" 
+            pt="10px" 
+            mt={["0px","50px","50px"]}
+        >
             <Text fontSize="20px" color="#959595" fontWeight="bold" fontFamily="revert" borderBottom="1px solid #DBDDE0" mb="20px" pb="10px" >Price Details</Text>
             <Grid gap="20px" fontSize="18px">
                 <Flex >

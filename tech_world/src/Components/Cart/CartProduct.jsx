@@ -26,7 +26,7 @@ const CartProduct = ({ elem }) => {
         localStorage.setItem("couponDiscount", +couponDis - price)
     }
 
-    const handleAddItem = (id) => {
+    const handleAddItem = async(id) => {
         dispatch(AddItem({ productID: id }))
         let price = Math.round(elem.productID[0]?.approx_price_EUR * 87.82)
         console.log(Math.floor(price / 100 * 10))
@@ -34,7 +34,7 @@ const CartProduct = ({ elem }) => {
         localStorage.setItem("couponDiscount", +couponDis + price)
     }
 
-    const handleDelete = (id) => {
+    const handleDelete = async(id) => {
         dispatch(deleteItem(id));
         let price = Math.round(elem.productID[0]?.approx_price_EUR * 87.82 * elem.count / 100 * 10)
         console.log(price)
@@ -42,37 +42,37 @@ const CartProduct = ({ elem }) => {
     }
 
     return (
-        <Flex border="1px solid #DBDDE0" pt="20px" borderBottom="0px" pr="40px" bgColor="white" >
-            <Grid border="1px solid black" justifyItems="center" alignItems="center" gap={["5px", "7px", "10px"]}>
+        <Flex border="1px solid #DBDDE0" pt="20px"  pr={["10px","30px","40px"]} bgColor="white"  >
+            <Grid  justifyItems="center" alignItems="center" gap={["5px", "7px", "10px"]}>
                 <Image ml={["0px", "", "40px"]} width={["60px", "80px", "100px"]} mr="2rem" src={elem.productID[0]?.img_url} />
-                <Flex gap="10px" mt="20px" mb="20px">
+                <Flex gap={["5px","10px","10px"]} mt="20px" mb="20px">
                     <Button
                         disabled={elem.count === 1}
                         onClick={() => handleReduceItem(elem.productID[0]?._id)}
                         border="1px solid #C2C2C2"
-                        fontSize="20px"
-                        h="40px"
-                        w="30px"
-                        display="flex"
+                        fontSize="20"
+                        h={["20px","30px","40px"]}
+                        w={["20px","30px","40px"]}
+                        // display="flex"
                         justify-content="center"
                         align-items="center"
-                        borderRadius="50%"
+                        borderRadius={["20%","50%","50%"]}
                     >-</Button>
-                    <Button>{elem.count}</Button>
+                    <Button border="1px solid #C2C2C2" >{elem.count}</Button>
                     <Button
                         onClick={() => handleAddItem(elem.productID[0]?._id)}
                         border="1px solid #C2C2C2"
                         fontSize="20px"
-                        h="40px"
-                        w="30px"
-                        display="flex"
+                        h={["20px","30px","40px"]}
+                        w={["20px","30px","40px"]}
+                        // display="flex"
                         justify-content="center"
                         align-items="center"
-                        borderRadius="50%"
-                    >+</Button>
+                        borderRadius={["20%","50%","50%"]}
+                        >+</Button>
                 </Flex>
             </Grid >
-            <Box ml={["10px", "20px", "30px"]} border="1px solid black" width={["150px", "250px", "380px"]} >
+            <Box ml={["10px", "20px", "30px"]}  width={["150px", "250px", "380px"]} >
                 <Text fontSize={["12px", "14px", "16px"]} fontWeight={"bold"} >{elem.productID[0]?.model}</Text>
                 <Text fontSize={["12px", "14px", "16px"]} color="#A28787" >{elem.productID[0]?.RAM}</Text>
                 <Text fontSize={["12px", "14px", "16px"]} mt={["0px", "5px", "10px"]}>{elem.productID[0]?.brand}</Text>
@@ -91,8 +91,8 @@ const CartProduct = ({ elem }) => {
                     </Button>
                 </Flex>
             </Box>
-            <Box border="1px solid black" width={["150px", "210px", "250px"]} >
-                <Text textAlign="right" >Delivery by {tomorrowDate}</Text>
+            <Box w={["160px", "210px", "250px"]} >
+                <Text textAlign="right" fontSize={["10px", "14px", "16px"]}  >Delivery by {tomorrowDate}</Text>
             </Box>
         </Flex >
     )

@@ -4,11 +4,11 @@ import axios from 'axios'
 
 
 
-const getdata = (param) => async (dispatch) => {
+const getdata = (params) => async (dispatch) => {
   dispatch({ type: GET_DATA_REQUEST });
   try {
 
-    let res = await axios.get(`https://fine-cyan-millipede-boot.cyclic.app/product`,param)
+    let res = await axios.get(`https://fine-cyan-millipede-boot.cyclic.app/product`,params)
 
     console.log(res.data)
     dispatch({ type: GET_DATA_SUCCESS, payload: res.data })

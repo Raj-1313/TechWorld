@@ -21,6 +21,7 @@ const AddError= ()=>{
 }
 
 const AddItem = (payload)=>(dispatch)=>{
+    console.log(payload)
     dispatch(AddRequest());
     return axios
         .post("https://fine-cyan-millipede-boot.cyclic.app/cart",payload,{
