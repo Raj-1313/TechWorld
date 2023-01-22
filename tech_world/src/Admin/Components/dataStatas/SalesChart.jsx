@@ -1,5 +1,5 @@
 // import { Card, CardBody, CardSubtitle, CardTitle } from "reactstrap";
-import { Card, CardBody, CardFooter, CardHeader, Text } from "@chakra-ui/react";
+import { Card, CardBody, CardFooter,  Text } from "@chakra-ui/react";
 import axios from "axios";
 import { useEffect, useState } from "react";
 import Chart from "react-apexcharts";

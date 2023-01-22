@@ -6,4 +6,9 @@ export const AdminDelete_REQUEST = "AdminDelete_REQUEST";
 export const AdminDelete_SUCCESS = "AdminDelete_SUCCESS";
 export const AdminDelete_FAILURE = "AdminDelete_FAILURE";
 
+
 // AdminDelete_REQUEST,AdminDelete_SUCCESS,AdminDelete_FAILURE
+
+export const AdminCartDetails_REQUEST = "AdminCartDetails_REQUEST";
+export const AdminCartDetails_SUCCESS = "AdminCartDetails_SUCCESS";
+export const AdminCartDetails_FAILURE = "AdminCartDetails_FAILURE";
