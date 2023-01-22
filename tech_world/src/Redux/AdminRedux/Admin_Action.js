@@ -9,7 +9,8 @@ import {
   AdminDelete_FAILURE,
   AdminCartDetails_REQUEST,
   AdminCartDetails_SUCCESS,
-  AdminCartDetails_FAILURE
+  AdminCartDetails_FAILURE,
+  AdminExtractedData_SUCCESS
 } from "./Admin_Types.js";
 
 export const adminData =
@@ -72,4 +73,11 @@ export const adminPaymentTracking = () => async (dispatch) => {
   } catch (e) {
     dispatch({ type: AdminCartDetails_FAILURE });
   }
+};
+
+
+
+export const adminChartDataExtraction = (data) =>(dispatch) => {  
+  console.log(data) 
+     dispatch({ type: AdminExtractedData_SUCCESS,payload:data });  
 };

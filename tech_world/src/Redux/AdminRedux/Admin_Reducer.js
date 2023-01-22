@@ -9,6 +9,7 @@ import {
   AdminCartDetails_FAILURE,
   AdminCartDetails_REQUEST,
   AdminCartDetails_SUCCESS,
+  AdminExtractedData_SUCCESS,
 } from "./Admin_Types.js";
 
 const initialState = {
@@ -17,7 +18,8 @@ const initialState = {
   isLoading: false,
   isError: false,
   totalProducts:0,
-  PayedData:[]
+  PayedData:[],
+  dataExtractedForChart:[]
 };
 
 
@@ -44,18 +46,18 @@ const Admin_reducer = (state = initialState, { type, payload }) => {
     }
 
 
-    case "AdminDelete_FAILURE": {
+    case AdminDelete_FAILURE: {
       return {
         ...state,
         isError: true,
         isLoading: false,
       };
     }
-    case "AdminDelete_REQUEST": {
+    case AdminDelete_REQUEST: {
       return { ...state, isLoading: true, isError: false };
     }
 
-    case "AdminDelete_SUCCESS": {
+    case AdminDelete_SUCCESS: {
       // const deleted_product = state.AdminData.filter(
       //   (item) => item.id !== payload
       // );
@@ -68,6 +70,9 @@ const Admin_reducer = (state = initialState, { type, payload }) => {
       };
     }
     
+
+// Made by Raj 
+
     case AdminCartDetails_FAILURE: {
       return {
         ...state,
@@ -87,11 +92,22 @@ const Admin_reducer = (state = initialState, { type, payload }) => {
         isError: false,
       };
     }
+    case AdminExtractedData_SUCCESS: {
+    console.log(payload)
+      return {
+        ...state,
+        dataExtractedForChart: payload,
+        isLoading: false,
+        isError: false,
+      };
+    }
 
     default: {
       return state;
     }
   }
 };
+
+
 
 export { Admin_reducer };
