@@ -9,8 +9,9 @@ const ChartsStates = () => {
 const dispatch =useDispatch()
 const PayedData=useSelector((store)=>store.Admin_reducer.PayedData)
 
-
 console.log(PayedData)
+let x=PayedData.map((el)=>el.productDetails.reduce((acc,ele)=> (acc+(ele.productID.approx_price_EUR*82)) ,0 ))
+console.log(x);
 useEffect(()=>{
 dispatch(adminPaymentTracking())
 },[])

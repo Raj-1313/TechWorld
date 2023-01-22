@@ -5,19 +5,16 @@ import {
   CloseButton,
   Flex,
   Icon,
-  useColorModeValue,
-  Link,
+  useColorModeValue, 
   Drawer,
   DrawerContent,
   Text,
   useDisclosure,
-  Heading,
-  Grid,
+  Image,
 } from "@chakra-ui/react";
-import {
-  FiHome,
-  FiTrendingUp,
-  FiCompass,
+import {MdDashboard,MdLibraryAdd} from "react-icons/md"
+import {FaStore,FaChartPie} from "react-icons/fa"
+import {  
   FiStar,
   FiSettings,
   FiMenu,
@@ -25,17 +22,20 @@ import {
 import Dashboard from "../Components/Dashboard";
 import AllProduct from "../Components/AllProduct";
 import AddForm from "../Components/Form";
-import Charts from "../Components/Charts";
+import ChartsStates from "../Components/ChartsStates";
+import AllUsers from "../Components/AllUsers";
+import Logo from "../../Assets/tech_world_logo.png";
 
 const LinkItems = [
-  { name: "Dashboard", icon: FiHome, path: "dashboard" },
-  { name: "All Product", icon: FiTrendingUp, path: "allproduct" },
-  { name: "Add Product", icon: FiCompass, path: "addproduct" },
+
+  { name: "Dashboard", icon: MdDashboard, path: "dashboard" },
+  { name: "All Product", icon: FaStore, path: "allproduct" },
+  { name: "All Users", icon: MdLibraryAdd, path: "alluser" },
+  { name: "Add Product", icon: MdLibraryAdd, path: "addproduct" },
   { name: "Favourites", icon: FiStar },
   { name: "Settings", icon: FiSettings },
-  { name: "Charts", icon: FiSettings, path: "charts" },
+  { name: "ChartsStates", icon: FaChartPie, path: "charts" },
 ];
-
 // pura section
 export default function SimpleSidebar({ children }) {
   const [path, setPath] = useState("dashboard");
@@ -70,7 +70,8 @@ export default function SimpleSidebar({ children }) {
         {path === "dashboard" && <Dashboard />}
         {path === "allproduct" && <AllProduct />}
         {path === "addproduct" && <AddForm />}
-        {path === "charts" && <Charts aspect={2} title="the Boss" />}
+        {path === "alluser" && <AllUsers />}
+        {path === "charts" && <ChartsStates aspect={2} title="the Boss" />}
       </Box>
     </Box>
   );
@@ -165,7 +166,7 @@ const MobileNav = ({ onOpen, ...rest }) => {
       />
 
       <Text fontSize="2xl" ml="8" fontFamily="monospace" fontWeight="bold">
-        Logo
+        {Logo}
       </Text>
     </Flex>
   );
