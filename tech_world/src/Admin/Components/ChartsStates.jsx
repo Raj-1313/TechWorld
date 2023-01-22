@@ -16,7 +16,7 @@ const [dataExtracted,setDataExtracted]= useState([])
 
 useEffect(()=>{
   dispatch(adminPaymentTracking())
-  let x=PayedData?.map((el)=>el.productDetails.reduce((acc,ele)=> (acc+(ele.productID.approx_price_EUR*82)) ,0 ))
+  let x=PayedData?.map((el)=>el.productDetails.reduce((acc,ele)=> (acc+(ele.productID.approx_price_EUR*70)) ,0 ))
   setTotalPrice(x);
   let dataExtraction=PayedData?.map((el)=>el.productDetails.map((ele)=>{return{"name": ele.productID.model,"Total":ele.productID.approx_price_EUR} }))  
   setDataExtracted(dataExtraction)

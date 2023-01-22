@@ -7,11 +7,12 @@ import Chart from "react-apexcharts";
 const SalesChart = () => {
   let [countArr,setCountArr] = useState([])
   let [nameProd,setName] = useState([])
-
+  const token= JSON.parse(localStorage.getItem("loginData"))
+  
   const  getChartData=async()=>{
    let {data}=await  axios.get("https://fine-cyan-millipede-boot.cyclic.app/admin/mostvisted",{
       headers:{
-        authorization:"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6IjEyMzEyM0BnbWFpbC5jb20iLCJ1c2VySUQiOiI2M2M4ZTNmNTYwNDhmNTJmOTY2NmFjZWYiLCJpYXQiOjE2NzQxMDk5NTAsImV4cCI6MTY3NDk3Mzk1MH0.XpoBl-EDh0ZIcd87ZRMQ2SLGziko4wo2aO1mlyXxuf0"
+        authorization:token.token
       }
     })
     let {count,product}= data
@@ -19,7 +20,8 @@ const SalesChart = () => {
     let bag=[]
     let bagCount=[]
     for(let i=0; i<product.length && product.length<15; i++){
-      bag.push(product[i].productID[0].model)
+      // console.log(product[i].productID[0],"this is us")
+      bag.push(product[i].productID[0]?.model)
       bagCount.push(count[i].productCount)      
     }
     setName(bag)
@@ -32,7 +34,7 @@ const SalesChart = () => {
 useEffect(()=>{
 getChartData()
 },[])
-// console.log(countArr,nameProd)
+console.log(countArr,nameProd)
 
   const chartoptions = {
     series: [

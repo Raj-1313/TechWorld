@@ -5,47 +5,34 @@ import {
   CloseButton,
   Flex,
   Icon,
-  useColorModeValue, 
+  useColorModeValue,
   Drawer,
   DrawerContent,
   Text,
   useDisclosure,
   Image,
 } from "@chakra-ui/react";
-
 import { FiSettings, FiMenu } from "react-icons/fi";
 import { MdDashboard, MdLibraryAdd } from "react-icons/md";
 import { FaStore, FaChartPie } from "react-icons/fa";
-
-
-import {  
-  FiStar,
-  FiSettings,
-  FiMenu,
-} from "react-icons/fi";
-
 import Dashboard from "../Components/Dashboard";
 import AllProduct from "../Components/AllProduct";
 import AddForm from "../Components/Form";
-import ChartsStates from "../Components/ChartsStates";
 import AllUsers from "../Components/AllUsers";
 import Logo from "../../Assets/tech_world_logo.png";
-import TrackOrder from "../Components/TrackOrder";
 import ProjectTables from "../Components/dataStatas/ProjectTable";
-
+import ChartsStates from "../Components/ChartsStates";
+import { Link } from "react-router-dom";
 const LinkItems = [
-
   { name: "Dashboard", icon: MdDashboard, path: "dashboard" },
   { name: "All Product", icon: FaStore, path: "allproduct" },
   { name: "All Users", icon: MdLibraryAdd, path: "alluser" },
   { name: "Order Record", icon: FaStore, path: "Orderrecord" },
   { name: "Add Product", icon: MdLibraryAdd, path: "addproduct" },
-
-
-  
   { name: "Settings", icon: FiSettings },
   { name: "ChartsStates", icon: FaChartPie, path: "charts" },
 ];
+
 // pura section
 export default function SimpleSidebar({ children }) {
   const [path, setPath] = useState("dashboard");
@@ -81,12 +68,8 @@ export default function SimpleSidebar({ children }) {
         {path === "allproduct" && <AllProduct />}
         {path === "addproduct" && <AddForm />}
         {path === "alluser" && <AllUsers />}
-
         {path === "Orderrecord" && <ProjectTables />}
-       
-
         {path === "charts" && <ChartsStates aspect={2} title="the Boss" />}
-
       </Box>
     </Box>
   );
@@ -107,7 +90,9 @@ const SidebarContent = ({ onClose, ...rest }) => {
       <Box>
         <Flex h="20" alignItems="center" mx="8" justifyContent="space-between">
           <Text fontSize="2xl" fontFamily="monospace" fontWeight="bold">
-           <Image src={Logo} alt={"logo"} w={"100%"} h={"auto"} />
+            <Link to="/">
+              <Image src={Logo} alt={"logo"} w={"100%"} h={"auto"} />
+            </Link>
           </Text>
           <CloseButton
             display={{ base: "flex", md: "none" }}
@@ -116,7 +101,9 @@ const SidebarContent = ({ onClose, ...rest }) => {
         </Flex>
         {LinkItems.map((link) => (
           <NavItem key={link.name} icon={link.icon}>
-            <Box onClick={() => (setPath(link.path), onClose)}>{link.name}</Box>
+            <Box onClick={() => setPath(link.path)}>
+              <p onClick={onClose}>{link.name}</p>
+            </Box>
           </NavItem>
         ))}
       </Box>
@@ -125,27 +112,30 @@ const SidebarContent = ({ onClose, ...rest }) => {
 };
 
 const NavItem = ({ path, icon, children, ...rest }) => {
-  // console.log(children);
   return (
     <Flex
       align="center"
       p="4"
       mx="4"
+      fontSize="20px"
       borderRadius="lg"
       role="group"
       cursor="pointer"
       _hover={{
-        bg: "cyan.400",
-        color: "white",
+        bg: "#222831",
+        color: "gold",
+        fontWeight: 600,
       }}
       {...rest}
     >
       {icon && (
         <Icon
           mr="4"
-          fontSize="16"
+          fontSize="20"
           _groupHover={{
-            color: "white",
+            bg: "#222831",
+            color: "gold",
+            fontWeight: 600,
           }}
           as={icon}
         />
@@ -156,7 +146,6 @@ const NavItem = ({ path, icon, children, ...rest }) => {
 };
 
 const MobileNav = ({ onOpen, ...rest }) => {
-  // console.log(rest);
   return (
     <Flex
       ml={{ base: 0, md: 60 }}
@@ -181,15 +170,16 @@ const MobileNav = ({ onOpen, ...rest }) => {
       />
 
       <Text fontSize="2xl" ml="8" fontFamily="monospace" fontWeight="bold">
-
-        <Image
-          src={Logo}
-          alt={"logo"}
-          w={{ base: "150px", md: "20vw" }}
-          h={"auto"}
-          margin="auto"
-        />
-
+        <Link to="/">
+          {" "}
+          <Image
+            src={Logo}
+            alt={"logo"}
+            w={{ base: "150px", md: "20vw" }}
+            h={"auto"}
+            margin="auto"
+          />
+        </Link>
       </Text>
     </Flex>
   );

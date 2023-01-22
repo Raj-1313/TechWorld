@@ -1,15 +1,7 @@
 import React, { useState } from "react";
-import {
-  Box,
-  Flex,
-  FormLabel,
-  Grid,
-  Heading,
-  Input,
-  Stack,
-} from "@chakra-ui/react";
+import { Box, Grid, Heading, Input, Stack } from "@chakra-ui/react";
 import "../../styles/Admin.css";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { PostData } from "../../Redux/AdminRedux/Admin_Action";
 
 const initState = {
@@ -62,26 +54,11 @@ const AddForm = () => {
     e.preventDefault();
     const { name, value } = e.target;
     setFormData({ ...formData, [name]: value });
-    // console.log(e.target.value)
   };
-  // console.log(formData)
 
   const handleSubmit = (e) => {
     e.preventDefault();
     dispatch(PostData({ payload: formData }));
-    // fetch("http://localhost:8080/product", {
-    //   method: "POST",
-    //   headers: { "Content-Type": "application/json" },
-    //   body: JSON.stringify(formData),
-    // })
-    //   .then((res) => res.json())
-    //   .then((res) => {
-    //     console.log(res);
-    //     alert("data posted");
-    //   })
-    //   .catch((e) => console.log(e.message));
-
-    // setFormData(initState);
   };
 
   const {
@@ -129,9 +106,8 @@ const AddForm = () => {
 
   return (
     <Box className="admin" id="form">
-      <Box m="auto" border="2px solid red" className="admin_out_box">
+      <Box m="auto" className="admin_out_box">
         <form onSubmit={handleSubmit}>
-
           <Heading size={{ base: "sm", sm: "sm", md: "md" }}>
             Add New Product
           </Heading>
@@ -144,7 +120,6 @@ const AddForm = () => {
               lg: "1fr 1fr",
             }}
           >
-            {/* leftbox */}
             <Box p={{ base: "auto 10%", md: "10%" }}>
               <Stack spacing={3}>
                 <Input

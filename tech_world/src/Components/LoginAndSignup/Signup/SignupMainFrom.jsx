@@ -238,8 +238,9 @@ const SignupMainFrom = () => {
             value={signupData.gender}
             onChange={handleChange}
           >
-            <option>Male</option>
-            <option>Female</option>
+            <option value='male'>Male</option>
+            <option value='female'>Female</option>
+            <option value='others'>Others</option>
           </Select>
         </Box>
 

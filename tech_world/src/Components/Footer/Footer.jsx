@@ -63,12 +63,12 @@ import {
               <Link href={'#'}>Moniter</Link>
             </Stack>
             <Stack align={'flex-start'}>
-              <ListHeader>Company</ListHeader>
-              <Link href={'#'}>About Us</Link>
-              <Link href={'#'}>Press</Link>
-              <Link href={'#'}>Careers</Link>
-              <Link href={'#'}>Contact Us</Link>
-              <Link href={'#'}>Partners</Link>
+              <ListHeader>Team Members </ListHeader>
+              <Link href={'#'}>Raj Rathor</Link>
+              <Link href={'#'}>Subha Mukherjee</Link>
+              <Link href={'#'}>Parag Jain</Link>
+              <Link href={'#'}>Rekha Yadav</Link>
+              <Link href={'#'}>Ayush Verma</Link>
             </Stack>
             <Stack align={'flex-start'}>
               <ListHeader>Legal</ListHeader>
@@ -108,9 +108,10 @@ import {
                 {/* Logo Call */}
           </Flex>
           <Text pt={1} fontSize={'sm'} textAlign={'center'}>
-            © 2022 Chakra Templates. All rights reserved
+            © 2023 Masai Project. All rights reserved 
           </Text>
         </Box>
       </Box>
     );
   }
+

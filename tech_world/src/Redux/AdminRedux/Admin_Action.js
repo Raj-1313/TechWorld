@@ -19,18 +19,20 @@ import {
 
 } from "./Admin_Types.js";
 
+const token= JSON.parse(localStorage.getItem("loginData"))
+
+
 export const adminData =
-  ({ page, limit }) =>
+  ({ page, limit, query }) =>
   async (dispatch) => {
     console.log(page);
     dispatch({ type: Admin_REQUEST });
     try {
       let res = await axios.get(
-        `http://localhost:8080/admin?page=${page}&limit=${limit}`,
+        `https://fine-cyan-millipede-boot.cyclic.app/admin?page=${page}&limit=${limit}&find=${query}`,
         {
           headers: {
-            authorization:
-              "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Imllc0BnbWFpbC5jb20iLCJ1c2VySUQiOiI2M2M4MWY4MzA0M2IwNmFiNjQ5OWJkMDAiLCJpYXQiOjE2NzQwNjE1MTMsImV4cCI6MTY3NDkyNTUxM30.tJD0PHLvDyZxOJ25to-Rm-VXq84qZCywyHaXgjw03XA",
+            authorization: token.token
           },
         }
       );
@@ -41,7 +43,6 @@ export const adminData =
     }
   };
 
-
 export const PostData =
   ({ payload }) =>
   async (dispatch) => {
@@ -51,8 +52,7 @@ export const PostData =
       await axios
         .post(`https://fine-cyan-millipede-boot.cyclic.app/admin`, payload, {
           headers: {
-            authorization:
-              "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6IjEyMzEyM0BnbWFpbC5jb20iLCJ1c2VySUQiOiI2M2M4ZTNmNTYwNDhmNTJmOTY2NmFjZWYiLCJpYXQiOjE2NzQxMDk5NTAsImV4cCI6MTY3NDk3Mzk1MH0.XpoBl-EDh0ZIcd87ZRMQ2SLGziko4wo2aO1mlyXxuf0",
+            authorization:token.token
           },
         })
         .then((res) => {
@@ -64,15 +64,13 @@ export const PostData =
     }
   };
 
-
 export const adminProductDelete = (id) => async (dispatch) => {
   dispatch({ type: AdminDelete_REQUEST });
   try {
     await axios
       .delete(`https://fine-cyan-millipede-boot.cyclic.app/admin/${id}`, {
         headers: {
-          authorization:
-            "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6IjEyMzEyM0BnbWFpbC5jb20iLCJ1c2VySUQiOiI2M2M4ZTNmNTYwNDhmNTJmOTY2NmFjZWYiLCJpYXQiOjE2NzQxMDk5NTAsImV4cCI6MTY3NDk3Mzk1MH0.XpoBl-EDh0ZIcd87ZRMQ2SLGziko4wo2aO1mlyXxuf0",
+          authorization:token.token
         },
       })
       .then((res) => {
@@ -83,8 +81,6 @@ export const adminProductDelete = (id) => async (dispatch) => {
     dispatch({ type: AdminDelete_FAILURE });
   }
 };
-
-
 // made by raj
 export const adminPaymentTracking = () => async (dispatch) => {
   
@@ -92,8 +88,7 @@ export const adminPaymentTracking = () => async (dispatch) => {
   try {
     await axios.get(`https://fine-cyan-millipede-boot.cyclic.app/admin/orders`, {
         headers: {
-          authorization:
-            "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6IjEyMzEyM0BnbWFpbC5jb20iLCJ1c2VySUQiOiI2M2M4ZTNmNTYwNDhmNTJmOTY2NmFjZWYiLCJpYXQiOjE2NzQxMDk5NTAsImV4cCI6MTY3NDk3Mzk1MH0.XpoBl-EDh0ZIcd87ZRMQ2SLGziko4wo2aO1mlyXxuf0",
+          authorization: token.token,
         },
       })
       .then((res) => {     
@@ -107,6 +102,6 @@ export const adminPaymentTracking = () => async (dispatch) => {
 
 
 export const adminChartDataExtraction = (data) =>(dispatch) => {  
-  console.log(data) 
+  // console.log(data) 
      dispatch({ type: AdminExtractedData_SUCCESS,payload:data });  
 };

@@ -1,7 +1,6 @@
 import {
   Box,
   Button,
-  Flex,
   Grid,
   GridItem,
   Heading,
@@ -30,8 +29,22 @@ const StayConnected = () => {
       <Box borderBottom={"0.1px solid gray"} mb={"2rem"}></Box>
       <Grid
         gap={"6"}
-        templateRows={{base: "repeat(2, 1fr)",sm: "repeat(2, 1fr)",md: "repeat(1, 1fr)",lg: "repeat(1, 1fr)",xl: "repeat(1, 1fr)","2xl":"repeat(1, 1fr)"}}
-        templateColumns={{base: "repeat(1, 1fr)",sm: "repeat(1, 1fr)",md: "repeat(2, 1fr)",lg: "repeat(2, 1fr)",xl: "repeat(2, 1fr)","2xl":"repeat(2, 1fr)"}}
+        templateRows={{
+          base: "repeat(2, 1fr)",
+          sm: "repeat(2, 1fr)",
+          md: "repeat(1, 1fr)",
+          lg: "repeat(1, 1fr)",
+          xl: "repeat(1, 1fr)",
+          "2xl": "repeat(1, 1fr)",
+        }}
+        templateColumns={{
+          base: "repeat(1, 1fr)",
+          sm: "repeat(1, 1fr)",
+          md: "repeat(2, 1fr)",
+          lg: "repeat(2, 1fr)",
+          xl: "repeat(2, 1fr)",
+          "2xl": "repeat(2, 1fr)",
+        }}
       >
         <GridItem
           p={"1.2rem"}
@@ -77,7 +90,14 @@ const StayConnected = () => {
               "2xl": "0.9rem",
             }}
             w={"50%"}
-            mb={{base:"3rem",sm:"3rem",md:"6rem",lg:"6rem",xl:"6rem","2xl":"6rem"}}
+            mb={{
+              base: "3rem",
+              sm: "3rem",
+              md: "6rem",
+              lg: "6rem",
+              xl: "6rem",
+              "2xl": "6rem",
+            }}
           >
             Download OnePlus store app on Google Play
           </Text>
@@ -91,7 +111,7 @@ const StayConnected = () => {
             Google Play
           </Button>
         </GridItem>
-        
+
         <GridItem
           p={"1.2rem"}
           backgroundImage="url(https://oasis.opstatics.com/content/dam/oasis/page/2022/new-homepage/in/homepage/sms-subscribe/Subscribe-PC.jpg)"

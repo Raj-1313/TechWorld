@@ -3,6 +3,7 @@ import { Heading, UnorderedList, ListItem } from "@chakra-ui/react";
 
 const NavbarItemHeadingList = ({ head, sublink, isHover, setIsHover }) => {
   return (
+    
     <ListItem
       justify={"space-between"}
       onMouseOver={() => setIsHover(true)}

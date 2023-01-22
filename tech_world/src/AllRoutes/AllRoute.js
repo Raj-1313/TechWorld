@@ -4,16 +4,13 @@ import Admin from "../Admin/Pages/Admin";
 import SingleUser from "../Admin/Components/SingleUser";
 import Login from "../Pages/Login";
 import Signup from "../Pages/Signup";
-import ProjectTables from "../Admin/Components/dataStatas/ProjectTable";
-import SalesChart from "../Admin/Components/dataStatas/SalesChart";
 import Payment from "../Components/Payment/Payment";
 import RazorPay from "../Components/Payment/RazorPay";
-
 import Cart from "../Components/Cart/Cart"
-import AllData from "../Components/Component.rek/Alldata";
+import AllProducts from "../Components/Products/AllProducts"
 import PageNotFound from "../HOF/notFoundPage";
-import Loading from "../HOF/Loading";
 import SingleProductPage from "../Pages/SingleProductPage";
+import PrivateRoute from "../PrivateRoute/PrivateRoute";
 
 const AllRoute = () => {
   return (
@@ -21,21 +18,16 @@ const AllRoute = () => {
       <Routes>
         <Route path="/" element={<HomePage />} />
         <Route path="/user" element={<SingleUser />} />
-
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<Signup />} />
-
-        <Route path="/admin" element={<Admin />} />       
-
-        <Route path="/ordering" element={<ProjectTables/>} />
-        <Route path="/sales" element={<SalesChart/>} />
-        <Route path="/payment" element={<Payment/>} />
-        <Route path="/razor" element={<RazorPay/>} />
-        <Route path="/cart" element={<Cart/>}/>
-        <Route path="/product" element={<AllData/>} />
-        <Route path="*" element={<PageNotFound/>} />
+        <Route path="/admin" element={<PrivateRoute><Admin /></PrivateRoute>} />           
+        <Route path="/payment" element={<PrivateRoute><Payment/></PrivateRoute>} />
+        <Route path="/razor" element={<PrivateRoute><RazorPay/></PrivateRoute>} />
+        <Route path="/cart" element={<PrivateRoute><Cart/></PrivateRoute>}/>
+        <Route path="/products" element={<AllProducts/>}/>
         <Route path="/product/:id" element={<SingleProductPage/>} />
-        <Route path="/loading" element={<Loading/>} />
+        <Route path="*" element={<PageNotFound/>} />
+       
       </Routes>
     </div>
   );

@@ -33,31 +33,6 @@ const TrackOrder_reducer = (state = initialState, { type, payload }) => {
       return { ...state, isLoading: true, isError: false };
     }
 
-    // case AdminDelete_FAILURE: {
-    //   return {
-    //     ...state,
-    //     isError: true,
-    //     isLoading: false,
-    //   };
-    // }
-    // case AdminDelete_REQUEST: {
-    //   return { ...state, isLoading: true, isError: false };
-    // }
-
-    // case AdminDelete_SUCCESS: {
-    //   console.log(payload);
-    //   const deleted_product = state.AdminData.filter(
-    //     (item) => item._id !== payload
-    //   );
-    //   console.log("deleted product", deleted_product);
-    //   return {
-    //     ...state,
-    //     AdminData: deleted_product,
-    //     deletedID: payload,
-    //     isLoading: false,
-    //     isError: false,
-    //   };
-    // }
 
     default: {
       return state;

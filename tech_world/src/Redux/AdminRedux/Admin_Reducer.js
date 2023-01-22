@@ -84,18 +84,19 @@ const Admin_reducer = (state = initialState, { type, payload }) => {
     }
 
     case AdminDelete_SUCCESS: {
-      // const deleted_product = state.AdminData.filter(
-      //   (item) => item.id !== payload
-      // );
+      console.log(payload);
+      const deleted_product = state.AdminData.filter(
+        (item) => item._id !== payload
+      );
+      console.log("deleted product", deleted_product);
       return {
         ...state,
-        // AdminData: deleted_product,
-        // deletedID: payload,
+        AdminData: deleted_product,
+        deletedID: payload,
         isLoading: false,
         isError: false,
       };
     }
-    
 
 // Made by Raj 
 

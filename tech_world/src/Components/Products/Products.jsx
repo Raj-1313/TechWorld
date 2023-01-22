@@ -1,19 +1,44 @@
-import { Box, Flex, Grid, Img,Text } from '@chakra-ui/react';
-import React, { useEffect } from 'react'
+import { Box, Flex, Grid, Img, Text } from '@chakra-ui/react';
+import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
-import { Link } from 'react-router-dom';
-import { getdata } from '../../Redux/AppReducer/action';
+import { useLocation, useSearchParams } from 'react-router-dom';
+import { getdata, getFilteredData } from '../../Redux/AppReducer/action';
 import CartButton from './CartButton';
 import "./cartButton.css"
+import LikeButton from './LikeButton';
+import {Link} from "react-router-dom";
 
 const Products = () => {
     const product = useSelector((store) => store.AppReducer.data);
     const dispatch = useDispatch();
-    console.log(product);
+    // console.log(product);
+    const location = useLocation();
+    const [searchParams] = useSearchParams();
+    console.log(location)
+
+    console.log(searchParams.getAll("RAM"))
 
     useEffect(() => {
-        dispatch(getdata());
-    }, []);
+        if (location.search || product.length) {
+            const sortBy = searchParams.get("sort")
+            const getProductsParam = {
+                params: {}
+            }
+            if(searchParams.getAll("brand").length>0){
+                getProductsParam.params.brand = searchParams.getAll("brand")
+            }
+            if(searchParams.getAll("RAM").length>0){
+                getProductsParam.params.RAM = searchParams.getAll("RAM")
+            }
+            if(sortBy){
+                getProductsParam.params.sort = sortBy
+            }
+            console.log(getProductsParam)
+            dispatch(getFilteredData(getProductsParam));
+        }else{
+            dispatch(getdata());
+        }
+    }, [product.length, location.search]);
 
     return (
         <Grid
@@ -27,35 +52,36 @@ const Products = () => {
             {
                 product && product.map((elem) => {
                     return (
-                        // This Link Is For The Single Product Page.
-                        // Once User Click On Any Product It will Redirects To The Single Product Page
-                        // Don't Remove The LInk Tag
-                        //Remove This Entire Comment After Read.
-                        // Thank You!
-                        <Link to={`/product/${elem._id}`}>
                             <Flex border="1px solid #DBDDE0" p="20px" key={elem._id} bgColor="white"  >
-                            <Box >
-                                <Img src={elem.img_url} />
-                            </Box>
-                            <Box ml="30px"  w="500px" >
-                                <Text fontSize={["20px"]} fontWeight="bold" >{elem.model}</Text>
-                                <Text fontSize={["12px", "14px", "16px"]} color="#A28787" mb="10px" >{elem.RAM}</Text>
-                                <Text fontSize={["12px", "14px", "16px"]} >{elem.display_resolution}</Text>
-                                <Text fontSize={["12px", "14px", "16px"]} color="#A28787" >{elem.display_size}</Text>
-                                <Text fontSize={["12px", "14px", "16px"]} >Primary Camera {elem.primary_camera}</Text>
-                                <Text fontSize={["12px", "14px", "16px"]} >Front Camera {elem.secondary_camera}</Text>
-                                <Text fontSize={["12px", "14px", "16px"]} >{elem.battery}</Text>
-                                <Text fontSize={["12px", "14px", "16px"]} >{elem.colors}, Color </Text>
-                            </Box>
-                            <Flex w="320px" justifyContent="space-between" >
-                                <Box>
-                                    <Text fontSize={["22px"]} fontWeight="bold" >₹ {Intl.NumberFormat().format(Math.round(elem.approx_price_EUR * 87.82))} </Text>
-                                    <Text as="s" color="#A28787" fontSize={["14px"]} >₹ {Intl.NumberFormat().format(Math.round(elem.approx_price_EUR*87.82 + elem.approx_price_EUR* 87.82/100*9))} </Text>
+                                
+                            <Link to={`/product/${elem._id}`}>
+                                <Box >
+                                    <Img src={elem.img_url} />
                                 </Box>
-                                <CartButton id={elem._id}/>
+                            </Link>
+                                <Box ml="30px" w="500px" >
+                                    <Text fontSize={["20px"]} fontWeight="bold" >{elem.model} ({elem.brand})</Text>
+                                    <Text fontSize={["12px", "14px", "16px"]} color="#A28787" mb="10px" >{elem.RAM}</Text>
+                                    <Text fontSize={["12px", "14px", "16px"]} >{elem.display_resolution}</Text>
+                                    <Text fontSize={["12px", "14px", "16px"]} color="#A28787" >{elem.display_size}</Text>
+                                    <Text fontSize={["12px", "14px", "16px"]} >Primary Camera {elem.primary_camera}</Text>
+                                    <Text fontSize={["12px", "14px", "16px"]} >Front Camera {elem.secondary_camera}</Text>
+                                    <Text fontSize={["12px", "14px", "16px"]} >{elem.battery}</Text>
+                                    <Text fontSize={["12px", "14px", "16px"]} >{elem.colors}, Color </Text>
+                                </Box>
+                                <Grid justifyContent="space-between" >
+                                    <Flex w="320px" justifyContent="space-between" >
+                                        <Box>
+                                            <Text fontSize={["22px"]} fontWeight="bold" >₹ {Intl.NumberFormat().format(Math.round(elem.approx_price_EUR * 87.82))} </Text>
+                                            <Text as="s" color="#A28787" fontSize={["14px"]} >₹ {Intl.NumberFormat().format(Math.round(elem.approx_price_EUR * 87.82 + elem.approx_price_EUR * 87.82 / 100 * 9))} </Text>
+                                        </Box>
+                                    </Flex>
+                                    <Flex Flex w="320px" justifyContent="right" mt="40px" alignItems="center" >
+                                        <LikeButton />
+                                        <CartButton id={elem._id} discount={Math.floor(Number(elem.approx_price_EUR * 87.82 / 100 * 10))} />
+                                    </Flex>
+                                </Grid>
                             </Flex>
-                        </Flex>
-                        </Link>
                     )
                 })
             }

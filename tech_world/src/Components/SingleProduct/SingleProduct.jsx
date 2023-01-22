@@ -13,15 +13,22 @@ import {
   useColorModeValue,
   List,
   ListItem,
+  useToast,
 } from "@chakra-ui/react";
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { MdLocalShipping } from "react-icons/md";
+import { useDispatch } from "react-redux";
 import { useParams } from "react-router-dom";
+import AddItem from "../../Redux/AddItemCart/action";
 
 export default function SingleProduct() {
+  const toast= useToast()
+  
+
   const [resData, setResData] = useState(null);
   const { id } = useParams();
+const dispatch=useDispatch()
 
   const getData = async () => {
     let res = await axios.get(
@@ -29,6 +36,23 @@ export default function SingleProduct() {
     );
     setResData(res.data[0]);
   };
+
+  const handleClick = (id)=>{
+    dispatch(AddItem({productID:id})).then((res)=>{
+     return toast({
+        title: 'Item added in the cart',
+        description: "Now you can book your order from cart",
+        status: 'success',
+        duration: 5000,
+        isClosable: true,
+        position:"top"
+      })  
+      
+    })
+}
+
+
+
 
   useEffect(() => {
     getData();
@@ -212,6 +236,7 @@ export default function SingleProduct() {
               transform: "translateY(2px)",
               boxShadow: "lg",
             }}
+            onClick={()=>handleClick(id)}
           >
             Add to cart
           </Button>

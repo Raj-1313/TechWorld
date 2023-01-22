@@ -1,14 +1,16 @@
 export const navbarList = [
   {
-    name: "STORE",
+    name: "PRODUCTS",
     id: 1,
     submenu: false,
     sublinks: [],
+    Link:"/products"
   },
   {
     name: "PHONE",
     id: 2,
     submenu: true,
+    Link:"/63c826a758c9e6c00ba1a918",
     sublinks: [
       {
         head: "iPhone",
@@ -31,6 +33,7 @@ export const navbarList = [
     name: "TV & Smart Home",
     id: 3,
     submenu: true,
+    Link:"/63c826a758c9e6c00ba1a920",
     sublinks: [
       {
         head: "TV",
@@ -65,7 +68,7 @@ export const navbarList = [
   {
     name: "Laptop & Tablet",
     id: 4,
-    submenu: true,
+    submenu: true,Link:"/63c826a758c9e6c00ba1a920",
     sublinks: [
       {
         head: "Laptops",
@@ -87,7 +90,7 @@ export const navbarList = [
   {
     name: "LifeStyle",
     id: 6,
-    submenu: true,
+    submenu: true,Link:"/63c826a758c9e6c00ba1a920",
     sublinks: [
       {
         head: "Powerbanks & Chargers",

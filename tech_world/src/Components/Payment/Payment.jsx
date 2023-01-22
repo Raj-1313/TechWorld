@@ -85,10 +85,10 @@ export default function Payment() {
               </Button>
             </Flex>
 
-            <RazorPay handleSubmit={handleSubmit} totalprice={5000} />
           </Flex>
         </ButtonGroup>
       </Box>
+            <RazorPay handleSubmit={handleSubmit} totalprice={5000} />
     </>
   );
 }

@@ -1,10 +1,11 @@
 import React, { useState } from "react";
 import { Box, Flex, Heading, Text, UnorderedList } from "@chakra-ui/react";
 import NavbarItemHeadingList from "./NavbarItemHeadingList";
+import { Link } from "react-router-dom";
 
 const NavbarMinList = ({ name, id, submenu, sublinks }) => {
   const [isHover, setIsHover] = useState(false);
-
+console.log(Link)
   return (
     <Flex
       justify={"center"}
@@ -18,9 +19,14 @@ const NavbarMinList = ({ name, id, submenu, sublinks }) => {
       onMouseOut={() => setIsHover(false)}
       minH={"3.5rem"}
     >
+    
+<Link to='/products'>
+
       <Text fontWeight={"600"} fontSize={"1rem"} _hover={{ color: "#FF6900" }}>
         {name}
       </Text>
+</Link>
+    
 
       {isHover && submenu && (
         <UnorderedList
@@ -47,11 +53,13 @@ const NavbarMinList = ({ name, id, submenu, sublinks }) => {
           {sublinks &&
             sublinks.map((item) => {
               return (
+                
                 <NavbarItemHeadingList
                   {...item}
                   isHover={isHover}
                   setIsHover={setIsHover}
-                />
+                  />
+                 
               );
             })}
         </UnorderedList>

@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
-import { Box, Grid, Flex, Image, Spacer, Text, Button } from "@chakra-ui/react"
-import {json, Link} from "react-router-dom"
+import { Box, Grid, Flex,  Spacer, Text, Button } from "@chakra-ui/react"
+import { Link} from "react-router-dom"
+import RazorPay from '../Payment/RazorPay'
 
 const couponDis = localStorage.getItem("couponDiscount")
 
@@ -18,6 +19,7 @@ const PriceDetails = ({ totalprice, count }) => {
         if(couponCode === "ayush13"){
             let dis = Math.floor(totalprice/100*10)
             localStorage.setItem("couponDiscount", dis)
+            localStorage.setItem("couponCode", couponCode)
             setCoupon(false)
         }else{
 
@@ -28,7 +30,16 @@ const PriceDetails = ({ totalprice, count }) => {
 
 
     return (
-        <Box position="sticky" bgColor="white" ml={["20px", "35px", "50px"]} width="400px" height="450px" border="1px solid #DBDDE0" p="20px" pt="10px" mt="50px" >
+        <Box 
+            bgColor="white" 
+            ml={["0px", "35px", "50px"]} 
+            w={["97%","400px","400px"]} 
+            h="450px" 
+            border="1px solid #DBDDE0" 
+            p="20px" 
+            pt="10px" 
+            mt={["0px","50px","50px"]}
+        >
             <Text fontSize="20px" color="#959595" fontWeight="bold" fontFamily="revert" borderBottom="1px solid #DBDDE0" mb="20px" pb="10px" >Price Details</Text>
             <Grid gap="20px" fontSize="18px">
                 <Flex >
@@ -70,9 +81,10 @@ const PriceDetails = ({ totalprice, count }) => {
                     <Text>₹ {Intl.NumberFormat().format(totalprice + count * 40 - 1 - discount)}</Text>
                 </Flex>
                 <Text color="#388E3C" >You will save ₹{Intl.NumberFormat().format(discount && discount - count * 40 - 1)} on this order </Text>
-                <Link to="/payment" >
-                    <Button width="200px" display="block" m="auto" bgColor="blue.500" color="white" fontSize="20px" _hover={{ bgColor: "blue.300" }} >Place Order</Button>
-                </Link>
+                {/* <Link to="/payment" > */}
+                    {/* <Button width="200px" display="block" m="auto" bgColor="blue.500" color="white" fontSize="20px" _hover={{ bgColor: "blue.300" }} >Place Order</Button> */}
+                    <RazorPay  totalprice={5000} />
+                {/* </Link> */}
             </Grid>
         </Box>
     )
