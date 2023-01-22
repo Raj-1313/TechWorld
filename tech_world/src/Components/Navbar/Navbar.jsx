@@ -9,10 +9,10 @@ import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
 
 const Navbar = () => {
-  // const {Auth}= useSelector((store)=>store.p)
   const [cartHover, setCartHover] = useState(false);
   const [accountHover, setAccountHover] = useState(false);
-
+  const data = useSelector(store=> store.login.data);
+  console.log('data: ', data);
   return (
     <Flex
       justify={"space-between"}
@@ -112,9 +112,7 @@ const Navbar = () => {
             onMouseOver={() => setAccountHover(true)}
             onMouseOut={() => setAccountHover(false)}
           >
-            {/* { */}
-           
-              <Box
+            <Box
               pb={"0.5rem"}
               borderBottom={"0.5px solid gray"}
               _hover={{ color: "#FF6900" }}
@@ -124,7 +122,6 @@ const Navbar = () => {
             <Box _hover={{ color: "#FF6900" }}>
               <Link to={"/login"}>Log In</Link>
             </Box>
-            {/* // } */}
           </Box>
         )}
       </Flex>

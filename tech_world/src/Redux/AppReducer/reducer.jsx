@@ -7,7 +7,7 @@ const initialState = {
 }
 
 export const reducer = (state = initialState, { type, payload }) => {
-    // console.log(payload)
+    console.log(payload)
     switch (type) {
         case types.GET_DATA_REQUEST: {
             return {

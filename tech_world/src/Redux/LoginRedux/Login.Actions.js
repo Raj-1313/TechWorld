@@ -1,5 +1,10 @@
 import axios from "axios";
-import { LOGIN_ERROR, LOGIN_SUCCESS, LOGOUT } from "./Login.ActionTypes";
+import {
+  LOGIN_ERROR,
+  LOGIN_RESET,
+  LOGIN_SUCCESS,
+  LOGOUT,
+} from "./Login.ActionTypes";
 
 export const login = (creds) => async (dispatch) => {
   try {
@@ -11,6 +16,10 @@ export const login = (creds) => async (dispatch) => {
   } catch (err) {
     dispatch({ type: LOGIN_ERROR });
   }
+};
+
+export const resetLogin = () => async (dispatch) => {
+  dispatch({ type: LOGIN_RESET });
 };
 
 export const logout = () => async (dispatch) => {
