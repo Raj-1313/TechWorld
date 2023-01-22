@@ -1,5 +1,14 @@
-import { Admin_FAILURE, Admin_REQUEST, Admin_SUCCESS,
-  // AdminDelete_REQUEST,AdminDelete_SUCCESS,AdminDelete_FAILURE 
+
+import {
+  Admin_FAILURE,
+  Admin_REQUEST,
+  Admin_SUCCESS,
+  AdminDelete_REQUEST,
+  AdminDelete_SUCCESS,
+  AdminDelete_FAILURE,
+  AdminCartDetails_FAILURE,
+  AdminCartDetails_REQUEST,
+  AdminCartDetails_SUCCESS,
 } from "./Admin_Types.js";
 
 const initialState = {
@@ -7,9 +16,13 @@ const initialState = {
   totalPages: null,
   isLoading: false,
   isError: false,
+  totalProducts:0,
+  PayedData:[]
 };
 
+
 const Admin_reducer = (state = initialState, { type, payload }) => {
+
   switch (type) {
     case Admin_SUCCESS: {
       return {
@@ -50,6 +63,26 @@ const Admin_reducer = (state = initialState, { type, payload }) => {
         ...state,
         // AdminData: deleted_product,
         // deletedID: payload,
+        isLoading: false,
+        isError: false,
+      };
+    }
+    
+    case AdminCartDetails_FAILURE: {
+      return {
+        ...state,
+        isError: true,
+        isLoading: false,
+      };
+    }
+    case AdminCartDetails_REQUEST: {
+      return { ...state, isLoading: true, isError: false };
+    }
+
+    case AdminCartDetails_SUCCESS: {
+      return {
+        ...state,
+        PayedData: payload,
         isLoading: false,
         isError: false,
       };
