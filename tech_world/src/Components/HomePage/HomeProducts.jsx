@@ -5,7 +5,6 @@ import { Link } from "react-router-dom";
 
 const HomeProducts = () => {
   const [data, setData] = useState([]);
-  console.log("data: ", data);
 
   const getData = async () => {
     let data = await axios.get(

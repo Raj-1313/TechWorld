@@ -1,18 +1,20 @@
 import React, { useState } from "react";
-import { Box, Flex, Image, Text } from "@chakra-ui/react";
+import { Box, Button, Flex, Image, Text } from "@chakra-ui/react";
 import { navbarList } from "../../Data/NavbarListData";
 import NavbarMinList from "./NavbarMinList";
 import Logo from "../../Assets/tech_world_logo.png";
 import { BsFillCartCheckFill, BsFillPersonFill } from "react-icons/bs";
 import Search from "./Search";
 import { Link } from "react-router-dom";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { logout } from "../../Redux/LoginRedux/Login.Actions";
 
 const Navbar = () => {
   const [cartHover, setCartHover] = useState(false);
   const [accountHover, setAccountHover] = useState(false);
-  const data = useSelector(store=> store.login.data);
-  console.log('data: ', data);
+  const loginData = useSelector((store) => store.login.data);
+  const dispatch = useDispatch();
+  console.log("loginData: ", loginData);
   return (
     <Flex
       justify={"space-between"}
@@ -96,10 +98,10 @@ const Navbar = () => {
         _hover={{ boxShadow: "rgba(0, 0, 0, 0.24) 0px 3px 8px" }}
       >
         <BsFillPersonFill style={{ fontSize: "1.3rem" }} />
-        <Text fontWeight={"600"}>Account</Text>
+        <Text fontWeight={"600"}>{loginData?.name?.substring(0,6) || "Account"}</Text>
         {accountHover && (
           <Box
-            w={"107%"}
+            minW={"107%"}
             position={"absolute"}
             p={"0.7rem"}
             backgroundColor={"white"}
@@ -114,13 +116,21 @@ const Navbar = () => {
           >
             <Box
               pb={"0.5rem"}
-              borderBottom={"0.5px solid gray"}
+              borderBottom={loginData.category ? null : "0.5px solid gray"}
               _hover={{ color: "#FF6900" }}
             >
-              <Link to={"/signup"}>Sign Up</Link>
+              {Object.keys(loginData).length ? (
+                <Button onClick={() => {dispatch(logout())}}>Log Out</Button>
+              ) : (
+                <Link to={"/signup"}>Sign Up</Link>
+              )}
             </Box>
             <Box _hover={{ color: "#FF6900" }}>
-              <Link to={"/login"}>Log In</Link>
+              {Object.keys(loginData).length > 0 && loginData.category === "Admin" ? (
+                <Link to={"/admin"}><Button fontSize={"0.8rem"}>Admin</Button></Link>
+              ) : loginData.category === "User" ? null : (
+                <Link to={"/login"}>Login</Link>
+              )}
             </Box>
           </Box>
         )}
