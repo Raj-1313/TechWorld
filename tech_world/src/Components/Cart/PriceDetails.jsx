@@ -83,7 +83,7 @@ const PriceDetails = ({ totalprice, count }) => {
                 <Text color="#388E3C" >You will save ₹{Intl.NumberFormat().format(discount && discount - count * 40 - 1)} on this order </Text>
                 {/* <Link to="/payment" > */}
                     {/* <Button width="200px" display="block" m="auto" bgColor="blue.500" color="white" fontSize="20px" _hover={{ bgColor: "blue.300" }} >Place Order</Button> */}
-                    <RazorPay  totalprice={5000} />
+                    <RazorPay  totalprice={(totalprice + count * 40 - 1 - discount)} />
                 {/* </Link> */}
             </Grid>
         </Box>
