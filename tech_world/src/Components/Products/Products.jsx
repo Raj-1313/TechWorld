@@ -1,6 +1,7 @@
 import { Box, Flex, Grid, Img,Text } from '@chakra-ui/react';
 import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
+import { Link } from 'react-router-dom';
 import { getdata } from '../../Redux/AppReducer/action';
 import CartButton from './CartButton';
 import "./cartButton.css"
@@ -26,7 +27,13 @@ const Products = () => {
             {
                 product && product.map((elem) => {
                     return (
-                        <Flex border="1px solid #DBDDE0" p="20px" key={elem._id} bgColor="white"  >
+                        // This Link Is For The Single Product Page.
+                        // Once User Click On Any Product It will Redirects To The Single Product Page
+                        // Don't Remove The LInk Tag
+                        //Remove This Entire Comment After Read.
+                        // Thank You!
+                        <Link to={`/product/${elem._id}`}>
+                            <Flex border="1px solid #DBDDE0" p="20px" key={elem._id} bgColor="white"  >
                             <Box >
                                 <Img src={elem.img_url} />
                             </Box>
@@ -48,6 +55,7 @@ const Products = () => {
                                 <CartButton id={elem._id}/>
                             </Flex>
                         </Flex>
+                        </Link>
                     )
                 })
             }
