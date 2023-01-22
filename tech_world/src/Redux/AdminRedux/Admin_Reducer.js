@@ -6,10 +6,16 @@ import {
   AdminDelete_REQUEST,
   AdminDelete_SUCCESS,
   AdminDelete_FAILURE,
+
+  Admin_Post_REQUEST,
+  Admin_Post_FAILURE,
+  Admin_Post_SUCCESS,
+
   AdminCartDetails_FAILURE,
   AdminCartDetails_REQUEST,
   AdminCartDetails_SUCCESS,
   AdminExtractedData_SUCCESS,
+
 } from "./Admin_Types.js";
 
 const initialState = {
@@ -42,6 +48,26 @@ const Admin_reducer = (state = initialState, { type, payload }) => {
       };
     }
     case Admin_REQUEST: {
+      return { ...state, isLoading: true, isError: false };
+    }
+
+
+    // post reducer
+    case Admin_Post_SUCCESS: {
+      return {
+        ...state,
+        isLoading: false,
+        AdminData: [...state.AdminData, payload],
+      };
+    }
+    case Admin_Post_FAILURE: {
+      return {
+        ...state,
+        isError: true,
+        isLoading: false,
+      };
+    }
+    case Admin_Post_REQUEST: {
       return { ...state, isLoading: true, isError: false };
     }
 

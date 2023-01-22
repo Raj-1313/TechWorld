@@ -12,27 +12,37 @@ import {
   useDisclosure,
   Image,
 } from "@chakra-ui/react";
-import {MdDashboard,MdLibraryAdd} from "react-icons/md"
-import {FaStore,FaChartPie} from "react-icons/fa"
+
+import { FiSettings, FiMenu } from "react-icons/fi";
+import { MdDashboard, MdLibraryAdd } from "react-icons/md";
+import { FaStore, FaChartPie } from "react-icons/fa";
+
+
 import {  
   FiStar,
   FiSettings,
   FiMenu,
 } from "react-icons/fi";
+
 import Dashboard from "../Components/Dashboard";
 import AllProduct from "../Components/AllProduct";
 import AddForm from "../Components/Form";
 import ChartsStates from "../Components/ChartsStates";
 import AllUsers from "../Components/AllUsers";
 import Logo from "../../Assets/tech_world_logo.png";
+import TrackOrder from "../Components/TrackOrder";
+import ProjectTables from "../Components/dataStatas/ProjectTable";
 
 const LinkItems = [
 
   { name: "Dashboard", icon: MdDashboard, path: "dashboard" },
   { name: "All Product", icon: FaStore, path: "allproduct" },
   { name: "All Users", icon: MdLibraryAdd, path: "alluser" },
+  { name: "Order Record", icon: FaStore, path: "Orderrecord" },
   { name: "Add Product", icon: MdLibraryAdd, path: "addproduct" },
-  { name: "Favourites", icon: FiStar },
+
+
+  
   { name: "Settings", icon: FiSettings },
   { name: "ChartsStates", icon: FaChartPie, path: "charts" },
 ];
@@ -41,7 +51,7 @@ export default function SimpleSidebar({ children }) {
   const [path, setPath] = useState("dashboard");
   const { isOpen, onOpen, onClose } = useDisclosure();
   return (
-    <Box>
+    <Box zIndex={100}>
       <Box>
         <SidebarContent
           onClose={() => onClose}
@@ -65,13 +75,18 @@ export default function SimpleSidebar({ children }) {
         <MobileNav display={{ base: "flex", md: "none" }} onOpen={onOpen} />
       </Box>
 
-      <Box p="4" ml={{ base: 0, md: 60 }}>
+      <Box p="4" mt={{ base: "80px", md: "auto" }} ml={{ base: 0, md: 60 }}>
         {children}
         {path === "dashboard" && <Dashboard />}
         {path === "allproduct" && <AllProduct />}
         {path === "addproduct" && <AddForm />}
         {path === "alluser" && <AllUsers />}
+
+        {path === "Orderrecord" && <ProjectTables />}
+       
+
         {path === "charts" && <ChartsStates aspect={2} title="the Boss" />}
+
       </Box>
     </Box>
   );
@@ -92,7 +107,7 @@ const SidebarContent = ({ onClose, ...rest }) => {
       <Box>
         <Flex h="20" alignItems="center" mx="8" justifyContent="space-between">
           <Text fontSize="2xl" fontFamily="monospace" fontWeight="bold">
-            Logo
+           <Image src={Logo} alt={"logo"} w={"100%"} h={"auto"} />
           </Text>
           <CloseButton
             display={{ base: "flex", md: "none" }}
@@ -166,7 +181,15 @@ const MobileNav = ({ onOpen, ...rest }) => {
       />
 
       <Text fontSize="2xl" ml="8" fontFamily="monospace" fontWeight="bold">
-        {Logo}
+
+        <Image
+          src={Logo}
+          alt={"logo"}
+          w={{ base: "150px", md: "20vw" }}
+          h={"auto"}
+          margin="auto"
+        />
+
       </Text>
     </Flex>
   );
