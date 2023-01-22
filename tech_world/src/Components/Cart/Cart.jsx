@@ -24,7 +24,7 @@ const Cart = () => {
   const getTotal = ()=>{
     if(data){
       let total = 0
-      data.length>0 && data.forEach((elem)=>{
+      data.forEach((elem)=>{
         total += +elem.productID[0]?.approx_price_EUR*+elem.count*87.82
         console.log("count inside loop", elem.count,"price is", +elem.productID[0]?.approx_price_EUR)
       })

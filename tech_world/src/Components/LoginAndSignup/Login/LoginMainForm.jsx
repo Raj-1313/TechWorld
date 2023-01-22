@@ -15,7 +15,7 @@ import {
 } from "@chakra-ui/react";
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { login } from "../../../Redux/LoginRedux/Login.Actions";
+import { login, resetLogin } from "../../../Redux/LoginRedux/Login.Actions";
 
 const LoginMainFrom = () => {
   const [loginData, setLogindata] = useState({
@@ -25,8 +25,8 @@ const LoginMainFrom = () => {
 
   const [show, setShow] = React.useState(false);
   const dispatch = useDispatch();
-  const data = useSelector(store => store.login);
-  console.log('data: ', data);
+  const loginStatus = useSelector((store) => store.login);
+  console.log("loginStatus: ", loginStatus);
   const navigate = useNavigate();
   const handleClick = () => setShow(!show);
   const toast = useToast();
@@ -37,8 +37,69 @@ const LoginMainFrom = () => {
   };
 
   const handleLogin = () => {
-    dispatch(login(loginData));
+    let { email, password } = loginData;
+
+    if (!email || !password) {
+      toast({
+        title: "Log In Failed",
+        description: "Fill all the Credentials",
+        status: "error",
+        duration: 1000,
+        isClosable: true,
+        position: "top",
+      });
+    } else if (!email.includes("@")) {
+      toast({
+        title: "Log In Failed",
+        description: "Enter A Valid Email",
+        status: "error",
+        duration: 1000,
+        isClosable: true,
+        position: "top",
+      });
+    } else {
+      dispatch(login(loginData));
+    }
   };
+
+  useEffect(() => {
+    if (loginStatus.message === 'Register First') {
+      toast({
+        title: "Log In Failed",
+        description: "Don't Have Any Account With This Email Signup First",
+        status: "error",
+        duration: 1500,
+        isClosable: true,
+        position: "top",
+      });
+
+      setTimeout(() => {
+        navigate("/signup");
+      }, 2000);
+    } else if (loginStatus.message === 'Wrong Credential') {
+      toast({
+        title: "Log In Failed",
+        description: "Wrong Email Or Password",
+        status: "error",
+        duration: 1500,
+        isClosable: true,
+        position: "top",
+      });
+    } else if (loginStatus.isAuth) {
+      toast({
+        title: "Log In Successful",
+        status: "success",
+        duration: 1500,
+        isClosable: true,
+        position: "top",
+      });
+
+      setTimeout(() => {
+        navigate("/");
+      }, 2000);
+    }
+    dispatch(resetLogin());
+  }, [dispatch, loginStatus.message, loginStatus.isAuth, navigate, toast]);
 
   return (
     <FormControl w={"85%"} mb={"1.5rem"}>

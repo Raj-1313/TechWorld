@@ -1,129 +1,124 @@
 import {
+  Heading,
+  Avatar,
   Box,
-  Button,
   Center,
-  Flex,
-  IconButton,
+  Text,
+  Stack,
+  Button,
   Link,
+  Badge,
   useColorModeValue,
 } from "@chakra-ui/react";
-import React from "react";
-import Userstyle from "./SingleUser.module.css";
-import { PhoneIcon } from "@chakra-ui/icons";
-import { useDispatch } from "react-redux";
-import {
-  AllUserDelete,
-  AllUserPatch,
-} from "../../Redux/AllUsers/AllUsers.action";
 
-const SingleUser = ({
-  name,
-  email,
-  country,
-  mobile,
-  category,
-  gender,
-  _id,
-}) => {
-  const dispatch = useDispatch();
-
-  const userDelete = (id) => {
-    // axios
-    //   .delete(`http://localhost:8080/product/${id}`)
-    //   .then((res) => console.log(res));
-    dispatch(AllUserDelete(id));
-  };
-
-  const handlePatch = (id) => {
-    const payload = {
-      category: category === "User" ? "Admin" : "User",
-    };
-    dispatch(AllUserPatch(id, payload));
-  };
-
+export default function SingleUser() {
   return (
-    <Box>
-      <Box>
-        <div className={Userstyle.card}>
-          <img
-            src={
-              gender === "female"
-                ? "https://lh3.googleusercontent.com/ytP9VP86DItizVX2YNA-xTYzV09IS7rh4WexVp7eilIcfHmm74B7odbcwD5DTXmL0PF42i2wnRKSFPBHlmSjCblWHDCD2oD1oaM1CGFcSd48VBKJfsCi4bS170PKxGwji8CPmehwPw=w200-h247-no"
-                : "https://lh3.googleusercontent.com/oUUiPB9sq3ACq4bUaRmo8pgvC4FUpRRrQKcGIBSOsafawZfRpF1vruFeYt6uCfL6wGDQyvOi6Ez9Bpf1Fb7APKjIyVsft7FLGR6QqdRFTiceNQBm1In9aZyrXp33cZi9pUNqjHASdA=s170-no"
+    <Center py={6}>
+      <Box
+        maxW={"320px"}
+        w={"full"}
+        bg={useColorModeValue("white", "gray.900")}
+        boxShadow={"2xl"}
+        rounded={"lg"}
+        p={6}
+        textAlign={"center"}
+      >
+        <Avatar
+          size={"xl"}
+          src={
+            "https://images.unsplash.com/photo-1520810627419-35e362c5dc07?ixlib=rb-1.2.1&q=80&fm=jpg&crop=faces&fit=crop&h=200&w=200&ixid=eyJhcHBfaWQiOjE3Nzg0fQ"
+          }
+          alt={"Avatar Alt"}
+          mb={4}
+          pos={"relative"}
+          _after={{
+            content: '""',
+            w: 4,
+            h: 4,
+            bg: "green.300",
+            border: "2px solid white",
+            rounded: "full",
+            pos: "absolute",
+            bottom: 0,
+            right: 3,
+          }}
+        />
+        <Heading fontSize={"2xl"} fontFamily={"body"}>
+          Lindsey James
+        </Heading>
+        <Text fontWeight={600} color={"gray.500"} mb={4}>
+          @lindsey_jam3s
+        </Text>
+        <Text
+          textAlign={"center"}
+          color={useColorModeValue("gray.700", "gray.400")}
+          px={3}
+        >
+          Actress, musician, songwriter and artist. PM for work inquires or{" "}
+          <Link href={"#"} color={"blue.400"}>
+            #tag
+          </Link>{" "}
+          me in your posts
+        </Text>
+
+        <Stack align={"center"} justify={"center"} direction={"row"} mt={6}>
+          <Badge
+            px={2}
+            py={1}
+            bg={useColorModeValue("gray.50", "gray.800")}
+            fontWeight={"400"}
+          >
+            #art
+          </Badge>
+          <Badge
+            px={2}
+            py={1}
+            bg={useColorModeValue("gray.50", "gray.800")}
+            fontWeight={"400"}
+          >
+            #photography
+          </Badge>
+          <Badge
+            px={2}
+            py={1}
+            bg={useColorModeValue("gray.50", "gray.800")}
+            fontWeight={"400"}
+          >
+            #music
+          </Badge>
+        </Stack>
+
+        <Stack mt={8} direction={"row"} spacing={4}>
+          <Button
+            flex={1}
+            fontSize={"sm"}
+            rounded={"full"}
+            _focus={{
+              bg: "gray.200",
+            }}
+          >
+            Message
+          </Button>
+          <Button
+            flex={1}
+            fontSize={"sm"}
+            rounded={"full"}
+            bg={"blue.400"}
+            color={"white"}
+            boxShadow={
+              "0px 1px 25px -5px rgb(66 153 225 / 48%), 0 10px 10px -5px rgb(66 153 225 / 43%)"
             }
-            alt="Person"
-            className={Userstyle.card__image}
-          />
-
-          <Center>
-            <Box>
-              <Flex>
-                <p className={Userstyle.card__name}>Name : {name}</p>
-                <Link
-                  paddingLeft={10}
-                  href={"tel:" + 91 + mobile}
-                  target="_blank"
-                >
-                  <IconButton
-                    aria-label="phone"
-                    variant="ghost"
-                    size="lg"
-                    fontSize="3xl"
-                    icon={<PhoneIcon />}
-                    _hover={{
-                      color: useColorModeValue("white", "gray.700"),
-                    }}
-                    isRound
-                  />
-                </Link>
-              </Flex>
-              <p className={Userstyle.card__name}>E-mail : {email}</p>
-              <p className={Userstyle.card__name}>Gender : {gender}</p>
-              <p className={Userstyle.card__name}>Category : {category}</p>
-            </Box>
-          </Center>
-
-          {/* <li>
-              <Link href="mailto:" target="_blank">
-                <IconButton
-                  aria-label="whatsapp"
-                  variant="ghost"
-                  size="lg"
-                  icon={<EmailIcon size="28px" />}
-                  _hover={{
-                    bg: "#fb982f",
-                    color: useColorModeValue("white", "gray.700"),
-                  }}
-                  isRound
-                />
-              </Link>
-            </li> */}
-
-          <Flex m="auto" my={5} columnGap={3}>
-            <Button
-              _hover={{ bg: "gold", color: "black" }}
-              bg="gold"
-              color="black"
-              className={Userstyle.card__name}
-              onClick={() => handlePatch(_id)}
-            >
-              Make
-              {category === "User" ? <span> Admin</span> : <span> User</span>}
-            </Button>
-            <Button
-              bg="gold"
-              color="black"
-              className={Userstyle.card__name}
-              _hover={{ bg: "gold", color: "black" }}
-              onClick={() => userDelete(_id)}
-            >
-              Delete
-            </Button>
-          </Flex>
-        </div>
+            _hover={{
+              bg: "blue.500",
+            }}
+            _focus={{
+              bg: "blue.500",
+            }}
+          >
+            Follow
+          </Button>
+        </Stack>
       </Box>
-    </Box>
+    </Center>
   );
-};
-
-export default SingleUser;
+}

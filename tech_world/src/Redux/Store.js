@@ -1,6 +1,3 @@
-// import { Auth_reducer } from "./AuthRedux/Auth_Reduce";
-import { AllUser_reducer } from "./AllUsers/AllUsers.reducer";
-
 import {
   combineReducers,
   legacy_createStore,
@@ -19,6 +16,7 @@ import { reducer as AddItemReducer } from "./AddItemCart/reducer";
 import { reducer as DeleteItemReducer } from "./DeleteItemCart/reducer";
 import { TrackOrder_reducer } from "./TrackOrder/TrackOrder_Reducer";
 
+
 const rootReducer = combineReducers({
   signup: signupReducer,
   login: LoginReducer,
@@ -31,6 +29,7 @@ const rootReducer = combineReducers({
   DeleteItemReducer,
   AllUser_reducer,
   TrackOrder_reducer,
+
 });
 
 const composerEnhancer = window._REDUX_DEVTOOLS_EXTENSION_COMPOSE_ || compose;

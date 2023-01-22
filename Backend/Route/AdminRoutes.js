@@ -139,11 +139,14 @@ app.delete("/user/:id", async (req, res) => {
 app.get("/orders",async(req,res)=>{ 
 try{
      const finduserInOrders= await OrderModel.find().populate("userID").populate({path:"productDetails.productID",model: 'product' }).exec()
-     res.send(finduserInOrders)   
+     const Orderlength= await OrderModel.find().countDocuments();
+
+     res.send({finduserInOrders,Orderlength})   
 }catch(e){
   res.send({message:e.message})
 }
 })
+
 
 app.patch("/orders/:id",async(req,res)=>{ 
   const _id=req.params.id

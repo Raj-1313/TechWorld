@@ -10,6 +10,7 @@ const authModel = require('../model/Authantication_Model')
 app.get("/" ,async(req,res)=>{
     const userID = req.body.userID
     try{
+        
         const prod= await CartModel.find({userID}).populate("productID")  
         if(prod.length>0){
             // console.log(prod)
@@ -30,11 +31,13 @@ app.post('/',async (req,res) => {
          const prod= await CartModel.find({userID,productID})       
          if(prod.length>0){
              const updatedProd= await CartModel.updateOne({userID,productID},{$inc:{"count":1}},{new:true})
-             return res.send(updatedProd)
+             
+        const prod= await CartModel.find({userID}).populate("productID")  
+             return res.send({data:prod,message:"Added product"})
             }else{
                 const newProd= await CartModel.create({userID,productID})
-                console.log(newProd)
-                return res.send(newProd)
+                const prod= await CartModel.find({userID}).populate("productID")  
+                return res.send({data:prod,message:"Added product"})
             }
         }catch(err){
             res.send(err.message)
@@ -50,11 +53,15 @@ app.post('/dec',async (req,res) => {
         if(prod.length>0){
             if(prod[0]?.count==1){
                 const rest= await  CartModel.findByIdAndDelete({_id:prod[0]._id})
-                return res.send("Product removed from cart")
+                const prod= await CartModel.find({userID}).populate("productID")  
+                return res.send({data:prod,message:"Added product"})
+                
             }else{
 
                 const updatedProd= await CartModel.updateOne({userID,productID},{$inc:{"count":-1}},{new:true})
-                return res.send(updatedProd)
+                const prod= await CartModel.find({userID}).populate("productID")  
+                return res.send({data:prod,message:"product removed"})
+                
             }
            }else{               
                return res.send({message:"No product found"})
@@ -69,9 +76,11 @@ app.post('/dec',async (req,res) => {
 
 app.delete("/:id", async (req,res)=>{  
     let _id= req.params.id
+    const {userID}= req.body    
     try{
         const rest= await  CartModel.findByIdAndDelete({_id})
-        return res.send("Product deleted Successfullly")
+        const prod= await CartModel.find({userID}).populate("productID")  
+        return res.send({data:prod,message:"Product deleted Successfullly"})
     }catch(err){
         return res.send(err.message)
     }        
@@ -79,7 +88,6 @@ app.delete("/:id", async (req,res)=>{
 
 
 app.get("/payment/orders",async(req,res)=>{
-
     const userID= req.body.userID    
     try{           
          const sendToOrders= await OrderModel.find({userID}).populate("userID").populate({path:"productDetails.productID",model: 'product' }).exec()      

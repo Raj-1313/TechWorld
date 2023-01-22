@@ -1,16 +1,23 @@
-import { LOGIN_SUCCESS, LOGIN_ERROR, LOGOUT } from "./Login.ActionTypes";
+import {
+  LOGIN_SUCCESS,
+  LOGIN_ERROR,
+  LOGOUT,
+  LOGIN_RESET
+} from "./Login.ActionTypes";
 
-// const longinToken = localStorage.getItem("longinToken") || "";
+const loginData = JSON.parse(localStorage.getItem("loginData")) || {};
 
 const initState = {
   isAuth: false,
   isError: false,
-  data: null,
+  message: null,
+  data: loginData,
 };
 
 const LoginReducer = (state = initState, { type, payload }) => {
   switch (type) {
     case LOGIN_SUCCESS: {
+      localStorage.setItem("loginData", JSON.stringify(payload));
       return {
         ...state,
         isAuth: true,
@@ -20,15 +27,26 @@ const LoginReducer = (state = initState, { type, payload }) => {
     case LOGIN_ERROR: {
       return {
         ...state,
-        isError: false,
+        isError: true,
+        message: payload
       };
     }
     case LOGOUT: {
+      localStorage.removeItem("loginData");
       return {
         ...state,
         isAuth: false,
         isError: false,
-        data: null,
+        message: null,
+        data: {}
+      };
+    }
+    case LOGIN_RESET: {
+      return {
+        ...state,
+        isAuth: false,
+        isError: false,
+        message: null,
       };
     }
     default:
