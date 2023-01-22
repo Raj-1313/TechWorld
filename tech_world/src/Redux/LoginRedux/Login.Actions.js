@@ -13,8 +13,12 @@ export const login = (creds) => async (dispatch) => {
       creds
     );
     dispatch({ type: LOGIN_SUCCESS, payload: res.data });
-  } catch (err) {
-    dispatch({ type: LOGIN_ERROR });
+  } catch (error) {
+    const message =
+      (error.response && error.response.data && error.response.data.message) ||
+      error.message ||
+      error.toString();
+    dispatch({ type: LOGIN_ERROR, payload: message });
   }
 };
 

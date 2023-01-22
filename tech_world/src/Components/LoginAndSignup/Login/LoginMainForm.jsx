@@ -63,7 +63,7 @@ const LoginMainFrom = () => {
   };
 
   useEffect(() => {
-    if (loginStatus.data === 'Signup Please') {
+    if (loginStatus.message === 'Register First') {
       toast({
         title: "Log In Failed",
         description: "Don't Have Any Account With This Email Signup First",
@@ -76,7 +76,7 @@ const LoginMainFrom = () => {
       setTimeout(() => {
         navigate("/signup");
       }, 2000);
-    } else if (loginStatus.data === 'Invalid credentials') {
+    } else if (loginStatus.message === 'Wrong Credential') {
       toast({
         title: "Log In Failed",
         description: "Wrong Email Or Password",
@@ -85,7 +85,7 @@ const LoginMainFrom = () => {
         isClosable: true,
         position: "top",
       });
-    } else if (loginStatus.isAuth && loginStatus.data.token) {
+    } else if (loginStatus.isAuth) {
       toast({
         title: "Log In Successful",
         status: "success",
@@ -99,7 +99,7 @@ const LoginMainFrom = () => {
       }, 2000);
     }
     dispatch(resetLogin());
-  }, [dispatch, loginStatus.data, loginStatus.isAuth, navigate, toast]);
+  }, [dispatch, loginStatus.message, loginStatus.isAuth, navigate, toast]);
 
   return (
     <FormControl w={"85%"} mb={"1.5rem"}>

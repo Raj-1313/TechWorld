@@ -43,7 +43,7 @@ const LoginFrom = () => {
         </Box>
 
         <LinkLoginSignup
-          des={"New to JEFIT?"}
+          des={"New to TechWorld?"}
           link={"Create an account."}
           to={"/signup"}
         />
