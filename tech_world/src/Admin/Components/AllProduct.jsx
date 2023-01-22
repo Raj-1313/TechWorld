@@ -31,11 +31,11 @@ const AllProduct = () => {
   // console.log(currentPage, totalPages, totaldocuments);
   console.log(AdminData);
   return (
-    <Box >
+    <Box>
       <AdminSearch query={query} setQuery={setQuery} />
       <Grid
-        rowGap={15}
-        columnGap={20}
+        rowGap={5}
+        columnGap={5}
         gridTemplateColumns={{
           base: "1fr",
           md: "1fr 1fr ",

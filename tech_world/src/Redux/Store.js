@@ -17,6 +17,7 @@ import { reducer as CartReducer } from "./CartRedux/reducer";
 import { reducer as ReduceItemReducer } from "./ReduceItemCart/reducer";
 import { reducer as AddItemReducer } from "./AddItemCart/reducer";
 import { reducer as DeleteItemReducer } from "./DeleteItemCart/reducer";
+import { TrackOrder_reducer } from "./TrackOrder/TrackOrder_Reducer";
 
 const rootReducer = combineReducers({
   signup: signupReducer,
@@ -29,6 +30,7 @@ const rootReducer = combineReducers({
   AddItemReducer,
   DeleteItemReducer,
   AllUser_reducer,
+  TrackOrder_reducer,
 });
 
 const composerEnhancer = window._REDUX_DEVTOOLS_EXTENSION_COMPOSE_ || compose;

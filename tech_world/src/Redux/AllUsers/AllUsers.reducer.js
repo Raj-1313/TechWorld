@@ -8,7 +8,7 @@ import {
   AllUsers_Patch_REQUEST,
   AllUsers_Patch_SUCCESS,
   AllUsers_Patch_FAILURE,
-} from "./AllUsers.types.jsx";
+} from "./AllUsers.types.js";
 
 const initialState = {
   UserData: [],

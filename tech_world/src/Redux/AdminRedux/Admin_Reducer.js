@@ -5,6 +5,9 @@ import {
   AdminDelete_REQUEST,
   AdminDelete_SUCCESS,
   AdminDelete_FAILURE,
+  Admin_Post_REQUEST,
+  Admin_Post_FAILURE,
+  Admin_Post_SUCCESS,
 } from "./Admin_Types.js";
 
 const initialState = {
@@ -15,6 +18,7 @@ const initialState = {
 };
 
 const Admin_reducer = (state = initialState, { type, payload }) => {
+  console.log(payload);
   switch (type) {
     case Admin_SUCCESS: {
       return {
@@ -32,6 +36,25 @@ const Admin_reducer = (state = initialState, { type, payload }) => {
       };
     }
     case Admin_REQUEST: {
+      return { ...state, isLoading: true, isError: false };
+    }
+
+    // post reducer
+    case Admin_Post_SUCCESS: {
+      return {
+        ...state,
+        isLoading: false,
+        AdminData: [...state.AdminData, payload],
+      };
+    }
+    case Admin_Post_FAILURE: {
+      return {
+        ...state,
+        isError: true,
+        isLoading: false,
+      };
+    }
+    case Admin_Post_REQUEST: {
       return { ...state, isLoading: true, isError: false };
     }
 

@@ -22,7 +22,7 @@ const AdminSearch = ({ query, setQuery }) => {
       <Input
         fontSize="22px"
         placeholder="Search products"
-        htmlSize={1}
+        htmlSize="auto"
         type="text"
         border="none"
         value={query}

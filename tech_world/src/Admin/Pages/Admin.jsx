@@ -15,29 +15,26 @@ import {
   Grid,
   Image,
 } from "@chakra-ui/react";
-import {
-  FiHome,
-  FiTrendingUp,
-  FiCompass,
-  FiStar,
-  FiSettings,
-  FiMenu,
-} from "react-icons/fi";
+import { FiSettings, FiMenu } from "react-icons/fi";
+import { MdDashboard, MdLibraryAdd } from "react-icons/md";
+import { FaStore, FaChartPie } from "react-icons/fa";
 import Dashboard from "../Components/Dashboard";
 import AllProduct from "../Components/AllProduct";
 import AddForm from "../Components/Form";
 import Charts from "../Components/Charts";
 import AllUsers from "../Components/AllUsers";
 import Logo from "../../Assets/tech_world_logo.png";
+import TrackOrder from "../Components/TrackOrder";
+import ProjectTables from "../Components/dataStatas/ProjectTable";
 
 const LinkItems = [
-  { name: "Dashboard", icon: FiHome, path: "dashboard" },
-  { name: "All Product", icon: FiTrendingUp, path: "allproduct" },
-  { name: "All Users", icon: FiTrendingUp, path: "alluser" },
-  { name: "Add Product", icon: FiCompass, path: "addproduct" },
-  { name: "Favourites", icon: FiStar },
+  { name: "Dashboard", icon: MdDashboard, path: "dashboard" },
+  { name: "All Product", icon: FaStore, path: "allproduct" },
+  { name: "All Users", icon: MdLibraryAdd, path: "alluser" },
+  { name: "Order Record", icon: FaStore, path: "Orderrecord" },
+  { name: "Add Product", icon: MdLibraryAdd, path: "addproduct" },
   { name: "Settings", icon: FiSettings },
-  { name: "Charts", icon: FiSettings, path: "charts" },
+  { name: "ChartsStates", icon: FaChartPie, path: "charts" },
 ];
 
 // pura section
@@ -45,7 +42,7 @@ export default function SimpleSidebar({ children }) {
   const [path, setPath] = useState("dashboard");
   const { isOpen, onOpen, onClose } = useDisclosure();
   return (
-    <Box>
+    <Box zIndex={100}>
       <Box>
         <SidebarContent
           onClose={() => onClose}
@@ -69,12 +66,13 @@ export default function SimpleSidebar({ children }) {
         <MobileNav display={{ base: "flex", md: "none" }} onOpen={onOpen} />
       </Box>
 
-      <Box p="4" ml={{ base: 0, md: 60 }}>
+      <Box p="4" mt={{ base: "80px", md: "auto" }} ml={{ base: 0, md: 60 }}>
         {children}
         {path === "dashboard" && <Dashboard />}
         {path === "allproduct" && <AllProduct />}
         {path === "addproduct" && <AddForm />}
         {path === "alluser" && <AllUsers />}
+        {path === "Orderrecord" && <ProjectTables />}
         {path === "charts" && <Charts aspect={2} title="the Boss" />}
       </Box>
     </Box>
@@ -179,8 +177,9 @@ const MobileNav = ({ onOpen, ...rest }) => {
         <Image
           src={Logo}
           alt={"logo"}
-          w={{ base: "40vw", md: "20vw" }}
+          w={{ base: "150px", md: "20vw" }}
           h={"auto"}
+          margin="auto"
         />
       </Text>
     </Flex>
