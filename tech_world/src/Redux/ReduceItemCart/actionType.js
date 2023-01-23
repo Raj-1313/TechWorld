@@ -1,8 +1,0 @@
-export const REDUCE_REQUEST = "REDUCE_REQUEST";
-export const REDUCE_SUCCESS = "REDUCE_SUCCESS";
-export const REDUCE_ERROR = "REDUCE_ERROR";
-
-
-
-
-
