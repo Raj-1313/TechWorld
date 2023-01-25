@@ -1,7 +1,7 @@
 import {
   TrackOrder_FAILURE,
   TrackOrder_REQUEST,
-  TrackOrder_SUCCESS,
+  TrackOrder_SUCCESS,StatusUpdate
 } from "./TrackOrder_Types.js";
 
 const initialState = {
@@ -30,6 +30,9 @@ const TrackOrder_reducer = (state = initialState, { type, payload }) => {
     }
     case TrackOrder_REQUEST: {
       return { ...state, isLoading: true, isError: false };
+    }
+    case StatusUpdate: {
+      return { ...state, isLoading: false, isError: false };
     }
 
     default: {

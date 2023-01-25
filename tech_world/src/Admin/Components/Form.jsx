@@ -60,6 +60,7 @@ const AddForm = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
    dispatch(PostData({ payload: formData }))   
+   
   };
 
   const {
