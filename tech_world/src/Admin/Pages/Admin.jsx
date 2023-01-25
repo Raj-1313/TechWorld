@@ -39,7 +39,7 @@ export default function SimpleSidebar({ children }) {
   const [path, setPath] = useState("dashboard");
   const { isOpen, onOpen, onClose } = useDisclosure();
   return (
-    <Box>
+    <Flex>
       <Box>
         <SidebarContent
           onClose={() => onClose}
@@ -63,7 +63,7 @@ export default function SimpleSidebar({ children }) {
         <MobileNav display={{ base: "flex", md: "none" }} onOpen={onOpen} />
       </Box>
 
-      <Box p="4" pt={{ base: "90px", md: "10px" }} ml={{ base: 0, md: 60 }}>
+      <Box w='full' h='100vh' p="4" pt={{ base: "90px", md: "10px" }} ml={{ base: 0, md: 60 }}>
         {children}
         {path === "dashboard" && <Dashboard />}
         {path === "allproduct" && <AllProduct />}
@@ -73,7 +73,7 @@ export default function SimpleSidebar({ children }) {
         {path === "settings" && <Setting />}
         {path === "charts" && <ChartsStates aspect={2} title="the Boss" />}
       </Box>
-    </Box>
+    </Flex>
   );
 }
 

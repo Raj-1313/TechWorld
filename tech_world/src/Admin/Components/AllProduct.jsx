@@ -1,4 +1,4 @@
-import { Box, Grid, Button, Center } from "@chakra-ui/react";
+import { Box, Grid, Button, Center, Flex } from "@chakra-ui/react";
 import React, { useEffect, useState } from "react";
 import { adminData } from "../../Redux/AdminRedux/Admin_Action";
 import SingleCard from "./SingleCard";
@@ -27,6 +27,11 @@ const AllProduct = () => {
   }
   
 
+  if(isLoading){
+    return  <Flex justifyContent='center' alignItems='center' ><Loading/></Flex>
+  }
+  
+
   return (
     <Box>
       <Box pos='sticky' top='0' bg='white' zIndex={12} w='full' >
@@ -45,7 +50,7 @@ const AllProduct = () => {
         }}
       >
         {
-          (isLoading) ? <Loading />:  AdminData?.map((product) => (
+         AdminData && AdminData?.map((product) => (
           <SingleCard {...product} key={product._id} />
         ))}
       </Grid>
