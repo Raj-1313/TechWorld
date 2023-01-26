@@ -77,6 +77,19 @@ const deleteError= ()=>{
         type: types.DELETE_ERROR
     }
 }
+export const handleAddCouponDis = (payload)=>{
+    return {
+        type:types.ADD_COUPON_DIS,
+        payload
+    }
+}
+
+export const handleAddCoupon = (payload)=>{
+    return {
+        type:types.ADD_COUPON,
+        payload
+    }
+}
 
 const getData = ()=> (dispatch)=>{
     dispatch(cartRequest());

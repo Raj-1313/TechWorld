@@ -86,7 +86,7 @@ const AllUser_reducer = (state = initialState, { type, payload }) => {
       console.log(updatedUser);
       return {
         ...state,
-        UserData: updatedUser,
+        UserData: updatedUser,isLoading:false
       };
     }
 

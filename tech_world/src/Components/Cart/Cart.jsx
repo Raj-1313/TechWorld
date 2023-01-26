@@ -15,7 +15,9 @@ const Cart = () => {
   const [totalprice, setTotalPrice] = useState(0);
   const {data,isLoading,isError} = useSelector((store) => store.CartReducer)
   const dispatch = useDispatch();
-  console.log("data is", data)
+  // console.log("data is", data)
+
+
 
   useEffect(() => {
     dispatch(getData());
@@ -25,12 +27,14 @@ const Cart = () => {
     getTotal();
   }, [data.length])
 
+
+
   const getTotal = ()=>{
     if(data.length>0){
       let total = 0
       data.forEach((elem)=>{
         total += +elem.productID[0]?.approx_price_EUR*+elem.count*87.82
-        console.log("count inside loop", elem.count,"price is", +elem.productID[0]?.approx_price_EUR)
+        // console.log("count inside loop", elem.count,"price is", +elem.productID[0]?.approx_price_EUR)
       })
       // console.log("total price is" ,Math.round(total))
       setTotalPrice(Math.round(total))
@@ -63,7 +67,7 @@ const Cart = () => {
           <PriceDetails totalprice={totalprice} count={count} />
       </Flex>
     </div>
-    <LargeWithLogoCentered/>
+    {/* <LargeWithLogoCentered/> */}
     </>
   )
 }

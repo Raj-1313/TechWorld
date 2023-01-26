@@ -1,60 +1,36 @@
 import { Box, Flex, Grid, Img, Text } from '@chakra-ui/react';
 import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
-import { useLocation, useSearchParams } from 'react-router-dom';
+import { useLocation } from 'react-router-dom';
 import { getdata, getFilteredData } from '../../Redux/AppReducer/action';
 import CartButton from './CartButton';
 import "./cartButton.css"
 import LikeButton from './LikeButton';
 import {Link} from "react-router-dom";
-// import Loading from "../../HOF/Loading";
+import Loading from "../../HOF/Loading";
 // import Error from "../../HOF/Error";
 
 const Products = () => {
     const product = useSelector((store) => store.AppReducer.data);
-    // const {isLoading,isError} = useSelector((store) => store.AppReducer);
-    // console.log(isLoading);
+    const {isLoading,isError} = useSelector((store) => store.AppReducer);
+   
     const dispatch = useDispatch();
-    // console.log(product);
+   
     const location = useLocation();
-    const [searchParams] = useSearchParams();
-    
-
+    console.log(location.search,'my search')
     
     useEffect(() => {
-        if (location.search || product.length) {
-            const sortBy = searchParams.get("sort")
-            const getProductsParam = {
-                params: {}
-            }
-            if(searchParams.getAll("brand").length>0){
-                getProductsParam.params.brand = searchParams.getAll("brand")
-            }
-            if(searchParams.getAll("RAM").length>0){
-                getProductsParam.params.RAM = searchParams.getAll("RAM")
-            }
-            if(sortBy){
-                getProductsParam.params.sort = sortBy
-            }
-            console.log(getProductsParam)
+        if (location.search) {
             dispatch(getFilteredData(location.search));
         }else{
             dispatch(getdata());
         }
-    }, [product.length]);
+    }, [location.search,product.length]);
 
 
-    // if(isLoading){
-    //     return <Center>
-    //     <Loading />
-    //      </Center>
-    //   }
+  
       
-    
-    //   if(isError){
-    //     return <Error/>
-    //   }
-      
+  
 
 
     return (
@@ -67,7 +43,7 @@ const Products = () => {
             h="100vh"
         >
             {
-                product && product.map((elem) => {
+             isLoading? <Box w='100%' ><Loading /></Box> :   product.length>0 && product.map((elem) => {
                     return (
                             <Flex border="1px solid #DBDDE0" p="20px" key={elem._id} bgColor="white"  >
                                 
@@ -76,7 +52,7 @@ const Products = () => {
                                     <Img src={elem.img_url} />
                                 </Box>
                             </Link>
-                                <Box ml="30px" w="500px" >
+                 <Box ml="30px" w="500px" >
                                     <Text fontSize={["20px"]} fontWeight="bold" >{elem.model} ({elem.brand})</Text>
                                     <Text fontSize={["12px", "14px", "16px"]} color="#A28787" mb="10px" >{elem.RAM}</Text>
                                     <Text fontSize={["12px", "14px", "16px"]} >{elem.display_resolution}</Text>

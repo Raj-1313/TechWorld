@@ -110,7 +110,7 @@ dispatch(OrderStatusUpdate(value,id)).then(()=>dispatch(TrackOrderData()))
                             <Image
                               h="100px"
                               w="fit-content"
-                              src={product.productID.img_url}
+                              src={product.productID?.img_url}
                             />
                           </Box>
                           <Box>
@@ -161,7 +161,7 @@ dispatch(OrderStatusUpdate(value,id)).then(()=>dispatch(TrackOrderData()))
                   <Td>
                     {tdata.productDetails?.reduce(
                       (acc, ele) =>
-                        acc + ele.productID.approx_price_EUR * 70 * ele.count,
+                        acc + ele.productID?.approx_price_EUR * 70 * ele.count,
                       0
                     )}
                   </Td>

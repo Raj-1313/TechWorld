@@ -1,10 +1,8 @@
-import { Box, Checkbox, Flex, Grid, Input, Radio, Text } from '@chakra-ui/react'
+import { Box, Checkbox, Flex, Radio, Text } from '@chakra-ui/react'
 import React, { useEffect, useState } from 'react'
-import { useDispatch } from "react-redux"
 import { useSearchParams } from 'react-router-dom'
-import { getdata } from "../../Redux/AppReducer/action"
 
-const brandCheckArr = ["Acer", "Realme", "Oppo", "Xiomi", "Vivo"]
+const brandCheckArr = ["Acer", "Amazon", "Oppo", "BenQ", "Vivo","Dell","Coolpad","Gionee","HP","Blackberry"]
 const ramArr = [
     {
         name: "1",
@@ -40,7 +38,7 @@ const Filter = () => {
     const intialCategories = searchParams.getAll("brand");
     const intialSort = searchParams.get("sort");
     const initialRam = searchParams.getAll("RAM")
-    console.log("intial",intialCategories);
+    console.log("intial",intialCategories.includes("Xiomi"));
     // console.log(intialSort);
 
     const [category, setCategory] = useState(intialCategories || []);
@@ -48,33 +46,22 @@ const Filter = () => {
     const [ram, setRam] = useState(initialRam || [])
 
     const handleBrands = (e) => {
-        const newCategory = [...category];
-        if (newCategory.includes(e.target.value)) {
-            newCategory.splice(newCategory.indexOf(e.target.value), 1);
-        } else {
-            newCategory.push(e.target.value);
+        if(intialCategories.includes(e.target.value)){
+            intialCategories.pop();
         }
-        setCategory(newCategory);
+            setCategory(e.target.value);
     };
 
     const handleRam = (e)=>{
-        const newRam = [...ram];
-        if(newRam.includes(e.target.value)){
-            newRam.splice(newRam.indexOf(e.target.value),1);
-        }else{
-            newRam.push(e.target.value);
-        }
-        setRam(newRam);
+      setRam(e.target.value);
     }
 
-    console.log(category);
-    console.log(ram)
 
     const handleSort = (e) => {
         setSort(e.target.value);
     };
 
-    console.log(sort)
+ 
 
     useEffect(() => {
         let params = {};
@@ -89,18 +76,34 @@ const Filter = () => {
             <Text borderBottom="2px solid grey" >Sort By</Text>
             <Box mb="20px" mt="10px" justifyContent="left" onChange={handleSort} >
                 <Flex gap="10px">
-                    <Radio
+                    <Checkbox
                         value="asc"
                         name="sortBy"
-                        defaultChecked={sort === "asc"}
+                        isChecked={intialSort === "asc"}
+                    />
+                    <label>A-Z</label>
+                </Flex>
+                <Flex gap="10px" >
+                    <Checkbox
+                        value="desc"
+                        name="sortBy"
+                        isChecked={intialSort === "desc"}
+                    />
+                    <label>Z-A</label>
+                </Flex>
+                <Flex gap="10px">
+                    <Checkbox
+                        value="inc"
+                        name="sortBy"
+                        isChecked={intialSort === "inc"}
                     />
                     <label>Price low-high</label>
                 </Flex>
                 <Flex gap="10px" >
-                    <Radio
-                        value="desc"
+                    <Checkbox
+                        value="dec"
                         name="sortBy"
-                        defaultChecked={sort === "desc"}
+                        isChecked={intialSort === "dec"}
                     />
                     <label>Price high-low</label>
                 </Flex>
@@ -108,13 +111,13 @@ const Filter = () => {
             <Text borderBottom="2px solid grey" >BRAND</Text>
             <Box display="grid" pl="10px" mt="10px" >
                 {
-                    brandCheckArr.map((elem) => {
+                    brandCheckArr?.map((elem) => {
                         return <Flex gap="10px" key={elem}>
                             <Checkbox
                                 onChange={handleBrands}
                                 name={elem}
                                 value={elem}
-                                checked={category.includes(elem)}
+                                isChecked={intialCategories.includes(elem)}
                             />
                             <Text>{elem}</Text>
                         </Flex>
@@ -124,13 +127,13 @@ const Filter = () => {
             <Text borderBottom="2px solid grey" mt="20px" >RAM</Text>
             <Box display="grid" pl="10px" mt="10px" >
                 {
-                    ramArr.map((elem) => {
+                    ramArr?.map((elem) => {
                         return <Flex gap="10px" key={elem.name}>
                             <Checkbox
                                 onChange={handleRam}
                                 name={elem.name}
                                 value={elem.name}
-                                checked={ram.includes(elem.name)}
+                                isChecked={initialRam.includes(elem.name)}
                             />
                             <Text>{elem.ram}</Text>
                         </Flex>

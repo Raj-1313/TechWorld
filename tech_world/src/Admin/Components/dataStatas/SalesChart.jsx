@@ -17,10 +17,10 @@ const SalesChart = () => {
       }
     })
     let {count,product}= data
-    
+    // console.log(product);
     let bag=[]
     let bagCount=[]
-    for(let i=0; i<product.length && product.length<15; i++){
+    for(let i=0; i<product.length && product.length<30; i++){
       // console.log(product[i].productID[0],"this is us")
       if(product[i].productID[0]?.model!==undefined){
         bag.push(product[i].productID[0]?.model)
@@ -32,13 +32,13 @@ const SalesChart = () => {
     setCountArr(bagCount)
   }
 
-
+// console.log(countArr)
 
 useEffect(()=>{
 getChartData()
 },[])
 
-
+console.log(countArr,nameProd)
   const chartoptions = {
     series: [      
       {

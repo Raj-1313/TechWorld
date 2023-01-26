@@ -1,13 +1,13 @@
-import { Box, Grid, Flex, Image, Spacer, Text, But, Button } from "@chakra-ui/react"
-import { useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux"
-import {AddItem, deleteItem} from "../../Redux/CartRedux/action";
-import {reduceItem} from "../../Redux/CartRedux/action";
+import { Box,Grid,Flex,Image,Text,Button } from "@chakra-ui/react"
+import { useDispatch, useSelector} from "react-redux"
+import {AddItem, deleteItem,reduceItem} from "../../Redux/CartRedux/action";
 import "../../styles/Cart.module.css"
 
-const couponDis = localStorage.getItem("couponDiscount")
+
 
 const CartProduct = ({ elem }) => {
+    const myCoupon = useSelector((store) => store.CartReducer.myCoupon);
+    const myDiscount = useSelector((store) => store.CartReducer.myDiscount);
     const dispatch = useDispatch();
 
     const today = new Date()
@@ -21,8 +21,10 @@ const CartProduct = ({ elem }) => {
     const handleReduceItem = (id) => {
         dispatch(reduceItem({ productID: id }))
         let price = Math.round(elem.productID[0]?.approx_price_EUR * 87.82)
-        // price = Number(Math.floor(price / 100 * 10))
-        localStorage.setItem("couponDiscount", +couponDis - price)
+        price = Number(Math.floor(price / 100 * 10))
+        if(myCoupon === "ayush13" && myCoupon!== null){
+            localStorage.setItem("couponDiscount", +myDiscount - price)
+        }
     }
 
     const handleAddItem = async(id) => {
@@ -30,14 +32,18 @@ const CartProduct = ({ elem }) => {
         let price = Math.round(elem.productID[0]?.approx_price_EUR * 87.82)
         // console.log(Math.floor(price / 100 * 10))
         price = Number(Math.floor(price / 100 * 10))
-        localStorage.setItem("couponDiscount", +couponDis + price)
+        if(myCoupon === "ayush13" && myCoupon!== null){
+            localStorage.setItem("couponDiscount", +myDiscount + price)
+        }
     }
 
     const handleDelete = async(id) => {
         dispatch(deleteItem(id));
         let price = Math.round(elem.productID[0]?.approx_price_EUR * 87.82 * elem.count / 100 * 10)
         // console.log(price)
-        localStorage.setItem("couponDiscount", +couponDis - Math.floor(Number(price)))
+        if(myCoupon === "ayush13" && myCoupon!== null){
+            localStorage.setItem("couponDiscount", +myDiscount - Math.floor(Number(price)))
+        }
     }
 
     return (

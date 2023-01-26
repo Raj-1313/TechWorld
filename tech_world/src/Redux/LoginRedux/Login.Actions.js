@@ -7,11 +7,13 @@ import {
 } from "./Login.ActionTypes";
 
 export const login = (creds) => async (dispatch) => {
+  console.log(creds)
   try {
     let res = await axios.post(
       "https://fine-cyan-millipede-boot.cyclic.app/auth/login",
       creds
     );
+    console.log("res:",res)
     dispatch({ type: LOGIN_SUCCESS, payload: res.data });
   } catch (error) {
     const message =

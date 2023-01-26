@@ -13,3 +13,6 @@ export const ADD_ERROR = "ADD_ERROR";
 export const DELETE_REQUEST = "DELETE_REQUEST";
 export const DELETE_SUCCESS = "DELETE_SUCCESS";
 export const DELETE_ERROR = "DELETE_ERROR"
+
+export const ADD_COUPON_DIS = "ADD_COUPON_DIS";
+export const ADD_COUPON = "ADD_COUPON";

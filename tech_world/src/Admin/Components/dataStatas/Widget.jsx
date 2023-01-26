@@ -46,7 +46,6 @@ const Widget = ({ type }) => {
      setTotalOrders(orders.data.length)
      setTotalProducts(products.data.count)
      setLoading(false)
-     console.log(products.data.count,"this chikao" )
    }
     
      

@@ -1,13 +1,15 @@
 import * as types from "./actionType";
 
 const couponDis = localStorage.getItem("couponDiscount")
+const couponCode = localStorage.getItem("couponCode")
 
 const initialState = {
     data: [],
     isLoading: false,
     isError: false,
     couponDiscount: 0 || couponDis ,
-    CartLength:0
+    CartLength:0,
+    myCoupon: "" || couponCode
 }
 
 const reducer = (state = initialState, action) => {
@@ -41,6 +43,12 @@ const reducer = (state = initialState, action) => {
             return { ...state, isLoading: false, data: payload };
         case types.DELETE_ERROR:
             return { ...state, isLoading: false, isError: true };
+
+     case types.ADD_COUPON_DIS:
+                return {...state, myDiscount:payload}
+        case types.ADD_COUPON:
+                return {...state, myCoupon:payload}
+
         default:
             return state
     }

@@ -27,10 +27,6 @@ const AllProduct = () => {
   }
   
 
-  if(isLoading){
-    return  <Flex justifyContent='center' alignItems='center' ><Loading/></Flex>
-  }
-  
 
   return (
     <Box>
@@ -50,7 +46,7 @@ const AllProduct = () => {
         }}
       >
         {
-         AdminData && AdminData?.map((product) => (
+        isLoading? <Center h='80vh' m='auto'><Loading/></Center>: AdminData && AdminData?.map((product) => (
           <SingleCard {...product} key={product._id} />
         ))}
       </Grid>

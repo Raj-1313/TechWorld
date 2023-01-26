@@ -15,7 +15,7 @@ const AllProducts = () => {
         <Filter/>
         <Products/>
     </Flex>
-    <LargeWithLogoCentered/>
+    {/* <LargeWithLogoCentered/> */}
         </>
   )
 }
