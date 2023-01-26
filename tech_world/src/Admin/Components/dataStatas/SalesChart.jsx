@@ -4,6 +4,7 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import Chart from "react-apexcharts";
 
+
 const SalesChart = () => {
   let [countArr,setCountArr] = useState([])
   let [nameProd,setName] = useState([])
@@ -21,22 +22,22 @@ const SalesChart = () => {
     let bagCount=[]
     for(let i=0; i<product.length && product.length<15; i++){
       // console.log(product[i].productID[0],"this is us")
-      bag.push(product[i].productID[0]?.model)
-      bagCount.push(count[i].productCount)      
+      if(product[i].productID[0]?.model!==undefined){
+        bag.push(product[i].productID[0]?.model)
+        bagCount.push(count[i].productCount)      
+      }
+
     }
     setName(bag)
     setCountArr(bagCount)
   }
 
 
-const markers= {
-  colors: ['#F44336', '#E91E63', '#9C27B0']
-}
 
 useEffect(()=>{
 getChartData()
 },[])
-// console.log(countArr,nameProd)
+
 
   const chartoptions = {
     series: [      
@@ -73,14 +74,17 @@ getChartData()
         <CardFooter  className="text-muted" tag="h6">
           Most Searched Product Report
         </CardFooter>
+
         <Chart
-          type="line"
+          type="area"
           width="100%"
           height="390"
           options={chartoptions.options}
           series={chartoptions.series}
-         style={{color:markers.colors}}
-        ></Chart>
+        >          
+        </Chart>
+
+
       </CardBody>
     </Card>
   );
