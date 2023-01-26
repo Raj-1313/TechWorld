@@ -18,7 +18,7 @@ app.get("/", async (req, res) => {
     } else {
 
       let products = await productModel.find().limit(limit).skip((page-1)*limit);
-console.log(products.length)
+// console.log(products.length)
       res.send(products)
     }
   } 
@@ -31,6 +31,7 @@ console.log(products.length)
 
 app.get("/filter", async (req, res) => {
   const { brand, RAM, approx_price_EUR, sort } = req.query;
+  console.log(sort)
   try {
     if (brand && RAM && approx_price_EUR) {
       if (sort) {
@@ -140,8 +141,7 @@ app.get("/filter", async (req, res) => {
     
 
     else if (RAM && approx_price_EUR) {
-      let products = await productModel.find({ RAM, approx_price_EUR });
-
+      
       if (sort) {
         switch (sort) {
           case "dec": {
@@ -346,13 +346,44 @@ app.get("/filter", async (req, res) => {
               return res.send(products);
             }
           }
-        } else {
-          let products = await productModel.find({
-            brand: { $regex: brand, $options: "i" },
-          });
+      }else{
+            let products = await productModel.find({
+              brand: { $regex: brand, $options: "i" },
+            });
+          
           return res.send(products);
         }
-      }
+      } else if(sort) {
+        switch (sort) {
+          case "dec": {
+            let products = await productModel
+              .find()
+              .sort({ approx_price_EUR: -1 });
+            return res.send(products);
+          }
+          case "inc": {
+            let products = await productModel
+              .find()
+              .sort({ approx_price_EUR: 1 });
+            return res.send(products);
+          }
+          case "asc": {
+            let products = await productModel
+              .find()
+              .sort({ model: 1 });
+            return res.send(products);
+          }
+          case "desc": {
+            let products = await productModel
+              .find()
+              .sort({ model: -1 });
+            return res.send(products);
+          }
+          }
+          }
+
+
+        
     }
 
   } catch (e) {
