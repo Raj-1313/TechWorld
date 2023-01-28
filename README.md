@@ -21,7 +21,7 @@ User Friendly UI ....
 
 
 ## Link
-* Deployed ...https://techworld-tau.vercel.app/admin
+* Deployed ...https://techworld-tau.vercel.app/
 * 
 ## Home
 ![Home](https://user-images.githubusercontent.com/107465630/214306318-0d37191d-645e-4ea9-a9a2-04211f06ec46.png)
