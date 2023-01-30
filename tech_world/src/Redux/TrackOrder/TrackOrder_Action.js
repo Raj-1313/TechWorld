@@ -18,8 +18,10 @@ export const TrackOrderData = () => async (dispatch) => {
         },
       }
     );
-    console.log(res.data);
-    dispatch({ type: TrackOrder_SUCCESS, payload: res.data });
+    console.log(res.data);  
+
+      dispatch({ type: TrackOrder_SUCCESS, payload: res.data });
+    
   } catch (e) {
     dispatch({ type: TrackOrder_FAILURE });
   }

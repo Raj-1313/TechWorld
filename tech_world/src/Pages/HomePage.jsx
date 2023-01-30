@@ -7,6 +7,7 @@ import VideoSlider from "../Components/HomePage/VideoSlider";
 import HomeProducts from "../Components/HomePage/HomeProducts";
 import Footer from "../Components/Footer/Footer";
 import OnePlusBannerVideo from "../Components/HomePage/OnePlusBannerVideo";
+import WatchesHomeProduct2 from "../Components/HomePage/WatchesHomeProducts";
 
 const HomePage = () => {
   return (
@@ -15,6 +16,7 @@ const HomePage = () => {
       <Slider />
       <VideoSlider/>
       <HomeProducts/>
+      <WatchesHomeProduct2/>
       <OnePlusBannerVideo/>
       <StayConnected />
       <Footer />

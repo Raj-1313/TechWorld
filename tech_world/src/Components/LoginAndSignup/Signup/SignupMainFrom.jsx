@@ -1,7 +1,5 @@
 import React, { useEffect, useState } from "react";
-
 import Recaptcha from "./Recaptcha/Recaptcha";
-
 import {
   Box,
   Flex,
@@ -307,10 +305,10 @@ const SignupMainFrom = () => {
             pt="1rem"
             fontSize={{ base: "0.65rem", md: "0.9rem", lg: "1rem" }}
           >
-            <GridItem>Minimum 8 characters</GridItem>
-            <GridItem>1 number (0-8)</GridItem>
-            <GridItem>1 lowercase letter</GridItem>
-            <GridItem>1 uppercase letter</GridItem>
+            <GridItem >Minimum 8 characters</GridItem>
+            <GridItem >1 number (0-8)</GridItem>
+            <GridItem >1 lowercase letter</GridItem>
+            <GridItem >1 uppercase letter</GridItem>
           </Grid>
           <Grid
             pt={"0.4rem"}

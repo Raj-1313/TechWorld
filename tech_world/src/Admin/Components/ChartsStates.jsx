@@ -3,6 +3,7 @@ import { Box, Button, Card, CardBody, CardFooter, Flex, Heading, Image, Stack, T
 import React from 'react'
 import { useState , useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
+import NoDataFound from '../../HOF/NoDataFound'
 import { adminChartDataExtraction, adminPaymentTracking } from '../../Redux/AdminRedux/Admin_Action'
 import Chart from './dataStatas/Charts'
 
@@ -16,9 +17,9 @@ const [dataExtracted,setDataExtracted]= useState([])
 
 useEffect(()=>{
   dispatch(adminPaymentTracking())
-  let x=PayedData?.map((el)=>el.productDetails.reduce((acc,ele)=> (acc+(ele.productID?.approx_price_EUR*70)) ,0 ))
+  let x=PayedData?.map((el)=>el.productDetails?.reduce((acc,ele)=> (acc+(ele.productID?.approx_price_EUR*70)) ,0 ))
   setTotalPrice(x);
-  let dataExtraction=PayedData?.map((el)=>el.productDetails.map((ele)=>{return{"name": ele.productID?.model,"Total":ele.productID?.approx_price_EUR} }))  
+  let dataExtraction=PayedData?.map((el)=>el.productDetails?.map((ele)=>{return{"name": ele.productID?.model,"Total":ele.productID?.approx_price_EUR} }))  
   setDataExtracted(dataExtraction)
   
 },[dispatch,dataExtractedForChart])
@@ -34,7 +35,7 @@ useEffect(()=>{
 <Grid templateColumns={{base:"repeat(1,1fr)",sm:"repeat(2,1fr)",lg:"repeat(1,1fr)"}}>
 
 {
- PayedData.length>0 && PayedData?.map((ele,index)=> 
+ PayedData.length==0 ?  <NoDataFound/> : PayedData?.map((ele,index)=> 
   <Card
    key={ele._id}
   direction={{ base: 'column', sm: 'row' }}

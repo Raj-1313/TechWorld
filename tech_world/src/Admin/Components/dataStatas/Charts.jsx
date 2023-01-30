@@ -5,8 +5,7 @@ import {
   YAxis,
 } from "recharts";
 import {  useSelector } from 'react-redux'
-import { Box } from "@chakra-ui/react";
-import { useState } from "react";
+import { memo, useState } from "react";
 import { Bar } from "recharts";
 import { useEffect } from "react";
 
@@ -45,4 +44,4 @@ useEffect(() => {
   );
 };
 
-export default Chart;
+export default memo(Chart);

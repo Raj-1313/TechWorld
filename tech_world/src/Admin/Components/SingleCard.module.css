@@ -29,6 +29,7 @@ body .container .card {
   /* position: relative; */
   /* min-width: 220px;
   height: 400px; */
+  padding:20px;
   box-shadow: inset 5px 5px 5px rgba(0, 0, 0, 0.2),
     inset -5px -5px 15px rgba(255, 255, 255, 0.1),
     5px 5px 15px rgba(0, 0, 0, 0.3), -5px -5px 15px rgba(255, 255, 255, 0.1);
@@ -39,8 +40,12 @@ body .container .card {
 
 /* a=button */
 body .container .card:nth-child(1) .box .content Button {
-  background: gold;
+  background: rgb(18, 152, 241);
 }
+ .container {
+   background: #cbd1e7ab;
+   border-radius: 15px;
+  }
 
 body .container .card .box {
   min-width: 220px;
@@ -50,9 +55,7 @@ body .container .card .box {
   left: 20px;
   right: 20px;
   bottom: 20px; */
-  background: #2a2b2f;
   /* background-color: red; */
-  border-radius: 15px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -91,20 +94,20 @@ body .container .card .box .content h6 {
 
 body .container .card .box .content h4 {
   font-size: 1.25rem;
-  color: #fff;
+  color: rgb(0, 0, 0);
   z-index: 1;
   /* transition: 0.5s; */
   margin-bottom: 10px;
 }
 
 strong {
-  color: gold;
+  color: rgb(18, 152, 241);
 }
 
 body .container .card .box .content p {
   font-size: 1rem;
   font-weight: 300;
-  color: rgba(255, 255, 255, 0.9);
+  color: rgba(0, 0, 0, 0.9);
   z-index: 1;
   /* transition: 0.5s; */
 }
@@ -113,10 +116,10 @@ body .container .card .box .content .btn {
   /* position: relative; */
   display: inline-block;
   padding: 8px 20px;
-  background: gold;
+  background: rgb(61, 180, 201);
   border-radius: 5px;
   text-decoration: none;
-  color: black;
+  color: rgb(146, 255, 250);
   margin-top: 20px;
   box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
   /* transition: 0.5s; */

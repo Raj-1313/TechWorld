@@ -4,7 +4,7 @@ import SalesChart from "./dataStatas/SalesChart";
 import Widget from "./dataStatas/Widget";
   
 const Dashboard = () => {
-
+ 
 
   return (
     <>

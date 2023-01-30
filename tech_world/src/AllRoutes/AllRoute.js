@@ -12,8 +12,9 @@ import PageNotFound from "../HOF/notFoundPage";
 import SingleProductPage from "../Pages/SingleProductPage";
 import PrivateRoute from "../PrivateRoute/PrivateRoute";
 import SearchResult from "../Components/Navbar/SearchResult";
-
+import { useSelector } from "react-redux";
 const AllRoute = () => {
+  const data= useSelector((store) => store.login.data);
   return (
     <div>
       <Routes>
@@ -24,17 +25,17 @@ const AllRoute = () => {
         <Route path="/signup" element={<Signup />} />
         <Route
           path="/admin"
-          element={
+          element={data.category==="Admin" ?
             <PrivateRoute>
-              <Admin />
-            </PrivateRoute>
+              <Admin/>
+            </PrivateRoute> : <PageNotFound/>
           }
         />
         <Route
           path="/payment"
           element={
             <PrivateRoute>
-              <Payment />
+              <Payment/>
             </PrivateRoute>
           }
         />

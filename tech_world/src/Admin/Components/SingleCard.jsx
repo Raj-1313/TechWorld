@@ -1,4 +1,4 @@
-import { Box, Button, Flex } from "@chakra-ui/react";
+import { Box, Button, Flex, Image } from "@chakra-ui/react";
 import React from "react";
 import cardStyle from "./SingleCard.module.css";
 import { adminProductDelete } from "../../Redux/AdminRedux/Admin_Action";
@@ -36,7 +36,7 @@ const SingleCard = ({
               Model: <strong>{model}</strong>
             </h4>
             <Flex py="10px" gap={5}>
-              <img width="30%" height="fit-content" src={img_url} alt={model} />
+              <Image mixBlendMode='multiply' width="30%" height="fit-content" src={img_url} alt={model} />
               <Box>
                 <p>Weight : {weight_g} gm</p>
 

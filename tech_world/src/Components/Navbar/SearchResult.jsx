@@ -1,4 +1,4 @@
-import { Box, Button, Flex, Grid, useToast } from "@chakra-ui/react";
+import { Box, Button, Flex, Grid, Image, useToast } from "@chakra-ui/react";
 import React from "react";
 import { useDispatch } from "react-redux";
 import { useLocation } from "react-router-dom";
@@ -46,7 +46,8 @@ const SearchResult = () => {
                 <Box className={cardStyle.content}>
                   <Flex gap={5}>
                     <Box>
-                      <img
+                      <Image 
+                      mixBlendMode='multiply'
                         width="100%"
                         height="fit-content"
                         src={el.img_url}
@@ -67,7 +68,7 @@ const SearchResult = () => {
                           {" "}
                           <strong>Price : {el.approx_price_EUR * 70}</strong>
                         </p>
-                        <Button mt="20px" onClick={() => Addproduct(el._id)}>
+                        <Button w='150px' mt="20px" onClick={() => Addproduct(el._id)}>
                           Add to Cart
                         </Button>
                       </Box>

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, {useState } from "react";
 import {
   Text,
   Box,
@@ -21,29 +21,51 @@ import {
   DrawerContent,
   DrawerCloseButton,
   useDisclosure,
+  Input,
 } from "@chakra-ui/react";
-import { navbarList } from "../../Data/NavbarListData";
-import NavbarMinList from "./NavbarMinList";
 import Logo from "../../Assets/tech_world_logo.png";
 import { BsFillCartCheckFill, BsFillPersonFill } from "react-icons/bs";
 import Search from "./Search";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { logout } from "../../Redux/LoginRedux/Login.Actions";
-import { ChevronDownIcon, HamburgerIcon } from "@chakra-ui/icons";
-import Logo2 from "../../Assets/logo.png";
+import {  HamburgerIcon } from "@chakra-ui/icons";
+import { AiOutlineSearch, AiTwotoneHeart } from "react-icons/ai";
+import searchProducts from "../../Redux/SearchRedux/Search.Actions";
 
 const Navbar = () => {
   const [cartHover, setCartHover] = useState(false);
   const [accountHover, setAccountHover] = useState(false);
+  const [query, setQuery] = useState("");
   const loginData = useSelector((store) => store.login.data);
   const dispatch = useDispatch();
+  const searchData = useSelector((store) => store.search);
+
+  const AllData = searchData.data;
   const { isOpen, onOpen, onClose } = useDisclosure();
   const btnRef = React.useRef();
+  const navigate = useNavigate();
+const {CartLength}= useSelector(store=>store.CartReducer)
+
+// console.log(CartLength);
+  const handleSearch = () => {
+    dispatch(searchProducts(query));
+
+    if (AllData.length > 0) {
+      navigate("/searchresult", {
+        state: {
+          AllData,
+        },
+      });
+    }
+  };
+
+
+
 
   return (
     <>
-      <Hide below="sm">
+      <Hide below="md">
         <Flex
           justify={"space-between"}
           align={"center"}
@@ -56,21 +78,27 @@ const Navbar = () => {
           backgroundColor={"white"}
         >
           <Box
-            w={"13%"}
-            borderRadius={"0.5rem"}
-            border={"0.5px solid #5C5C5C"}
-            _hover={{ boxShadow: "rgba(0, 0, 0, 0.24) 0px 3px 8px" }}
+            w={"13%"} 
           >
             <Link to={"/"}>
               <Image src={Logo} alt={"logo"} w={"100%"} h={"auto"} />
             </Link>
           </Box>
 
-          {navbarList.map((item) => (
-            
-            <NavbarMinList key={item.id} {...item} />
-            
-          ))}
+          <Flex
+            w={"45%"}
+            justify={"space-between"}
+            align={"center"}
+            fontWeight={500}
+          >
+            <Link to={"/products"}>
+              <Text _hover={{ color: "#FF6900" }}>All Products</Text>
+            </Link>
+            <Text _hover={{ color: "#FF6900" }}>Smart Phones</Text>
+            <Text _hover={{ color: "#FF6900" }}>Keypad Phones</Text>
+            <Text _hover={{ color: "#FF6900" }}>Smart Watch</Text>
+            <Text _hover={{ color: "#FF6900" }}>Tablets</Text>
+          </Flex>
 
           {/* Search Input */}
           <Search />
@@ -82,10 +110,9 @@ const Navbar = () => {
             onMouseOver={() => setCartHover(true)}
             onMouseOut={() => setCartHover(false)}
             position={"relative"}
-            _hover={{ boxShadow: "rgba(0, 0, 0, 0.24) 0px 3px 8px" }}
           >
             <BsFillCartCheckFill style={{ fontSize: "1.3rem" }} />
-            <Text fontWeight={"600"}>CART</Text>
+            <Text fontWeight={"500"}>CART</Text>
             {/* Cart Hover Message */}
             {cartHover && (
               <Box
@@ -104,18 +131,15 @@ const Navbar = () => {
               >
                 <Flex justify={"space-between"} w={"95%"}>
                   <Box>Order Summary</Box>
-                  <Box>0 Item</Box>
+                  <Box>{CartLength} Item</Box>
                 </Flex>
                 <Box
                   textAlign={"center"}
                   mt={"1rem"}
                   color={"#FF6F61"}
-                  _hover={{ color: "#FF6900" }}                  
-                  >
-
-                <Link to='/cart'>
-                  PROCEED TO CART
-                  </Link>
+                  _hover={{ color: "#FF6900" }}
+                >
+                  <Link to="/cart">PROCEED TO CART</Link>
                 </Box>
               </Box>
             )}
@@ -128,10 +152,9 @@ const Navbar = () => {
             position={"relative"}
             onMouseOver={() => setAccountHover(true)}
             onMouseOut={() => setAccountHover(false)}
-            _hover={{ boxShadow: "rgba(0, 0, 0, 0.24) 0px 3px 8px" }}
           >
             <BsFillPersonFill style={{ fontSize: "1.3rem" }} />
-            <Text fontWeight={"600"}>
+            <Text fontWeight={"500"}>
               {loginData?.name?.substring(0, 6) || "Account"}
             </Text>
             {accountHover && (
@@ -143,7 +166,6 @@ const Navbar = () => {
                 zIndex={"10"}
                 top={"6"}
                 fontSize={"0.95rem"}
-                fontWeight={"bold"}
                 boxShadow={"rgba(0, 0, 0, 0.35) 0px 5px 15px"}
                 borderRadius={"0.3rem"}
                 onMouseOver={() => setAccountHover(true)}
@@ -153,6 +175,7 @@ const Navbar = () => {
                   pb={"0.5rem"}
                   borderBottom={loginData.category ? null : "0.5px solid gray"}
                   _hover={{ color: "#FF6900" }}
+                  fontSize={"1rem"}
                 >
                   {Object.keys(loginData).length ? (
                     <Button
@@ -170,7 +193,7 @@ const Navbar = () => {
                   {Object.keys(loginData).length > 0 &&
                   loginData.category === "Admin" ? (
                     <Link to={"/admin"}>
-                      <Button fontSize={"0.8rem"}>Admin</Button>
+                      <Button px={"1.5rem"}>Admin</Button>
                     </Link>
                   ) : loginData.category === "User" ? null : (
                     <Link to={"/login"}>Login</Link>
@@ -183,190 +206,281 @@ const Navbar = () => {
       </Hide>
 
       {/* Responsive Navbar */}
-      <Show>
-        <Show below="sm">
-          <Flex
-            w="100%"
-            bg="white"
-            p="1rem"
-            color="white"
-            align="center"
-            justify="center"
-          >
+      <Show below="md">
+        <Flex
+          w="100%"
+          bg="white"
+          p="1rem"
+          color="white"
+          align="center"
+          justify="space-between"
+        >
+          <Flex w="100%" justify="space-between">
             <Flex
-              w="80%"
-              // border="1px solid white"
-              justify="space-between"
+              w={"40%"}
+              justify={"center"}
+              align={"center"}
+              display={{
+                base: "none",
+                sm: "none",
+                md: "block",
+                lg: "none",
+                xl: "none",
+                "2xl": "none",
+              }}
             >
-              <Box w="50%">
+              <Image alt={"logo"} src={Logo} />
+            </Flex>
+            <Flex w={"20%"} mr={"0.5rem"} mt={"0.4rem"} justify={"center"} flexDirection={"column"} align={"center"}>
+              <Box>
+                <AiTwotoneHeart
+                  color={"black"}
+                  fontWeight={"bold"}
+                  fontSize={"1.5rem"}
+                />
+              </Box>
+
+              <Text
+                color={"#16429E"}
+                display={{
+                  base: "none",
+                  sm: "none",
+                  md: "block",
+                  lg: "none",
+                  xl: "none",
+                  "2xl": "none",
+                }}
+                fontWeight={500}
+              >
+                Wishlist
+              </Text>
+            </Flex>
+            <Flex
+              w="100%"
+              backgroundColor={"#F1F4F6"}
+              _hover={{ boxShadow: "rgba(0, 0, 0, 0.24) 0px 3px 8px" }}
+              align={"center"}
+              justify={"center"}
+              mt={"0.6rem"}
+              p={0}
+              h={"2.4rem"}
+            >
+              <Input
+                placeholder="Search products"
+                type="text"
+                border={"none"}
+                focusBorderColor="transparent"
+                color={"black"}
+                py={"10px"}
+                fontSize={"0.9rem"}
+                onChange={(e) => setQuery(e.target.value)}
+                value={query}
+              />
+              <Button onClick={handleSearch}>
+                <AiOutlineSearch
+                  style={{ fontSize: "1.5rem", color: "black" }}
+                />
+              </Button>
+            </Flex>
+
+            <Flex
+              mt={"0.4rem"}
+              w={"20%"}
+              justify={"center"}
+              align={"center"}
+              color={"black"}
+            >
+              <Link to={"/cart"}>
+                <BsFillCartCheckFill fontSize={"1.4rem"} />
+                <Text
+                  display={{
+                    base: "none",
+                    sm: "none",
+                    md: "block",
+                    lg: "none",
+                    xl: "none",
+                    "2xl": "none",
+                  }}
+                  fontWeight={500}
+                  color={"#16429E"}
+                >
+                  Cart
+                </Text>
+              </Link>
+            </Flex>
+
+            <Box pt="0.5rem" ml={"1rem"}>
+              <Menu>
+                <MenuButton
+                  as={IconButton}
+                  aria-label="Options"
+                  icon={<HamburgerIcon />}
+                  variant="outline"
+                  border="3px solid white"
+                  bg="#257CFF"
+                  _hover={{ bg: "#257CFF" }}
+                  _expanded={{ bg: "#257CFF" }}
+                  onClick={onOpen}
+                />
+              </Menu>
+            </Box>
+          </Flex>
+        </Flex>
+
+        <Drawer
+          isOpen={isOpen}
+          placement="right"
+          onClose={onClose}
+          finalFocusRef={btnRef}
+        >
+          <DrawerOverlay />
+          <DrawerContent bg="white" color="black">
+            <DrawerCloseButton />
+            <DrawerHeader>
+              <Box
+                w="70%"
+                ml="2.5rem"
+                display="flex"
+                justify="center"
+                align="center"
+              >
                 <Link to="/">
-                  <Image src={Logo} w="100%" alt="WeFitLogo" />
+                  <Image src={Logo} alt="WeFitLogo" />
                 </Link>
               </Box>
-
-              <Box pt="0.5rem">
-                <Menu>
-                  <MenuButton
-                    as={IconButton}
-                    aria-label="Options"
-                    icon={<HamburgerIcon />}
-                    variant="outline"
-                    border="3px solid white"
-                    bg="#257CFF"
-                    _hover={{ bg: "#257CFF" }}
-                    _expanded={{ bg: "#257CFF" }}
-                    onClick={onOpen}
-                  />
-                </Menu>
-              </Box>
-            </Flex>
-          </Flex>
-
-          <Drawer
-            isOpen={isOpen}
-            placement="right"
-            onClose={onClose}
-            finalFocusRef={btnRef}
-          >
-            <DrawerOverlay />
-            <DrawerContent bg="white" color="black">
-              <DrawerCloseButton />
-              <DrawerHeader>
-                <Box
-                  w="70%"
-                  ml="2.5rem"
-                  display="flex"
-                  justify="center"
-                  align="center"
-                >
-                  <Link to="/">
-                    <Image src={Logo} alt="WeFitLogo" />
-                  </Link>
-                </Box>
-              </DrawerHeader>
-              <Accordion allowToggle>
-                <AccordionItem>
-                  <h2>
-                    <AccordionButton>
+            </DrawerHeader>
+            <Accordion allowToggle>
+              <AccordionItem>
+                <h2>
+                  <AccordionButton>
+                    <Link to={"/products"}>
                       <Box as="span" flex="1" textAlign="left">
-                        Get App
+                        All Products
                       </Box>
-                      <AccordionIcon />
-                    </AccordionButton>
-                  </h2>
-                  <AccordionPanel pb={4}>
-                    <a
-                      href="https://apps.apple.com/app/apple-store/id449810000"
-                      target="_blank"
-                    >
-                      Workout App (iOS)
-                    </a>
-                  </AccordionPanel>
-                  <AccordionPanel pb={4}>
-                    <a
-                      href="https://play.google.com/store/apps/details?id=je.fit&referrer=utm_source%3Demail"
-                      target="_blank"
-                    >
-                      Workout App (Android)
-                    </a>
-                  </AccordionPanel>
-                </AccordionItem>
-
-                <AccordionItem>
-                  <h2>
-                    <AccordionButton>
-                      <Box as="span" flex="1" textAlign="left">
-                        Workout Plans
-                      </Box>
-                      <AccordionIcon />
-                    </AccordionButton>
-                  </h2>
-                  <AccordionPanel pb={4}>
-                    <Link to="/routines">Pro-designed Plans</Link>
-                  </AccordionPanel>
-                  <AccordionPanel pb={4}>
-                    <Link to="/routines"> Create My Plan</Link>
-                  </AccordionPanel>
-                </AccordionItem>
-
-                <AccordionItem>
-                  <h2>
-                    <AccordionButton>
-                      <Box as="span" flex="1" textAlign="left">
-                        <Link to="/exercise"> Exercise</Link>
-                      </Box>
-                    </AccordionButton>
-                  </h2>
-                </AccordionItem>
-
-                <AccordionItem>
-                  <h2>
-                    <AccordionButton>
-                      <Box as="span" flex="1" textAlign="left">
-                        Community
-                      </Box>
-                      <AccordionIcon />
-                    </AccordionButton>
-                  </h2>
-                  <AccordionPanel pb={4}>
-                    <Link to="/community">Wefit Community</Link>
-                  </AccordionPanel>
-                  <AccordionPanel pb={4}>
-                    <Link to="/blog">Blog</Link>
-                  </AccordionPanel>
-                </AccordionItem>
-
-                <AccordionItem>
-                  <h2>
-                    <AccordionButton>
-                      <Box as="span" flex="1" textAlign="left">
-                        <Link to="/coach"> Coach</Link>
-                      </Box>
-                    </AccordionButton>
-                  </h2>
-                </AccordionItem>
-
-                <AccordionItem>
-                  <h2>
-                    <AccordionButton>
-                      <Box as="span" flex="1" textAlign="left">
-                        <Link to="/elite"> Elite</Link>
-                      </Box>
-                    </AccordionButton>
-                  </h2>
-                </AccordionItem>
-                <Flex justify={"center"} gap={6}>
-                  {Object.keys(loginData).length ? (
-                    <Link>
-                      <Button onClick={() => dispatch(logout())}>Log Out</Button>
                     </Link>
-                  ) : (
-                    <>
-                      <Box>
-                        <Link to={"/login"}>
-                          <Button>Log In</Button>
-                        </Link>
-                      </Box>
-                      <Box>
-                        <Link to={"/signup"}>
-                          <Button>Sign Up</Button>
-                        </Link>
-                      </Box>
-                    </>
-                  )}
-                </Flex>
-                <Box>
-                  {Object.keys(loginData).length > 0 &&
-                    loginData.category === "Admin" && (
+                  </AccordionButton>
+                </h2>
+              </AccordionItem>
+
+              <AccordionItem>
+                <h2>
+                  <AccordionButton>
+                    <Box as="span" flex="1" textAlign="left">
+                      Mobile Phones
+                    </Box>
+                    <AccordionIcon />
+                  </AccordionButton>
+                </h2>
+                <AccordionPanel pb={4}>
+                  <Link to="/routines">IPhone</Link>
+                </AccordionPanel>
+                <AccordionPanel pb={4}>
+                  <Link to="/routines">Acer</Link>
+                </AccordionPanel>
+                <AccordionPanel pb={4}>
+                  <Link to="/routines">HTC</Link>
+                </AccordionPanel>
+                <AccordionPanel pb={4}>
+                  <Link to="/routines">Huawei</Link>
+                </AccordionPanel>
+                <AccordionPanel pb={4}>
+                  <Link to="/routines">Pixi 3</Link>
+                </AccordionPanel>
+                <AccordionPanel pb={4}>
+                  <Link to="/routines">Pop</Link>
+                </AccordionPanel>
+              </AccordionItem>
+
+              <AccordionItem>
+                <h2>
+                  <AccordionButton>
+                    <Box as="span" flex="1" textAlign="left">
+                      <Link to="/exercise">Keypad Mobiles</Link>
+                      {/* "OT" model phones are keypad */}
+                    </Box>
+                  </AccordionButton>
+                </h2>
+              </AccordionItem>
+              <AccordionItem>
+                <h2>
+                  <AccordionButton>
+                    <Box as="span" flex="1" textAlign="left">
+                      <Link to="/exercise">Smart Watch</Link>
+                    </Box>
+                  </AccordionButton>
+                </h2>
+              </AccordionItem>
+
+              <AccordionItem>
+                <h2>
+                  <AccordionButton>
+                    <Box as="span" flex="1" textAlign="left">
+                      Tablet
+                    </Box>
+                  </AccordionButton>
+                </h2>
+              </AccordionItem>
+
+              <Flex justify={"center"} gap={6}>
+                {Object.keys(loginData).length &&
+                loginData.category === "Admin" ? (
+                  <>
+                    <Box>
                       <Link to={"/admin"}>
-                        <Button fontSize={"0.8rem"}>Admin</Button>
+                        <Button
+                          colorScheme="teal"
+                          variant="solid"
+                          _hover={{ color: "#2B6CB0" }}
+                        >
+                          Admin
+                        </Button>
                       </Link>
-                    )}
-                </Box>
-              </Accordion>
-            </DrawerContent>
-          </Drawer>
-        </Show>
+                    </Box>
+                    <Box>
+                      <Button
+                        colorScheme="red"
+                        variant="solid"
+                        onClick={() => dispatch(logout())}
+                      >
+                        Log Out
+                      </Button>
+                    </Box>
+                  </>
+                ) : Object.keys(loginData).length &&
+                  loginData.category === "User" ? (
+                  <>
+                    <Box>
+                      <Button
+                        colorScheme="red"
+                        variant="solid"
+                        onClick={() => dispatch(logout())}
+                      >
+                        Log Out
+                      </Button>
+                    </Box>
+                  </>
+                ) : (
+                  <>
+                    <Box>
+                      <Link to={"/login"}>
+                        <Button colorScheme="messenger" variant="solid">
+                          Log In
+                        </Button>
+                      </Link>
+                    </Box>
+                    <Box>
+                      <Link to={"/signup"}>
+                        <Button colorScheme="telegram" variant="solid">
+                          Sign Up
+                        </Button>
+                      </Link>
+                    </Box>
+                  </>
+                )}
+              </Flex>
+            </Accordion>
+          </DrawerContent>
+        </Drawer>
       </Show>
     </>
   );

@@ -2,11 +2,11 @@ import {HiOutlineUser} from "react-icons/hi";
 import {BsWallet} from "react-icons/bs";
 import {FiShoppingCart} from "react-icons/fi";
 import {BsCurrencyDollar} from "react-icons/bs";
-import { Box, Flex, Text } from "@chakra-ui/react";
+import {  Flex, Text } from "@chakra-ui/react";
 import { useEffect, useState } from "react";
-import { useDispatch } from "react-redux";
 import axios from "axios";
 import SkeletonLoading from "../../../HOF/SkeletonLoading";
+import { memo } from "react";
 
 const token= JSON.parse(localStorage.getItem("loginData"))
 
@@ -16,11 +16,8 @@ const Widget = ({ type }) => {
   const [totalProducts,setTotalProducts]= useState(0)
   const [loading,setLoading]= useState(false)
 
-    const dispatch=useDispatch();
   let data;
-
   //temporary
-  const amount = 100;
   
   
   const diff = 20;
@@ -42,9 +39,9 @@ const Widget = ({ type }) => {
          authorization:token.token
        }
      })
-     setTotalUsers(data.users.length)
-     setTotalOrders(orders.data.length)
-     setTotalProducts(products.data.count)
+     setTotalUsers(data.users?.length)
+     setTotalOrders(orders.data?.length)
+     setTotalProducts(products.data?.count)
      setLoading(false)
    }
     
@@ -155,4 +152,4 @@ const Widget = ({ type }) => {
   );
 }
 
-export default Widget
+export default memo(Widget)

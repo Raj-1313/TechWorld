@@ -9,10 +9,8 @@ const SiteLogo = () => {
       w="15rem"
       mb="3rem"
       py={"0.3rem"}
-      px={"0.8rem"}
-      bg={"white"}
-      borderRadius={"0.5rem"}
-      border={"1px solid gray"}
+      px={"0.8rem"}    
+      borderRadius={"0.5rem"}    
     >
       <Link to={"/"}>
         <Image src={Logo} w="100%" alt="WeFitLogo" />

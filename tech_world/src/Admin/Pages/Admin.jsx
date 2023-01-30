@@ -24,6 +24,7 @@ import ProjectTables from "../Components/dataStatas/ProjectTable";
 import ChartsStates from "../Components/ChartsStates";
 import { Link } from "react-router-dom";
 import Setting from "../Components/Setting";
+
 const LinkItems = [
   { name: "Dashboard", icon: MdDashboard, path: "dashboard" },
   { name: "All Product", icon: FaStore, path: "allproduct" },
@@ -31,7 +32,7 @@ const LinkItems = [
   { name: "Order Record", icon: FaStore, path: "Orderrecord" },
   { name: "Add Product", icon: MdLibraryAdd, path: "addproduct" },
   { name: "Settings", icon: FiSettings,path: "settings"  },
-  { name: "ChartsStates", icon: FaChartPie, path: "charts" },
+  { name: "Orders", icon: FaChartPie, path: "charts" },
 ];
 
 // pura section

@@ -1,24 +1,8 @@
 import * as types from "./actionType";
 import axios from "axios"
 const token= JSON.parse(localStorage.getItem("loginData"))
-const cartRequest = ()=>{
-    return {
-        type: types.CART_REQUEST
-    }
-}
 
-const cartSuccess = (payload)=>{
-    return {
-        type: types.CART_SUCCESS,
-        payload
-    }
-}
 
-const cartError= ()=>{
-    return {
-        type: types.CART_ERROR
-    }
-}
 
 
 const reduceRequest = ()=>{
@@ -92,7 +76,9 @@ export const handleAddCoupon = (payload)=>{
 }
 
 const getData = ()=> (dispatch)=>{
-    dispatch(cartRequest());
+    dispatch({
+        type: types.CART_REQUEST
+    });
     return axios
         .get("https://fine-cyan-millipede-boot.cyclic.app/cart",{
             headers:{
@@ -101,11 +87,16 @@ const getData = ()=> (dispatch)=>{
         })
         .then((res)=>{
             console.log("response from action",res.data)
-            dispatch(cartSuccess(res.data));
+            dispatch({
+                type: types.CART_SUCCESS,
+                payload:res.data
+            });
         })
         .catch((err)=>{
             console.log(err)
-            dispatch(cartError());
+            dispatch({
+                type: types.CART_ERROR
+            });
         })
 }
 
