@@ -81,23 +81,36 @@ const {CartLength}= useSelector(store=>store.CartReducer)
             w={"13%"} 
           >
             <Link to={"/"}>
-              <Image src={Logo} alt={"logo"} w={"100%"} h={"auto"} />
+              <Image src={Logo} alt={"logo"} w={"90%"} h={"auto"} />
             </Link>
           </Box>
 
           <Flex
             w={"45%"}
-            justify={"space-between"}
+            justify={{sm:"space-around",lg:"space-between"}}
             align={"center"}
             fontWeight={500}
+            fontSize={{md:'12px',lg:"14px"}}
+            gap='2'
           >
             <Link to={"/products"}>
               <Text _hover={{ color: "#FF6900" }}>All Products</Text>
             </Link>
+            <Link to={"/products?brand=Vivo"}>
             <Text _hover={{ color: "#FF6900" }}>Smart Phones</Text>
+            </Link>
+            <Link to={"/products?brand=BenQ"}>
             <Text _hover={{ color: "#FF6900" }}>Keypad Phones</Text>
+            </Link>
+
+            <Hide below="lg">
+            <Link to={"/products?brand=apple"}>
             <Text _hover={{ color: "#FF6900" }}>Smart Watch</Text>
+            </Link>
+            <Link to={"/products?brand=lenovo"}>
             <Text _hover={{ color: "#FF6900" }}>Tablets</Text>
+            </Link>
+            </Hide>
           </Flex>
 
           {/* Search Input */}
