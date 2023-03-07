@@ -2,8 +2,8 @@ import React, {  useEffect, useState } from 'react'
 import { Box, Grid, Flex,  Spacer, Text, Button, Center } from "@chakra-ui/react"
 import { Link } from "react-router-dom"
 import {useSelector, useDispatch} from "react-redux"
-import { handleAddCoupon, handleAddCouponDis } from '../../Redux/CartRedux/action'
-
+import { handleAddCoupon, handleAddCouponDis, handleTotalPrice } from '../../Redux/CartRedux/action'
+import style from '../../styles/Cart.module.css'
 
 const PriceDetails = ({ totalprice, count }) => {
 
@@ -20,7 +20,7 @@ const PriceDetails = ({ totalprice, count }) => {
     }
 
     const handleCouponCode = () => {
-         if (couponCode === "tech30") {
+         if (couponCode === "Tech30") {
             let dis = Math.floor(totalprice / 100 * 10)
             console.log(dis,'discount')
             localStorage.setItem("couponDiscount", dis)
@@ -62,20 +62,20 @@ useEffect(()=>{
 
                 <Flex>
                     <Text>Discount</Text>
-                    <button className='coupon' onClick={handleCoupon} >Apply Coupon</button>
+                    <button className={style.coupon} onClick={handleCoupon} >Apply Coupon</button>
                     <Spacer />
                     <Text>₹{discountedAmount}</Text>
                 </Flex>
                 {coupon &&
                     <Flex mt="-20px">
                         <input
-                            className='couponInput'
+                            className={style.couponInput}
                             type="text"
-                            placeholder='Type Coupon Code'
+                            placeholder='Tech30'
                             value={couponCode}
                             onChange={(e) => setCouponCode(e.target.value)}
                         />
-                        <button className='applyCode' onClick={handleCouponCode} >Apply</button>
+                        <button  className={style.applyCode} onClick={handleCouponCode} >Apply</button>
                     </Flex>
                 }
                 <Flex>
@@ -91,16 +91,18 @@ useEffect(()=>{
                 <Flex fontSize="20px" fontWeight="bold" borderTop="1px solid #DBDDE0" borderBottom="1px solid #DBDDE0" pt="10px" pb="10px" >
                     <Text  >Total Amount</Text>
                     <Spacer />
-                    <Text>₹ {Intl.NumberFormat().format(totalprice + count * 40 - 1 - discountedAmount)}</Text>
+                    <Text>₹ {(totalprice + count * 40 - 1 - discountedAmount)}</Text>
                 </Flex>
                 <Text color="#388E3C" >You will save ₹{discountedAmount} on this order </Text>
                 <Link to="/payment" >
-                    <Button width="200px" display="block" m="auto" bgColor="blue.500" color="white" fontSize="20px" _hover={{ bgColor: "blue.300" }} >Place Order</Button>
+                    <Button width="200px" display="block" m="auto" bgColor="blue.500" color="white" fontSize="20px" _hover={{ bgColor: "blue.300" }} 
+                    onClick={()=>dispatch(handleTotalPrice(totalprice+count*40-1-discountedAmount))}
+                    >Place Order</Button>
                 </Link>
             </Grid>
         </Box>
 
     )
 }
-
+// {totalprice+count*40-1-discountedAmount}
 export default PriceDetails

@@ -1,5 +1,5 @@
 import { Box, Flex, Grid, Img, Text } from '@chakra-ui/react';
-import React, { useEffect } from 'react'
+import React, { memo, useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
 import { useLocation } from 'react-router-dom';
 import { getdata, getFilteredData } from '../../Redux/AppReducer/action';
@@ -34,17 +34,15 @@ const Products = () => {
 
     return (
         <Grid
-            w="75%"
-            m="auto"
-            justifyContent="left"
+        minW='70%'
             alignItems="center"
             className="productCon"
-            h="100vh"
+            h="100vh" 
         >
             {
              isLoading? <Box w='100%' ><Loading /></Box> :   product.length>0 && product.map((elem) => {
                     return (
-                            <Flex border="1px solid #DBDDE0" p="20px" key={elem._id} bgColor="white"  >
+                            <Flex m='auto' border="1px solid #DBDDE0" mb='5px' borderRadius='12px' p="20px" key={elem._id} bgColor="white"  >
                                 
                             <Link to={`/product/${elem._id}`}>
                                 <Box >
@@ -61,14 +59,14 @@ const Products = () => {
                                     <Text fontSize={["12px", "14px", "16px"]} >{elem.battery}</Text>
                                     <Text fontSize={["12px", "14px", "16px"]} >{elem.colors}, Color </Text>
                                 </Box>
-                                <Grid justifyContent="space-between" >
-                                    <Flex w="320px" justifyContent="space-between" >
-                                        <Box>
+                                <Grid justifyContent="space-between"  px='30px' >
+                                    <Flex >
+                                        <Box m='auto'>
                                             <Text fontSize={["22px"]} fontWeight="bold" >₹ {Intl.NumberFormat().format(Math.round(elem.approx_price_EUR * 87.82))} </Text>
                                             <Text as="s" color="#A28787" fontSize={["14px"]} >₹ {Intl.NumberFormat().format(Math.round(elem.approx_price_EUR * 87.82 + elem.approx_price_EUR * 87.82 / 100 * 9))} </Text>
                                         </Box>
                                     </Flex>
-                                    <Flex Flex w="320px" justifyContent="right" mt="40px" alignItems="center" >
+                                    <Flex  m='auto' mt="40px" alignItems="center"   >
                                         <LikeButton />
                                         <CartButton id={elem._id} discount={Math.floor(Number(elem.approx_price_EUR * 87.82 / 100 * 10))} />
                                     </Flex>
@@ -81,4 +79,4 @@ const Products = () => {
     )
 }
 
-export default Products
+export default memo(Products)

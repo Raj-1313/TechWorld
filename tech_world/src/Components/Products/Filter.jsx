@@ -1,4 +1,4 @@
-import { Box, Checkbox, Flex, Radio, Text } from '@chakra-ui/react'
+import { Accordion, AccordionButton, AccordionIcon, AccordionItem, AccordionPanel, Box, Checkbox, Flex, Radio, Text } from '@chakra-ui/react'
 import React, { useEffect, useState } from 'react'
 import { useSearchParams } from 'react-router-dom'
 
@@ -73,14 +73,20 @@ const Filter = () => {
 
     return (
         <Box border="1px solid #DBDDE0" w="20%" p="20px" bgColor="white" ml="30px" >
+            <Accordion allowToggle>
+            <AccordionItem>
+            <AccordionButton>
             <Text borderBottom="2px solid grey" >Sort By</Text>
+            </AccordionButton>
+
+    <AccordionPanel pb={4}>
             <Box mb="20px" mt="10px" justifyContent="left" onChange={handleSort} >
                 <Flex gap="10px">
                     <Checkbox
                         value="asc"
                         name="sortBy"
                         isChecked={intialSort === "asc"}
-                    />
+                        />
                     <label>A-Z</label>
                 </Flex>
                 <Flex gap="10px" >
@@ -88,7 +94,7 @@ const Filter = () => {
                         value="desc"
                         name="sortBy"
                         isChecked={intialSort === "desc"}
-                    />
+                        />
                     <label>Z-A</label>
                 </Flex>
                 <Flex gap="10px">
@@ -96,7 +102,7 @@ const Filter = () => {
                         value="inc"
                         name="sortBy"
                         isChecked={intialSort === "inc"}
-                    />
+                        />
                     <label>Price low-high</label>
                 </Flex>
                 <Flex gap="10px" >
@@ -104,11 +110,20 @@ const Filter = () => {
                         value="dec"
                         name="sortBy"
                         isChecked={intialSort === "dec"}
-                    />
+                        />
                     <label>Price high-low</label>
                 </Flex>
             </Box>
+        </AccordionPanel>
+        </AccordionItem>
+
+
+        <AccordionItem>
+
+            <AccordionButton>
             <Text borderBottom="2px solid grey" >BRAND</Text>
+            </AccordionButton>
+            <AccordionPanel>
             <Box display="grid" pl="10px" mt="10px" >
                 {
                     brandCheckArr?.map((elem) => {
@@ -124,8 +139,18 @@ const Filter = () => {
                     })
                 }
             </Box>
-            <Text borderBottom="2px solid grey" mt="20px" >RAM</Text>
-            <Box display="grid" pl="10px" mt="10px" >
+            </AccordionPanel>
+
+                </AccordionItem>
+
+            <AccordionItem>
+            <AccordionButton>
+            <Text borderBottom="2px solid grey"  >RAM</Text>
+            </AccordionButton>
+
+
+            <AccordionPanel>
+            <Box display="grid" pl="10px" >
                 {
                     ramArr?.map((elem) => {
                         return <Flex gap="10px" key={elem.name}>
@@ -134,12 +159,17 @@ const Filter = () => {
                                 name={elem.name}
                                 value={elem.name}
                                 isChecked={initialRam.includes(elem.name)}
-                            />
+                                />
                             <Text>{elem.ram}</Text>
                         </Flex>
                     })
                 }
             </Box>
+                </AccordionPanel>
+                </AccordionItem>
+
+
+            </Accordion>
         </Box>
     )
 }

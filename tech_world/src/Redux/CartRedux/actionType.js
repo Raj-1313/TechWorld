@@ -16,3 +16,4 @@ export const DELETE_ERROR = "DELETE_ERROR"
 
 export const ADD_COUPON_DIS = "ADD_COUPON_DIS";
 export const ADD_COUPON = "ADD_COUPON";
+export const SendTotalPrice = "SendTotalPrice";

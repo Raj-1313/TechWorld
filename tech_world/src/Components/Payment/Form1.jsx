@@ -38,6 +38,7 @@ const Form1 = ({getFrom1Data}) => {
             onChange={handleChange}
             name={"name"}
             value={data.name}
+            required
           />
         </FormControl>
 
@@ -51,6 +52,7 @@ const Form1 = ({getFrom1Data}) => {
             onChange={handleChange}
             name={"lastName"}
             value={data.lastName}
+            required
           />
         </FormControl>
       </Flex>
@@ -64,6 +66,7 @@ const Form1 = ({getFrom1Data}) => {
           onChange={handleChange}
           name={"email"}
           value={data.email}
+          required
         />
         <FormHelperText>We'll never share your email.</FormHelperText>
       </FormControl>

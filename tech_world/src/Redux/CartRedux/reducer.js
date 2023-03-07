@@ -9,7 +9,8 @@ const initialState = {
     isError: false,
     couponDiscount: 0 || couponDis ,
     CartLength:0,
-    myCoupon: "" || couponCode
+    myCoupon: "" || couponCode,
+    SendTotalPrice:0
 }
 
 const reducer = (state = initialState, action) => {
@@ -48,6 +49,8 @@ const reducer = (state = initialState, action) => {
                 return {...state, myDiscount:payload}
         case types.ADD_COUPON:
                 return {...state, myCoupon:payload}
+        case types.SendTotalPrice:
+                return {...state, SendTotalPrice:payload}
 
         default:
             return state

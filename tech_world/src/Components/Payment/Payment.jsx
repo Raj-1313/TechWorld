@@ -3,25 +3,25 @@ import { Progress, Box, ButtonGroup, Button, Flex } from "@chakra-ui/react";
 
 import { useToast } from "@chakra-ui/react";
 import RazorPay from "./RazorPay";
+import Navbar from "../Navbar/Navbar";
 import Form1 from "./Form1";
 import Form2 from "./Form2";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { PayedTotao } from "../../Redux/CartRedux/action";
 
 export default function Payment() {
   const toast = useToast();
   const [step, setStep] = useState(1);
+  const {SendTotalPrice}= useSelector(state=>state.CartReducer)
   const [progress, setProgress] = useState(50);
 const dispatch= useDispatch();
   const [data, setData] = useState({});
 
   const getFrom1Data = (form1Data) => {
-    // console.log("form1Data: ", form1Data);
     setData({ ...data, ...form1Data });
   };
 
   const getFrom2Data = (form2Data) => {
-    // console.log("form2Data: ", form2Data);
     setData({ ...data, ...form2Data });
   };
 
@@ -31,6 +31,7 @@ const dispatch= useDispatch();
 
   return (
     <>
+
       <Box
         borderWidth="1px"
         rounded="lg"
@@ -90,7 +91,7 @@ const dispatch= useDispatch();
           </Flex>
         </ButtonGroup>
       </Box>
-            <RazorPay handleSubmit={handleSubmit} totalprice={5000} />
+            <RazorPay details={data} handleSubmit={handleSubmit} totalprice={SendTotalPrice} />
     </>
   );
 }

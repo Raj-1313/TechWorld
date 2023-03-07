@@ -74,6 +74,12 @@ export const handleAddCoupon = (payload)=>{
         payload
     }
 }
+export const handleTotalPrice = (price)=>{
+   return {
+        type:types.SendTotalPrice,
+        payload:price
+    }
+}
 
 const getData = ()=> (dispatch)=>{
     dispatch({

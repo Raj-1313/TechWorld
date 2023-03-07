@@ -11,6 +11,8 @@ const AllProducts = () => {
     <Navbar />       
     <Flex
         bgColor="#F1F3F6"
+        gap='30px'
+        justifyContent='center'
     >
         <Filter/>
         <Products/>
