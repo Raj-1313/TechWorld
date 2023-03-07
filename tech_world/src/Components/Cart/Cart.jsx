@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { useSelector, useDispatch } from "react-redux";
 import getData from '../../Redux/CartRedux/action';
-import { Box, Flex} from "@chakra-ui/react"
+import { Box,Button,Flex, Grid} from "@chakra-ui/react"
 import cartClass from "../../styles/Cart.module.css"
 import CartProduct from './CartProduct';
 import PriceDetails from './PriceDetails';
@@ -9,9 +9,10 @@ import LargeWithLogoCentered from '../Footer/Footer';
 import Navbar from '../Navbar/Navbar';
 import Loading from "../../HOF/Loading";
 import Error from "../../HOF/Error";
+import { Empty} from 'antd';
 
 const Cart = () => {
-  const [count, setCount] = useState(0);
+   const [count, setCount] = useState(0);
   const [totalprice, setTotalPrice] = useState(0);
   const {data,isLoading,isError} = useSelector((store) => store.CartReducer)
   const dispatch = useDispatch();
@@ -47,10 +48,22 @@ const Cart = () => {
   if(isLoading){
     return <Loading />
   }
+
   
   if(isError){
     return <Error/>
   }
+  
+if(data.length==undefined){
+  return (
+    <Box  h={'100vh'}>
+    <Navbar/>
+  <Grid h='80vh'   justifyContent='center' alignItems='center'>
+  <Empty description='NO PRODUCT' />
+  </Grid>
+    </Box>
+  )
+}
   
   return (
     <>
@@ -67,6 +80,7 @@ const Cart = () => {
           <PriceDetails totalprice={totalprice} count={count} />
       </Flex>
     </div>
+    
     {/* <LargeWithLogoCentered/> */}
     </>
   )

@@ -3,8 +3,8 @@ import React from 'react'
 import "./Loading.css"
 const Loading = () => {
   return (
-    <Flex justifyContent='center' alignItems="center" >
-    <div  class="loader">
+    // <Flex justifyContent='center' alignItems="center" >
+    <div  className="loader">
   <span>L</span>
   <span>O</span>
   <span>A</span>
@@ -13,7 +13,7 @@ const Loading = () => {
   <span>N</span>
   <span>G</span>
 </div>
-    </Flex>
+    // </Flex>
   )
 }
 

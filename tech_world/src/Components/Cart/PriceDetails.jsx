@@ -1,40 +1,47 @@
-import React, {  useState } from 'react'
-import { Box, Grid, Flex,  Spacer, Text, Button } from "@chakra-ui/react"
+import React, {  useEffect, useState } from 'react'
+import { Box, Grid, Flex,  Spacer, Text, Button, Center } from "@chakra-ui/react"
 import { Link } from "react-router-dom"
 import {useSelector, useDispatch} from "react-redux"
-import { handleAddCouponDis } from '../../Redux/CartRedux/action'
+import { handleAddCoupon, handleAddCouponDis } from '../../Redux/CartRedux/action'
+
 
 const PriceDetails = ({ totalprice, count }) => {
 
-    const myDiscount = useSelector((store) => store.CartReducer.myDiscount);
+    const {myDiscount,data} = useSelector((store) => store.CartReducer);
     const dispatch = useDispatch();
-
-    console.log("myDiscount is", myDiscount);
-
     const [coupon, setCoupon] = useState(false);
+    const [discountedAmount, setDiscountdPrice] = useState(0);
     const [couponCode, setCouponCode] = useState("");
     const [discount, setDiscount] = useState(0 || myDiscount);
 
+    
     const handleCoupon = () => {
         setCoupon(prev => prev ? prev = false : prev = true);
     }
 
     const handleCouponCode = () => {
-        setTimeout(()=>{
-            window.location.reload();
-        },1000)
-        if (couponCode === "ayush13") {
+         if (couponCode === "tech30") {
             let dis = Math.floor(totalprice / 100 * 10)
+            console.log(dis,'discount')
             localStorage.setItem("couponDiscount", dis)
             localStorage.setItem("couponCode", couponCode)
             dispatch(handleAddCouponDis(dis))
-            dispatch(handleCoupon(couponCode))
+            dispatch(handleAddCoupon(couponCode))
             setCouponCode("")
             setCoupon(false)
         }
     }
 
+
+useEffect(()=>{
+    if(myDiscount!=undefined){
+        setDiscountdPrice(myDiscount)
+    }
+
+},[myDiscount])
+
     return (
+       
         <Box
             bgColor="white"
             ml={["0px", "35px", "50px"]}
@@ -51,11 +58,13 @@ const PriceDetails = ({ totalprice, count }) => {
                     <Spacer />
                     <Text>₹{Intl.NumberFormat().format(totalprice)}</Text>
                 </Flex>
+
+
                 <Flex>
                     <Text>Discount</Text>
                     <button className='coupon' onClick={handleCoupon} >Apply Coupon</button>
                     <Spacer />
-                    <Text>₹{Intl.NumberFormat().format(discount)}</Text>
+                    <Text>₹{discountedAmount}</Text>
                 </Flex>
                 {coupon &&
                     <Flex mt="-20px">
@@ -80,16 +89,17 @@ const PriceDetails = ({ totalprice, count }) => {
                     <Text> ₹{new Intl.NumberFormat().format(count * 40 - 1)} </Text>
                 </Flex>
                 <Flex fontSize="20px" fontWeight="bold" borderTop="1px solid #DBDDE0" borderBottom="1px solid #DBDDE0" pt="10px" pb="10px" >
-                    <Text  >Totel Amount</Text>
+                    <Text  >Total Amount</Text>
                     <Spacer />
-                    <Text>₹ {Intl.NumberFormat().format(totalprice + count * 40 - 1 - discount)}</Text>
+                    <Text>₹ {Intl.NumberFormat().format(totalprice + count * 40 - 1 - discountedAmount)}</Text>
                 </Flex>
-                <Text color="#388E3C" >You will save ₹{Intl.NumberFormat().format(discount && discount - count * 40 - 1)} on this order </Text>
+                <Text color="#388E3C" >You will save ₹{discountedAmount} on this order </Text>
                 <Link to="/payment" >
                     <Button width="200px" display="block" m="auto" bgColor="blue.500" color="white" fontSize="20px" _hover={{ bgColor: "blue.300" }} >Place Order</Button>
                 </Link>
             </Grid>
         </Box>
+
     )
 }
 

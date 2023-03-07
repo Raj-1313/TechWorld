@@ -17,7 +17,6 @@ const Products = () => {
     const dispatch = useDispatch();
    
     const location = useLocation();
-    console.log(location.search,'my search')
     
     useEffect(() => {
         if (location.search) {
