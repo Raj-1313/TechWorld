@@ -5,10 +5,10 @@ The TechWorld  is an details oriented website  that allows people to make decisi
 User Friendly UI .... 
 
 ## Member (Assigned To)
- * Raj Rathore..... {Backend, AdminSection}
+ * Raj Rathore..... {Backend APIs, AdminSection,Middlewares}
  * Parag Jain...... {Backend, AdminSection}
- * Subha Mukherje...{FrontEnd}
- * Ayush Verma......{FrontEnd,cart to paymant}
+ * Subha Mukherje...{HomePage,Authantication}
+ * Ayush Verma......{ProductPage,Cart,Payment}
 
 ## Available Scripts
 * Chakra
@@ -17,7 +17,6 @@ User Friendly UI ....
 * Thunk
 * Framer Motion
 * Axios
-
 
 
 ## Link
