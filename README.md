@@ -1,4 +1,4 @@
-# The TechWorld (holy-week-7770)
+# TechWorld
 ### Team Collaborated Project Completed in 6 days
 
 The TechWorld  is an details oriented website  that allows people to make decision before buying  electronic goods and services. Through this website, user can process orders, accept payments and logistics, and provide customer services.
